@@ -1,0 +1,264 @@
+.sp-modal{
+	background-color: #000;
+	background: rgba(0,0,0,0.5);
+	color: #fff;
+}
+.sp-modal .modal-content{
+	width: 450px;
+}
+.sp-modal .modal-content{
+	background-color: #136;
+	background: -webkit-linear-gradient(#abc, #136 20%);
+	background: -o-linear-gradient(#abc, #136 20%);
+	background: -moz-linear-gradient(#abc, #136 20%);
+	padding: 5px;
+	border: none;
+}
+
+.sp-modal .modal-content .modal-header{
+	background-color: #337ab7;
+	background: -webkit-linear-gradient(#136, #abc);
+	background: -o-linear-gradient(#136, #ade);
+	background: -moz-linear-gradient(#136, #ade);
+	background: linear-gradient(#136, #26b);
+	border: none;
+	text-align: center;
+	min-height: 40px;
+	padding: 10px 15px;
+}
+
+.sp-modal .modal-content .modal-body{
+	max-height: 768px;
+	font-size: 12px;
+}
+.sp-modal .modal-content .modal-body .form-group{
+	margin-bottom: 7px;
+}
+.sp-modal .modal-content .modal-body .form-horizontal .form-group .control-label{
+	text-align: left;
+}
+.sp-modal .modal-content .modal-body .form-horizontal .form-group.form-group-radio label{
+	padding-top: 0;
+}
+.sp-modal .modal-content .form-group.required .control-label:after {
+  content:"*";color:red;
+}
+
+/*.sp-modal .modal-content .modal-body .form-group-sm .form-control{
+	height: 25px;
+	font-size:12px;
+	padding: 0 5px;
+}*/
+.sp-modal .modal-content .modal-body .form-group .no-left-padding{
+	padding-left: 0;
+}
+.sp-modal .modal-content .modal-body .form-group .action-buttons{
+	text-align: center;
+	margin-top: 15px;
+}
+
+.sp-modal .modal-content .modal-body .form-group .action-buttons .btn{
+	width: 100px;
+}
+.sp-modal .modal-content .modal-body .form-group.button-wrapper{
+	margin-bottom: 0;
+}
+
+.sp-modal .modal-content .modal-body .form-group ::-webkit-input-placeholder {
+   color: #555;
+}
+
+.sp-modal .modal-content .modal-body .form-group :-moz-placeholder { /* Firefox 18- */
+   color: #555;  
+}
+
+.sp-modal .modal-content .modal-body .form-group ::-moz-placeholder {  /* Firefox 19+ */
+   color: #555;  
+}
+
+.sp-modal .modal-content .modal-body .form-group :-ms-input-placeholder {  
+   color: #555;
+}
+
+.sp-modal .modal-content .modal-body .form-group textarea{
+	font-size: 12px;
+}
+.sp-modal .modal-content .modal-body .form-group input[type="text"]{
+	padding: 6px 12px;
+}
+
+/*Generic Style Ends*/ 
+
+/*Filter Popup Style Starts*/
+.filter-popup .modal-content .modal-body .form-group{
+	margin-bottom: 11px; 
+}
+.filter-popup .picker__frame{
+	max-height: 400px;
+}
+.filter-popup .calendar-icon{
+	top: 0;
+}
+.bootstrap-datetimepicker-widget {
+    color: #555;
+}
+/*Filter Popup Style Ends*/
+
+/*Fire Order Popup Style Starts*/
+.fire-order h5 {
+	text-align: center;
+}
+.fire-order .container-fluid{
+	max-height: 370px;
+	padding: 0;
+	overflow-y: auto; 
+}
+.fire-order .items-container{
+	background: #FFFFFF;
+	padding: 5px;
+}
+.fire-order .items-container .item-description{
+	background: url(../images/gray_gradient.png);
+	padding: 10px;
+	color: #555;
+	font-size: 14px;
+	-webkit-box-shadow: 0px 2px 2px 0px rgba(153,148,153,1);
+	-moz-box-shadow: 0px 2px 2px 0px rgba(153,148,153,1);
+	box-shadow: 0px 2px 2px 0px rgba(153,148,153,1);
+}
+
+/*Fire Order Popup Style Ends*/
+
+/*Discount Popup Style Starts*/
+.sp-modal.discount .modal-content table tbody{
+	height: 220px;
+	overflow-y: auto; 
+}
+.sp-modal.discount .modal-content table thead th{
+	height: 17px;
+}
+.sp-modal.discount .modal-content table thead tr th:first-child,
+.sp-modal.discount .modal-content table tbody tr td:first-child{
+	width: 123px;
+	float: left;
+}
+.sp-modal.discount .modal-content table thead tr th:nth-child(2),
+.sp-modal.discount .modal-content table tbody tr td:nth-child(2){
+	width: 136px;
+	float: left;
+}
+.sp-modal.discount .modal-content table tbody tr td:nth-child(4),
+.sp-modal.discount .modal-content table thead tr th:nth-child(3),
+.sp-modal.discount .modal-content table tbody tr td:nth-child(3){
+	width: 67px;
+	float: left;
+}
+.sp-modal.discount .modal-content table tbody tr td:nth-child(4){
+	text-align: left;
+}
+.sp-modal.discount .modal-content table thead tr th:nth-child(4){
+	width: 84px;
+	float: left;
+}
+.sp-modal.discount .modal-content thead,
+.sp-modal.discount .modal-content tbody, 
+.sp-modal.discount .modal-content tr,
+.sp-modal.discount .modal-content td,
+.sp-modal.discount .modal-content th { display: block; }
+
+.sp-modal.discount .modal-content tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.sp-modal.discount .modal-content table tr th,
+.sp-modal.discount .modal-content table tr td{
+	border: none;
+	font-weight: normal;
+}
+.sp-modal.discount .modal-content table tr th:nth-child(2),
+.sp-modal.discount .modal-content table tr td:nth-child(2){
+	text-align: center;
+}
+.sp-modal.discount .modal-content table tr th:nth-child(3),
+.sp-modal.discount .modal-content table tr th:nth-child(4),
+.sp-modal.discount .modal-content table tr td:nth-child(3),
+.sp-modal.discount .modal-content table tr td:nth-child(4){
+	text-align: right;
+}
+.sp-modal.discount .modal-content table thead tr th{
+	padding: 0;
+}
+.sp-modal.discount .modal-content table thead tr th:nth-child(3){
+	padding-right: 5px;
+}
+.sp-modal.discount .modal-content table tbody tr td{
+	padding: 5px;
+	vertical-align: middle; 
+}
+.sp-modal.discount .modal-content table tbody tr td:first-child,
+.sp-modal.discount .modal-content table tbody tr td:nth-child(3),
+.sp-modal.discount .modal-content table tbody tr td:nth-child(4){
+	/*padding-top: 13px;
+	padding-bottom: 13px;*/
+	vertical-align: middle;
+}
+.sp-modal.discount .modal-content table tbody tr{
+	background: url(../images/gray_gradient.png);
+	color: #555;
+}
+.sp-modal.discount .modal-content table tbody tr td .input-group {
+	width: 120px;
+}
+/*Discount Popup Style Ends*/
+
+/*Manager Password Popup Style Starts*/
+.sp-modal.manager-password {
+    z-index: 11000 !important;
+}
+.sp-modal.manager-password .modal-dialog,
+.sp-modal.manager-password .modal-content {
+	width: 275px;
+}
+.sp-modal.manager-password .modal-dialog {
+    min-width: initial;
+}
+.sp-modal.manager-password .modal-content .modal-body{
+	width: 240px;
+}
+.sp-modal.manager-password .modal-content .modal-body .section .row{
+	margin-bottom: 4px;
+}
+.sp-modal.manager-password .modal-content .modal-body .section .row img:hover{
+	opacity: .8;
+}
+
+.modal-body #password_id {
+	width: 234px;
+	height: 55px;
+	border: none;
+	outline: none;
+	background: #000;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.manager-password .modal-content .btn_manager_password_orange{
+	font-size: 22px;
+	font-weight: bold;
+	height: 65px;
+	line-height: 65px;
+	vertical-align: middle;
+	color: #d8d7d7;
+	width: 234px;
+	background: url(../images/pinpin/btn_access_pos_orange_new.png) no-repeat;
+	padding: 0;
+	display: inline-block;
+	margin-top: 5px;
+	border-radius: 8px;
+	border-bottom-right-radius: 5px; 
+}
+.manager-password .modal-content .btn_manager_password_orange:hover{
+	opacity: .8;
+}

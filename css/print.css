@@ -1,0 +1,28 @@
+#tblReport th, #tblReport td {
+    font-size: 10px !important;
+}
+
+#general-info {
+    background-color: #ddd;
+    margin-bottom: 10px;
+    min-height: auto;
+}
+body {
+    background: #fff;
+}
+
+#tab_box2 {
+    padding-bottom: 0px !important;
+}
+
+.tblReportArea, .report-section {
+    height: auto !important;
+}
+
+.report-section {
+    border: 0px;
+}
+
+.font-11 {
+    font-size: 11px !important;
+}

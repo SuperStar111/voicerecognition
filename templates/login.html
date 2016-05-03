@@ -1,0 +1,42 @@
+<style media="screen">
+body, html, #login {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+}
+</style>
+<div cg-busy="{promise:myPromise,message:'Processing ...', backdrop:true, templateUrl:'templates/partials/loading.html'}"></div>
+<div id="login" class="login">
+    <!-- Fixed navbar -->
+    <div class="container fixed-top" ng-include="'templates/partials/top-navbar.html'" ng-controller="NavbarController as navbarCtrl"></div>
+
+    <div class="container soft-body">
+        <section class="login-form">
+            <h1>POSPoint</h1>
+            <h3 class="colr">Application Management Activation</h3>
+            <div class="input-login">
+                <form method='post' ng-submit="LoginCtrl.login($event)">
+                    <input type="text" ng-model="LoginCtrl.location" placeholder="Location">
+                    <input type="text" ng-model="LoginCtrl.loginid" placeholder="Employee ID">
+                    <input type="password" ng-model="LoginCtrl.password" placeholder="Password" autocomplete="off">
+                    <select class="select">
+                        <option value="en" selected>English</option>
+                        <option value="fr">Francais</option>
+                    </select>
+                    <button type='submit' class="login_btn_main btn btn-primary">
+                        <span ng-if="!LoginCtrl.isProcessing">Log In</span>
+                        <span ng-if="LoginCtrl.isProcessing">Loading...</span>
+                    </button>
+                </form>
+            </div>
+
+        </section>
+    </div>
+    <!-- /container -->
+
+    <section id="copyright"><span ng-bind-html="$root.copyright"></span>
+    </section>
+    <!-- /footer -->
+</div>

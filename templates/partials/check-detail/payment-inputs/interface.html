@@ -1,0 +1,45 @@
+<div id="interfacetab">
+    <seat-payment ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    
+    <authorized-credit-cards></authorized-credit-cards>
+    <div class="row" ng-show="ctrl.hasGratuity">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" id="interface_gratuity" class="form-control money_field" ng-model="ctrl.currentSubType.gratuity"
+                    ng-blur="ctrl.currentSubType.updateAmountDue()" ng-change="ctrl.currentSubType.gratuityChange=true" placeholder="Gratuity">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control money_field" ng-model="ctrl.amountDue" ng-model-options="{ getterSetter: true }" placeholder="Amount">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control" placeholder="Client Room" ng-model="ctrl.currentSubType.room"
+                    ng-change="ctrl.currentSubType.getHotelPointGuest(parentScope.interface)">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control" placeholder="Client Name" ng-model="ctrl.currentSubType.name"
+                    ng-change="ctrl.currentSubType.getHotelPointGuest(parentScope.interface)">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control" placeholder="Client Account" id="ht_account_id"
+                    ng-model="ctrl.currentSubType.account_id" ng-change="ctrl.currentSubType.getHotelPointGuest(parentScope.interface)">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="logoutCtrl.close()" ng-disabled="logoutCtrl.processingLogout">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">{{logoutCtrl.title}}</h4>
+</div>
+<form ng-keyup="$event.keyCode == 13 && logoutCtrl.logout($event)">
+    <div class="modal-body">
+        <input type="password" class="form-control" ng-model="logoutCtrl.pass_out" id="pass_out" placeholder="Password" aria-describedby="basic-addon2">
+    </div>
+    <div class="modal-footer">
+        <input type='button' class="btn btn-primary" ng-click="logoutCtrl.close()" ng-disabled="logoutCtrl.processingLogout" value='Cancel'/>
+        <button type='button' class="btn btn-primary log_out" ng-if="!logoutCtrl.processingLogout" ng-click="logoutCtrl.logout($event)">Submit</button>
+        <button type='button' class="btn btn-primary log_out" ng-disabled="logoutCtrl.processingLogout" ng-if="logoutCtrl.processingLogout">Logging out ...</button>
+
+    </div>
+</form>

@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h5 class="modal-title">Indicate Seat</h5>
+</div>
+<div class="modal-body" data-ng-class='ctrl.table'>
+    <form class="form-horizontal" data-ng-submit="ctrl.apply()">
+        <div class='table-container circle-container'>
+
+            <div class="seat-item center" data-ng-click="ctrl.toggleAll()" data-ng-class="{'selected': ctrl.all}">
+                <a href='javascript:void(0)'>
+                    <img src='images/pinpin/All.png'>
+                </a>
+            </div>
+
+            <div class="seat-item seat-{{seat}}" data-ng-repeat="seat in ctrl.seats" data-ng-class="{'selected': ctrl.selectedSeats[seat]}" data-ng-click="ctrl.toggle(seat)">
+                <a href='javascript:void(0)' class="seat-{{seat}}">
+                    <img data-ng-src='images/pinpin/dail-{{seat}}.png'>
+                </a>
+            </div>
+
+        </div>
+        <div class="form-group seat-buttons-wrapper extra-seats">
+            <div class="seat-buttons">
+                <div class="col-xs-12">
+                    <div class="pull-left seat-item seat-{{seat}}" data-ng-repeat="seat in ctrl.extraSeats" data-ng-class="{'selected': ctrl.selectedSeats[seat]}" data-ng-click="ctrl.toggle(seat)">
+                        <a href="javascript:void(0)">
+                            <img class="keys" data-ng-src="images/pinpin/dail-{{seat}}.png" alt="" />
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-group-sm button-wrapper">
+            <div class="action-buttons">
+                <button type='button' class="btn btn-gray" data-ng-click="ctrl.cancel()" style="margin-right: 10px">Cancel</button>
+                <button class="btn btn-gray" type="submit">Apply</button>
+            </div>
+        </div>
+    </form>
+</div>

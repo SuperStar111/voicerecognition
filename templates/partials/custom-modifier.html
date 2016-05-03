@@ -1,0 +1,266 @@
+<!-- Custom Menu Modifiers -->
+<div ng-controller="CustomModifiersController">
+
+    <!-- Custom Menu Modifiers Modal -->
+    <div class="modal modal-blue" id="menuItemCustomModifiersModal" tabindex="-1" role="dialog" aria-labelledby="menuItemCustomModifiersModal" aria-hidden="true"
+        ng-class="{'visible':customModifierModalVisible}">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-5 col-lg-4">
+                            <h4 class="modal-title" id="menuItemCustomModifiersModalLabel">
+                                {{itemToModify.display_name}}
+                                <span ng-hide="modifier.selectedSize">- SELECT A SIZE!</span>
+                                <span ng-show="modifier.selectedSize">- {{modifier.selectedSize.modifier}} (+{{symbol}}{{modifier.selectedSize.size_price}})</span>
+                                - {{itemToModify.toppings_extra_free}} Toppings Included
+                            </h4>
+                        </div>
+                        <div class="col-sm-4 col-lg-4 modifier_filter_form">
+                            <img src="images/magni_search_.png" class="magni_search" alt="" />
+                            <img src="images/cross_search.png" ng-click="clearSearchText()" class="cross_search" alt="" />
+                            <input type="text" class="form-control input-sm" name="name" ng-model="searchText" value="{{searchText}}" ng-change="textFilter()"
+                                placeholder="Search for Client, Check, or Server" />
+                            <div class="inline-block">
+                                <button type="button" class="btn btn-sm btn-blue" ng-click="quickFilter('A-I')" ng-class="{'active':nowFiltering('A-I')}">A - I</button>
+                                <button type="button" class="btn btn-sm btn-blue" ng-click="quickFilter('J-R')" ng-class="{'active':nowFiltering('J-R')}">J - R</button>
+                                <button type="button" class="btn btn-sm btn-blue" ng-click="quickFilter('S-Z')" ng-class="{'active':nowFiltering('S-Z')}">S - Z</button>
+                                <button type="button" class="btn btn-sm btn-gray" ng-click="toggleGlobal(null,$event)" ng-disabled="itemToModify.modifiers_use_defaults == 'No'" ng-class="{'active':modifier.showingFor=='global'}"> 
+                                    Global</button> 
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-3 col-lg-4 text-right">
+                            <h4 class="modal-title">Page {{modifier.currentPage}} of {{modifier.numPages}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- /modal-header -->
+
+                <div class="modal-body" id="menuItemCustomModifiersModalBody">
+
+                    <!-- Left Button Bar -->
+                    <div class="button-bar-left">
+                        <ul class="list-group modifier-class-list">
+                            <li class="list-group-item blue-bar" ng-repeat="mod in modifier.primary" ng-click="mod.clickAction(mod, $event)"
+                                ng-class="{'active':mod.isActive(), 'disabled':mod.disabled}">{{mod.display_name}}</li>
+                        </ul>
+                        <div id="custom-modifier-selections" class="well selections">
+                            <div class="list-group">
+                                <div ng-repeat='(quarter, items) in quarters.choiceRefs' ng-if="quarter == 'W'">
+                                    <div class="list-group-item" ng-repeat="thisChoice in items" ng-click="rechooseMod(thisChoice)">
+                                        <span ng-show="thisChoice.qty > 1">{{thisChoice.qty}} </span>
+                                        {{thisChoice.mod.modifier}}
+                                        <span ng-show="quarter && quarter != 'W'">- {{quarter}}</span>
+                                        <span ng-class="{'text-red':thisChoice.danger}">{{thisChoice.prep | uppercase}}</span>
+                                        <span ng-show="thisChoice.extra_charge!=0">- {{thisChoice.extra_charge | number:2}}</span>
+                                        <span class="pull-right">
+                                            <span class="glyphicon glyphicon-remove removeModifier" aria-hidden="true" ng-click="removePrep(thisChoice.mod,$event)"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div ng-repeat='(quarter, items) in quarters.choiceRefs' ng-if="quarter != 'W'">
+                                    <div class="list-group-item" ng-repeat="thisChoice in items" ng-click="rechooseMod(thisChoice)">
+                                        <span ng-show="thisChoice.qty > 1">{{thisChoice.qty}} </span>
+                                        {{thisChoice.mod.modifier}}
+                                        <span ng-show="quarter && quarter != 'W'">- {{quarter}}</span>
+                                        <span ng-class="{'text-red':thisChoice.danger}" ng-if="thisChoice.prep.toUpperCase() != 'ADD'">{{thisChoice.prep | uppercase}}</span>
+                                        <span ng-show="thisChoice.extra_charge!=0">- {{thisChoice.extra_charge | number:2}}</span>
+                                        <span class="pull-right">
+                                            <span class="glyphicon glyphicon-remove removeModifier" aria-hidden="true" ng-click="removePrep(thisChoice.mod,$event)"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="customModifierNotes">
+                            <textarea class="form-control" ng-model="message_to_chef" placeholder="Notes..." rows="4" ng-focus="keyboard()"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Central Modifier Selection area -->
+                    <div id="custom-modifier-selection-buttons-area" class="modifier-details no-scroll">
+
+                        <!-- PREPARATION View -->
+                        <div id="preparation-view" ng-show="['PREPARATION', 'EXTRA'].indexOf(modifier.activeCategory) != -1">
+                            <div class="fill-space" ng-show="modifier.numPages==0">
+                                <h4>No modifiers found.</h4>
+                            </div>
+                            <div class="row row-compact">
+                                <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="thisModCol in thisModPage[modifier.currentPage-1] track by $index">
+                                    <div class="modifier-selection-button" ng-repeat="thisMod in thisModCol track by $index">
+                                        <div class="btn btn-gray btn-block btn-frame" ng-click="choosePrep('add',thisMod)" ng-class="{'active':thisMod.active}">
+                                            <span class="addon-left" ng-click="choosePrep('add',thisMod,-1,$event)">
+                                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                            </span>
+                                            <span class="addon-right">
+                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                            </span>
+                                            <div class="btn-frame-label" ng-hide="thisMod.price">{{thisMod.display_name}}</div>
+                                            <div class="btn-frame-label two-lines" ng-show="thisMod.price">
+                                                {{thisMod.display_name}}<br /> {{symbol}}{{thisMod.price | number:2}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TOPPINGS View -->
+                        <div id="toppings-view" ng-show="modifier.activeCategory=='TOPPINGS' && isToppings">
+                            <div class="fill-space" ng-show="modifier.numPages==0">
+                                <h4>No modifiers found.</h4>
+                            </div>
+                            <div class="toppings-display">
+                                <div class="fill-space left-half">
+                                    <div class="fill-space top-half">
+                                        <a href="" class="thumbnail topping-thumbnail has-tooltip" ng-repeat="thisChoice in quarters.choiceRefs['Q1'] track by $index"
+                                            ng-show="thisChoice.isTopping" ng-click="removePrep(thisChoice.mod,$event)" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{thisChoice.mod.display_name}}">
+                                            <img class="topping-image" src="images/NoMenuImage.png" ng-src="{{thisChoice.mod.image}}" />
+                                        </a>
+                                        <a href="" class="thumbnail topping-thumbnail has-tooltip" ng-repeat="thisChoice in quarters.choiceRefs['H1'] track by $index"
+                                            ng-show="thisChoice.isTopping" ng-click="removePrep(thisChoice.mod,$event)" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{thisChoice.mod.display_name}}">
+                                            <img class="topping-image" src="images/NoMenuImage.png" ng-src="{{thisChoice.mod.image}}" />
+                                        </a>
+                                    </div>
+                                    <div class="fill-space bottom-half">
+                                        <a href="" class="thumbnail topping-thumbnail has-tooltip" ng-repeat="thisChoice in quarters.choiceRefs['Q2'] track by $index"
+                                            ng-show="thisChoice.isTopping" ng-click="removePrep(thisChoice.mod,$event)" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{thisChoice.mod.display_name}}">
+                                            <img class="topping-image" src="images/NoMenuImage.png" ng-src="{{thisChoice.mod.image}}" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="fill-space right-half">
+                                    <div class="fill-space top-half">
+                                        <a href="" class="thumbnail topping-thumbnail has-tooltip" ng-repeat="thisChoice in quarters.choiceRefs['Q3'] track by $index"
+                                            ng-show="thisChoice.isTopping" ng-click="removePrep(thisChoice.mod,$event)" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{thisChoice.mod.display_name}}">
+                                            <img class="topping-image" src="images/NoMenuImage.png" ng-src="{{thisChoice.mod.image}}" />
+                                        </a>
+                                        <a href="" class="thumbnail topping-thumbnail has-tooltip" ng-repeat="thisChoice in quarters.choiceRefs['H2'] track by $index"
+                                            ng-show="thisChoice.isTopping" ng-click="removePrep(thisChoice.mod,$event)" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{thisChoice.mod.display_name}}">
+                                            <img class="topping-image" src="images/NoMenuImage.png" ng-src="{{thisChoice.mod.image}}" />
+                                        </a>
+                                        <a href="" class="thumbnail topping-thumbnail has-tooltip" ng-repeat="thisChoice in quarters.choiceRefs['W'] track by $index"
+                                            ng-show="thisChoice.isTopping" ng-click="removePrep(thisChoice.mod,$event)" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{thisChoice.mod.display_name}}">
+                                            <img class="topping-image" src="images/NoMenuImage.png" ng-src="{{thisChoice.mod.image}}" />
+                                        </a>
+                                    </div>
+                                    <div class="fill-space bottom-half">
+                                        <a href="" class="thumbnail topping-thumbnail has-tooltip" ng-repeat="thisChoice in quarters.choiceRefs['Q4'] track by $index"
+                                            ng-show="thisChoice.isTopping" ng-click="removePrep(thisChoice.mod,$event)" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{thisChoice.mod.display_name}}">
+                                            <img class="topping-image" src="images/NoMenuImage.png" ng-src="{{thisChoice.mod.image}}" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="pie">
+                                    <img src="images/pie/q1.png" class="pie-slice q1" ng-class="{'inactive':!quarters.quarter(1)}" ng-click="quarters.clickAction(1)">
+                                    <img src="images/pie/q2.png" class="pie-slice q2" ng-class="{'inactive':!quarters.quarter(2)}" ng-click="quarters.clickAction(2)">
+                                    <img src="images/pie/q3.png" class="pie-slice q3" ng-class="{'inactive':!quarters.quarter(3)}" ng-click="quarters.clickAction(3)">
+                                    <img src="images/pie/q4.png" class="pie-slice q4" ng-class="{'inactive':!quarters.quarter(4)}" ng-click="quarters.clickAction(4)">
+                                    <div class="bifurcate">
+                                        <div class="bifurcate vertical" ng-show="quarters.parts>=2">&nbsp;</div>
+                                        <div class="bifurcate horizontal" ng-show="quarters.parts==4">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="toppings-selection" id="custom-modifier-toppings-buttons-area">
+                                <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="thisModCol in thisModPage[modifier.currentPage-1] track by $index">
+                                    <div class="modifier-selection-button" ng-repeat="thisMod in thisModCol track by $index">
+                                        <div class="btn btn-gray btn-block btn-frame" ng-click="choosePrep('add',thisMod)" ng-class="{'active':thisMod.active}">
+                                            <span class="addon-left" ng-click="choosePrep('add',thisMod,-1,$event)">
+                                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                            </span>
+                                            <span class="addon-right">
+                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                            </span>
+                                            <div class="btn-frame-label" ng-hide="thisMod.price">{{thisMod.display_name}}</div>
+                                            <div class="btn-frame-label two-lines" ng-show="thisMod.price">
+                                                {{thisMod.display_name}}<br /> {{symbol}}{{thisMod.price | number:2}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /modifier-details -->
+
+                    <!-- Right Button Bar -->
+                    <div class="button-bar-right">
+                        <button type="button" class="btn btn-block btn-stateful add-tooltip"
+                            ng-class="{'btn-primary':modifier.prep.add.selected, 'btn-gray':!modifier.prep.add.selected}" ng-click="choosePrep('add')"
+                            ng-disabled="modifier.prep.add.disabled" data-toggle="tooltip" data-placement="left" title="Add">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            <!--<div class="tooltip-position"><div class="tooltip left in" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner">Add</div></div></div>-->
+                        </button>
+                        <button type="button" class="btn btn-block btn-stateful add-tooltip"
+                            ng-class="{'btn-danger':modifier.prep.allergic.selected, 'btn-gray':!modifier.prep.allergic.selected}" ng-click="choosePrep('allergic')"
+                            ng-disabled="modifier.prep.allergic.disabled" data-toggle="tooltip" data-placement="left" title="Allergic">
+                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-block btn-stateful"
+                            ng-class="{'btn-primary':modifier.prep.extra.selected, 'btn-gray':!modifier.prep.extra.selected}" ng-click="choosePrep('extra')"
+                            ng-disabled="modifier.prep.extra.disabled" data-toggle="tooltip" data-placement="left" title="Extra">
+                            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-block btn-stateful"
+                            ng-class="{'btn-primary':modifier.prep.less.selected, 'btn-gray':!modifier.prep.less.selected}" ng-click="choosePrep('less')"
+                            ng-disabled="modifier.prep.less.disabled" data-toggle="tooltip" data-placement="left" title="Less">
+                            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-block btn-stateful"
+                            ng-class="{'btn-primary':modifier.prep.only.selected, 'btn-gray':!modifier.prep.only.selected}" ng-click="choosePrep('only')"
+                            ng-disabled="modifier.prep.only.disabled" data-toggle="tooltip" data-placement="left" title="Only">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-block btn-stateful"
+                            ng-class="{'btn-danger':modifier.prep.remove.selected, 'btn-gray':!modifier.prep.remove.selected}" ng-click="choosePrep('remove')"
+                            ng-disabled="modifier.prep.remove.disabled" data-toggle="tooltip" data-placement="left" title="Remove">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-block btn-stateful"
+                            ng-class="{'btn-primary':modifier.prep.side.selected, 'btn-gray':!modifier.prep.side.selected}" ng-click="choosePrep('side')"
+                            ng-disabled="modifier.prep.side.disabled" data-toggle="tooltip" data-placement="left" title="Side">
+                            <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-block btn-stateful"
+                            ng-class="{'btn-primary':modifier.prep.sub.selected, 'btn-gray':!modifier.prep.sub.selected}" ng-click="choosePrep('sub')"
+                            ng-disabled="modifier.prep.sub.disabled" data-toggle="tooltip" data-placement="left" title="Substitute">
+                            <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
+                        </button>
+                        <div class="paginators" ng-hide="modifier.numPages<2">
+                            <button type="button" class="btn btn-block btn-stateful btn-gray" ng-click="modPage('previous')" data-toggle="tooltip" data-placement="left"
+                                title="Previous Page">
+                                <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-block btn-stateful btn-gray" ng-click="modPage('next')" data-toggle="tooltip" data-placement="left"
+                                title="Next Page">
+                                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /modal-body -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-gray btn-100" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-gray btn-100" ng-click="applyModifier()">Apply</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /menuItemCustomModifiersModal -->
+
+</div>
+<!-- /CustomModifersController -->

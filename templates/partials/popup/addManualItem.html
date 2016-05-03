@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h5 class="modal-title">Add Manual Item</h5>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" ng-submit="add_item()">
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-model="item.name" ng-required="true" class="form-control" id="name" placeholder="Name">
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-model="item.price" ng-required="true" class="form-control" id="price" placeholder="Price">
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="item.printer" ng-required="true" ng-options="printer for printer in ['--- Printer ---', 'Printer 1', 'Printer 2', 'Printer 3']"
+                    class="form-control" id="printer"></select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="item.menu" ng-required="true" ng-options="menu for menu in ['--- Menu ---', 'Menu 1', 'Menu 2', 'Menu 3']" class="form-control" id="menu"></select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="item.menu_group" ng-required="true"
+                    ng-options="menu_group for menu_group in ['--- Menu Group ---', 'Menu Group 1', 'Menu Group 2', 'Menu Group 3']" class="form-control" id="menu-group"></select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="item.type" ng-required="true" ng-options="type for type in ['--- Article Type ---', 'Type 1', 'Type 2', 'Type 3']" class="form-control"
+                    id="type"></select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-model="item.plu" ng-required="true" class="form-control" id="plu" placeholder="PLU">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <textarea class="form-control" ng-model="item.description" id="description" rows="3" placeholder="Description..."></textarea>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="item.is_taxable" ng-required="true" ng-options="is_taxable for is_taxable in ['--- Taxable ---', 'Yes', 'No']" class="form-control"
+                    id="is-taxable"></select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm" ng-if="item.is_taxable=='Yes'">
+            <div class="col-sm-12">
+                <select ng-model="item.tax_code" ng-options="tax_code for tax_code in ['--- Tax Code ---', 'Tax Code 1', 'Tax Code 2', 'Tax Code 3']" class="form-control"
+                    id="tax-code"></select>
+            </div>
+        </div>
+        <div class="form-group form-group-sm button-wrapper">
+            <div class="action-buttons">
+                <button class="btn btn-gray" ng-click="cancel()" style="margin-right: 10px">Cancel</button>
+                <button class="btn btn-gray" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

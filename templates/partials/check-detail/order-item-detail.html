@@ -1,0 +1,85 @@
+<div class='ordered_added_items_tpl' id='order-item-detail'>
+    <div class="right-bloc-header">
+        <img ng-src="images/{{ctrl.checkStatus}}.png" class="new" alt="" />
+        <div class="row">
+            <div class="col-xs-7 title">
+                <h3 class="uppercase">
+                    <span class="bold">{{ ctrl.order.getHeaders()['table_name'] ? ctrl.order.getHeaders()['table_name'] : ctrl.order.getHeaders()['type_of_order'] }}</span>
+                    - {{ctrl.order.getHeaders()['covers']}} #{{ctrl.order.getHeaders()['check_number']}} - {{ctrl.order.getHeaders()['daily_account_number'] |
+                    numberFixedLen:4 }}
+                </h3>
+            </div>
+            <div class="col-xs-2 title">
+                <h3 class="text-right">Total:</h3>
+            </div>
+            <div class="col-xs-3 title">
+                <h3 class="text-right" style="padding-right: 20px;">{{ $root.symbol }}{{ctrl.order.total()}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div id="check_main_tabs" class="padding-top-5p check_center_tabs check_tabs">
+            <a href="javascript:void(0)" ng-click="ctrl.showTab('ordered')" ng-class="{'active':ctrl.isTab('ordered')}">
+
+                <span class='inline ordered-item-heading'>
+                    <br />Ordered Items
+                </span>
+            </a>
+            <a ng-show="ctrl.addedItems.length > 0" id="orderitemcheck" href="javascript:void(0)" ng-click="ctrl.showTab('added')" ng-class="{'active':ctrl.isTab('added')}">
+
+                <span class="inline added-item-heading">
+                    <br />Added Items
+                </span>
+            </a>
+            <a class="inline" section="payments" href="javascript:void(0)" style="width: 34%;"></a>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+    <div class="right-bloc-body" ng-include="'templates/partials/order-detail-editing.html'"></div>
+    <div class="right-bloc-footer">
+        <div class="conteiner-fluid">
+            <div class="row no-margin">
+                <div class="col-xs-9 col-md-12 text-center no-padding check-footer-buttons">
+                    <div class="pull-left two-row-buttons check-footer-left-buttons">
+                        <button class="btn btn-success" type='button' data-print-check data-order="ctrl.getOrder()">Print</button>
+                    </div>
+                    <div class="pull-left check-footer-center-buttons">
+                        <div>
+                            <button type="button" class="btn btn-sm btn-primary btn-margin" ng-disabled="ctrl.isTab('ordered') || ctrl.check.isClosed()" ng-click="ctrl.showModifier($event);">Modify</button>
+                            <button type="button" class="btn btn-sm btn-primary btn-margin" ng-disabled="ctrl.isTab('ordered') || ctrl.check.isClosed()" ng-click="ctrl.sendMessageToChef('TOGO')">Togo</button>
+                            <button type="button" class="btn btn-sm btn-primary btn-margin" ng-disabled="ctrl.isTab('ordered') || ctrl.check.isClosed()"
+                                ng-click="ctrl.sendMessageToChef('DONT MAKE')">Dont Make</button>
+                            <button type="button" class="btn btn-sm btn-primary btn-margin" ng-disabled="ctrl.isTab('ordered') || ctrl.check.isClosed()" ng-click="ctrl.sendMessageToChef('HOLD')">Hold</button>
+                            <button type="button" class="btn btn-sm btn-primary btn-margin" ng-disabled="ctrl.check.isClosed()" ng-click="ctrl.repeatItems()">Repeat</button>
+                            <button type="button" class="btn btn-sm btn-primary btn-margin" ng-disabled="ctrl.isTab('ordered') || ctrl.check.isClosed()" fire-order modal-class="fire-order"
+                                items="ctrl.selectedAddedItems" apply="ctrl.applyFireOrder(true)">Fire</button>
+
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-sm btn-primary btn-margin" data-ordered-items="ctrl.selectedOrderedItems" data-discount
+                                template-url="templates/partials/popup/discount-popup.html" ng-disabled="ctrl.isTab('added') || ctrl.check.isClosed()" modal-class="discount">Discount</button>
+                            <button type="button" class="btn btn-sm btn-danger btn-margin" ng-show="ctrl.isTab('added')" ng-click="ctrl.deleteAddedItems()">Delete</button>
+                            <button type="button" class="btn btn-sm btn-danger btn-margin" ng-show="ctrl.isTab('ordered')" ng-click="ctrl.voidItems()">Void</button>
+
+                            <button type="button" ng-click="ctrl.refund()" class="btn btn-sm btn-danger btn-margin" ng-disabled="ctrl.isTab('added')">Refund</button>
+
+                            <button type="button" ng-disabled="ctrl.check.isClosed()" class="btn btn-sm btn-primary btn-margin" seat data-items="ctrl.selectedAddedItems"
+                                data-ordered-items="ctrl.selectedOrderedItems" template-url="templates/partials/seat.html" modal-class="seat"
+                                data-table='table{{ctrl.table.image}}' data-max-covers="{{ctrl.order.getHeaders()['covers']}}" modal-class="seat"
+                                is-ordered-tab="{{ctrl.isTab('ordered')}}">Seat</button>
+
+                            <button type="button" ng-click="ctrl.showCheckDetail($event)" class="btn btn-sm btn-primary btn-margin"
+                                ng-class="{'active':check.currentOrder().showingDetail}">Details</button>
+                            <button type="button" class="btn btn-sm btn-primary btn-margin" ng-click="ctrl.viewPayment($event)">Payments</button>
+                        </div>
+                    </div>
+                    <div class="pull-left two-row-buttons check-footer-right-buttons">
+                        <button type="button" class="btn btn-success" ng-click="ctrl.sendNewAddedItems()" ng-disabled="ctrl.isTab('ordered')">Send</button>
+                        <button type="button" class="btn btn-success normal-white-space" ng-click="ctrl.sendAndClose()" ng-disabled="ctrl.isTab('ordered')">Send &
+                            Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

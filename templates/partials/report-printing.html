@@ -1,0 +1,74 @@
+<div class="tabbox_report container-fluid" id="tabbox_report">
+    <div class="row row-no-margin table-header" id="general-info">
+        <table width="100%">
+            <tr>
+                <td class="col-md-4" width='33%'>
+                    <div class='font-11'>
+                        <strong>{{user.fullname}} - {{user.username}}</strong>
+                    </div>
+                    <div class='font-11'>
+                        <strong>{{location.name}} (ID#: <span>{{location.id}}</span>)
+                        </strong>
+                    </div>
+                </td>
+                <td class="col-md-4 text-center" width='33%'>
+                    <div>
+                        <strong>{{selectedReport.name}}</strong>
+                    </div>
+                </td>
+                <td class="col-md-4 text-right font-11" width='33%'>
+                    <div>{{serverTime}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="tab_box2" class="report-section row row-no-margin">
+        <div class="tblReportArea" id="item_scroll">
+            <div data-ng-repeat="(sectionKey, section) in data" class='report-table'>
+                <table id="tblReport" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="field in section.headers"
+                                ng-class="{'col-lg-3 col-xs-3 col-md-3 col-sm-3': $index == 0, 'col-lg-1 col-xs-1 col-md-1 col-sm-1': reportsCtrl.isAmountField(field.key)}">
+                                <div ng-class="{'pull-right': isAmountField(field.key), 'text-center': (!isAmountField(field.key) && $index != 0)}">{{field.title}}</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody data-ng-repeat="item in section.items" ng-if="section.items.length > 0">
+                        <tr>
+                            <td data-ng-repeat="field in section.headers">
+                                <div ng-class="{'pull-right': isAmountField(field.key), 'text-center': (!isAmountField(field.key) && $index != 0)}"
+                                    ng-bind-html="getTrustedHtml(item[field.key])"></div>
+
+                            </td>
+                        </tr>
+
+                        <tr ng-if="item.detail && item.detail.items.length > 0">
+                            <td colspan='{{section.headers.length}}'>
+                                <table class="table sub-table">
+                                    <thead>
+                                        <tr>
+                                            <th ng-repeat="field in item.detail.headers"
+                                                ng-class="{'col-lg-3 col-xs-3 col-md-3 col-sm-3': $index == 0, 'col-lg-1 col-xs-1 col-md-1 col-sm-1': isAmountField(field.key)}">
+                                                <div ng-class="{'pull-right': isAmountField(field.key), 'text-center': (!isAmountField(field.key) && $index != 0)}">{{field.title}}</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="subitem in item.detail.items" ng-if="section.items.length > 0">
+                                            <td data-ng-repeat="field in item.detail.headers">
+                                                <div ng-class="{'pull-right': isAmountField(field.key), 'text-center': (!isAmountField(field.key) && $index != 0)}"
+                                                    ng-bind-html="getTrustedHtml(subitem[field.key])"></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

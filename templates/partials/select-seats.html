@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Select Seat(s) to Print</h4>
+</div>
+<div class="modal-body print-check">
+    <div class="row select-seats">
+        <div class="col-xs-12">
+            <div class="form-group btn-toggle">
+                <button type="button" ng-class="{'active': allSeats}" class="btn btn-gray btn-select-seat" ng-click="toggleAllSeats()">All
+                    Seats</button>
+
+            </div>
+        </div>
+    </div>
+    <seat-payment ng-model="data" ng-change="onSeatChange()" enable-all="true"></seat-payment>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="close()">Cancel</button>
+    <button class="btn btn-primary" ng-click="print()">Print</button>
+</div>

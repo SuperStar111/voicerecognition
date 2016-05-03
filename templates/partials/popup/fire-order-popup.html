@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h5 class="modal-title">Fire Order</h5>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+
+        <h5>First</h5>
+        <div class="items-container" sortable connect-with=".items-container" axis="y" on-receive='fireOrderCtrl.receive(event, ui)' data-container="First">
+            <div class="item-description" ng-repeat="item in fireOrderCtrl.sortedItems[0]" ref="{{item.item_id}}">
+                 {{item.item || item.name}} 
+                <span class="pull-right">{{ item.seats==99 ? 'All' : item.seats }}</span>
+            </div>
+        </div>
+        <h5>Second</h5>
+        <div class="items-container" sortable connect-with=".items-container" axis="y" on-receive='fireOrderCtrl.receive(event, ui)' data-container="Second">
+            <div class="item-description" ng-repeat="item in fireOrderCtrl.sortedItems[1]" ref="{{item.item_id}}">
+                 {{item.item || item.name}} 
+                <span class="pull-right">{{ item.seats==99 ? 'All' : item.seats }}</span>
+            </div>
+        </div>
+        <h5>Third</h5>
+        <div class="items-container" sortable connect-with=".items-container" axis="y" on-receive='fireOrderCtrl.receive(event, ui)' data-container="Last">
+            <div class="item-description" ng-repeat="item in fireOrderCtrl.sortedItems[2]" ref="{{item.item_id}}">
+                 {{item.item || item.name}} 
+                <span class="pull-right">{{ item.seats==99 ? 'All' : item.seats }}</span>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal">
+        <div class="form-group form-group-sm button-wrapper">
+            <div class="action-buttons">
+                <button class="btn btn-gray" ng-click="fireOrderCtrl.cancel()" style="margin-right: 10px">Cancel</button>
+                <button ng-click="fireOrderCtrl.apply()" class="btn btn-gray">Apply</button>
+            </div>
+        </div>
+    </form>
+</div>

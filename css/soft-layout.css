@@ -1,0 +1,120 @@
+.home-layout {
+    height: 100%;
+}
+
+#layout-wrapper {
+    height: 100%;
+    overflow: hidden;
+    float: right;
+    position: relative;
+}
+
+.layout-table {
+    position: absolute !important;
+}
+
+.inner-span {
+    display: block;
+    position: absolute;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+}
+
+#layout-wrapper .table-name {
+    color: black;
+    font-size: 12px;
+    position: absolute;
+    top: 40%;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.ui-rotatable-handle {
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+    position: relative;
+    background-image: url("../images/rotate.png");
+    background-size: 100%;
+    right: 0px;
+    top: 30%;
+}
+
+
+
+/* Full Layout section style Starts*/
+.full-layout {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    float: none !important;
+}
+.full-layout #layout-wrapper {
+    width: 100%;
+}
+
+.added-icon {
+    display: none;
+}
+.full-layout .added-icon {
+    display: block;
+}
+.check-icon p {
+    display: none;
+}
+
+.full-layout .check-icon:hover p {
+    display: block;
+    font-size: 8px;
+    margin: 0;
+}
+
+#fl-popup-modal .check-icon-inner {
+    width: 20%;
+    display: inline-block;
+    max-width: 120px;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+#fl-popup-modal .modal-dialog .modal-content {
+    text-align: center;
+    background-color: #303030
+}
+
+#fl-popup-modal .check-icon-inner img {
+    width: 100%;
+}
+
+.full-layout .check-icon button {
+    z-index: 1000;
+    border: none;
+    background: url('../images/zoom-icon.png') center center no-repeat
+        rgba(0, 0, 0, 0.7);
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    text-indent: -9999px;
+}
+
+#fl-popup-modal .check-icon-inner p {
+    display: block;
+    color: #FFFFFF;
+    margin: 0;
+    font-size: 8px;
+}
+/* Full Layout Section Style ends */
+
+#full-layout-server-status {
+    float: left;
+}
+.draggable-item-container {
+    width: 400px;
+}

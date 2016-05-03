@@ -1,0 +1,47 @@
+<div class="right-bloc-body search-client-result-container full-height">
+    <div ng-if="expensetab.payment.searchResult.length == 0 && !expensetab.payment.searchingClients" class='no-result-found'>No Results Found.</div>
+    <div class="right-bloc-body-top client-list" custom-scrollbar>
+
+        <div class="client-row" ng-repeat="client in expensetab.payment.searchResult" ng-click='expensetab.payment.selectExpenseTABClient(client)'>
+            <div class="client-profile-image">
+                <a href="javascript:void(0)" class="thumbnail">
+                    <img ng-if="!client.client_image" src="images/avatar2.png" alt="" />
+                    <img ng-if="client.client_image" ng-src="{{($root.siteURL + client.client_image) | checkimg:'images/avatar2.png'}}" alt="" enable-default-image />
+                </a>
+            </div>
+            <div class="client-copy" style='padding-top: 5px'>
+                <div class="copy-row">
+                    <span class="pull-left bold-font client-name ng-binding">{{client.client_name}} (ID: {{client.client_id}})</span>
+
+                    <span class="pull-right text-sm ng-binding" ng-if="client.ExpenseTAB_status == 'Active'">{{client.ExpenseTAB_id}}</span>
+
+                    <span class="pull-right text-sm" ng-if="client.ExpenseTAB_status != 'Active'"
+                        ng-class="{'color-orange':client.ExpenseTAB_status == 'Pending','color-red':client.ExpenseTAB_status == 'Suspended' || client.ExpenseTAB_status == 'Cancelled'}">{{client.ExpenseTAB_status}}</span>
+                </div>
+                <div class="copy-row">
+                    <div class="text-left text-sm">
+                        <span>{{client.client_phone}}</span>
+                    </div>
+                    <div class="text-right text-sm">
+                        <span>{{client.client_city}}</span>
+                    </div>
+                </div>
+                <div class="copy-row">
+                    <div class="text-left text-sm">
+                        <div>
+                            <span class="">{{client.client_email}}</span>
+                        </div>
+                    </div>
+                    <div class="text-right text-sm">
+                        <span ng-show="!!client.client_last_visit">Last Visit: {{client.client_last_visit}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="expensetab.payment.searchingClients" class='local-loading-sign'>
+        <div class="custom-spinner"></div>
+        <div class="cg-busy-default-text ng-binding">Loading ...</div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="modal-blue punch-image-form">
+    <div class="modal-content form-container">
+        <div class="modal-header">
+            <h4 class="modal-title">Submit Punch Image</h4>
+        </div>
+        <div id="webcam" class="webcam">
+            <video autoplay id="vid" style="width: 350px; height: 258px; position: relative; left: -6px; top: 5px;"></video>
+            <canvas id="canvas2" width="640" height="480" style="border: 1px solid #d3d3d3; position: relative; left: 60px; display: none"></canvas>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="popup.close()">Cancel</button>
+            <button class="btn btn-primary" ng-click="popup.punch()">Submit</button>
+        </div>
+    </div>
+</div>
+</div>

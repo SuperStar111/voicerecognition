@@ -1,0 +1,17 @@
+.money_field {
+    text-align: right;
+}
+
+.money_field:focus {
+    text-align: left;
+}
+
+.seats-container button.btn-select-seat:nth-child(odd), .splits-container button.btn-select-split:nth-child(odd) {
+    float: left;
+    clear: left;
+}
+
+.seats-container button.btn-select-seat:nth-child(even), .splits-container button.btn-select-split:nth-child(even) {
+    float: right;
+    clear: right;
+}

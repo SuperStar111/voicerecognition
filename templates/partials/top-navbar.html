@@ -1,0 +1,25 @@
+<!-- Schedule -->
+<div class="row">
+    <div class="col-xs-4 log-out">
+        <button ng-if="['EmployeeLogin'].indexOf(navbarCtrl.stateName) != -1" type="button" class="btn btn-primary" ng-click="navbarCtrl.logout()">Log Out</button>
+        <button ng-if="['Home', 'Schedule', 'Reports', 'Checks', 'CheckDetail', 'Employee','CheckDetailWithTab', 'Home.SectionLayout', 'Home.GeneralLayout'].indexOf(navbarCtrl.stateName) != -1" type="button"
+            class="btn btn-primary" ui-sref='EmployeeLogin'>
+            <div added-item-check="{{$root.appState.isState('checkDetail.cart')}}">Log Out</div>
+        </button>
+        <a ui-sref='Home' ng-if="['Checks', 'CheckDetail', 'CheckDetailWithTab'].indexOf(navbarCtrl.stateName) != -1" class="btn btn-primary">Back</a>
+    </div>
+    <div class="col-xs-4 logo-top" ng-class="{'employeelogin-logo': navbarCtrl.stateName == 'EmployeeLogin'}">
+        <span ng-if="['EmployeeLogin', 'Employee'].indexOf(navbarCtrl.stateName) == -1" class='logo-title'>POSPoint</span>
+        <span ng-if="navbarCtrl.stateName == 'EmployeeLogin'" class='logo-title employee-login-head-title'>Employee Log In</span>
+        <span ng-if="navbarCtrl.stateName == 'Employee'" class='logo-title employee-login-head-title'>Employee Profile</span>
+    </div>
+    <div class="col-xs-4 btinfo" ng-if="['Home', 'Schedule', 'Reports', 'Checks', 'CheckDetail', 'Employee', 'CheckDetailWithTab'].indexOf(navbarCtrl.stateName) != -1">
+        Server: {{navbarCtrl.currentUser.firstname}}
+        <button type="button" class="btn btn-primary">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="col-xs-4 sign-up" ng-if="['Login'].indexOf(navbarCtrl.stateName) != -1">
+        <button type="button" class="btn btn-primary" ng-click="navbarCtrl.gotoSignUp()">Sign Up</button>
+    </div>
+</div>

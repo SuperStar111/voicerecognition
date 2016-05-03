@@ -1,0 +1,238 @@
+<!doctype html>
+<html ng-app="soft">
+<head>
+<title>SoftPoint | POSPoint</title>
+<meta charset="UTF-8">
+<!-- Styles -->
+
+<!-- build:css styles/style.css -->
+<link href="css/jquery-ui-timepicker-addon.css" type="text/css" rel="stylesheet" media="all" />
+<link href="css/stylesheet.css" type="text/css" rel="stylesheet" media="all" />
+<link href="css/jcustom.css" type="text/css" rel="stylesheet" media="all" />
+<link href="css/lightbox-form.css" type="text/css" rel="stylesheet" media="all" />
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/jquery-ui.min.css" rel="stylesheet">
+<link href="css/keyboard.css" rel="stylesheet">
+<link href="css/angular/angular-busy.min.css" rel="stylesheet">
+<link href="css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+<link href="css/common.css" rel="stylesheet">
+<link href="css/home.css" rel="stylesheet">
+<link href="css/login.css" rel="stylesheet">
+<link href="css/employeelogin.css" rel="stylesheet">
+<link href="css/schedule.css" rel="stylesheet">
+<link href="css/reports.css" rel="stylesheet">
+<link href="css/checks.css" rel="stylesheet">
+<link href="css/datepicker.css" rel="stylesheet">
+<link href="css/employee.css" rel="stylesheet">
+<link href="css/soft-layout.css" rel="stylesheet">
+<link href="css/popup.css" rel="stylesheet">
+<link href="css/scrolling-tabs.min.css" rel="stylesheet">
+<link href="css/modifier.css" rel="stylesheet">
+<link href="css/fire-order.css" rel="stylesheet">
+<link href="css/seat.css" rel="stylesheet">
+<link href="css/check-preview.css" rel="stylesheet">
+<link href="css/check-payment.css" rel="stylesheet">
+<link href="css/popup-discount.css" rel="stylesheet">
+<link href="css/payments.css" rel="stylesheet">
+<link href="css/print-check.css" rel="stylesheet">
+<link href="css/orderitem-view.css" rel="stylesheet">
+<link href="css/terminal.css" rel="stylesheet">
+<link href="css/order-item-detail.css" rel="stylesheet">
+<!-- endbuild -->
+
+<script src="/browser/internalaccess/url.js"></script>
+<!-- Scripts -->
+<!-- build:js scripts/vendors.js -->
+<script src="js/vendors/jquery/jquery-1.11.2.min.js"></script>
+<script src="js/vendors/jquery/jquery-ui.min.js"></script>
+<script src="js/vendors/jquery/jquery.keyboard.js"></script>
+<script src="js/vendors/jquery/jquery.keyboard.extension-typing.min.js"></script>
+<script src="js/vendors/jquery/jquery.mousewheel.js"></script>
+<script src="js/vendors/jquery/moment.min.js"></script>
+<script src="js/vendors/jquery/datepicker.js"></script>
+<script src="js/vendors/jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/vendors/jquery/scriptcam.js"></script>
+<script src="js/vendors/lightbox-form.js" type="text/javascript"></script>
+<script src="js/vendors/jquery/jquery.ui.rotatable.min.js"></script>
+<script src="js/vendors/jquery/bootstrap-number-input.js"></script>
+
+
+<script src="js/bootstrap.min.js"></script>
+
+
+<script src="js/vendors/angular/angular.min.js"></script>
+<script src="js/vendors/angular/ngStorage.min.js"></script>
+<script src="js/vendors/angular/angular-cookies.min.js"></script>
+<script src="js/vendors/angular/ui-bootstrap-tpls-0.12.1.js"></script>
+<script src="js/vendors/angular/angular-ui-router.min.js"></script>
+<script src="js/vendors/angular/angular-busy.min.js"></script>
+<script src="js/vendors/angular/scrolling-tabs.js"></script>
+<script src="js/vendors/angular/angular-idle.js"></script>
+<script src="js/vendors/angular/angular-linq.js"></script>
+<script src="js/vendors/angular/digest-hud.js"></script>
+
+<script src="js/vendors/jquery.cardswipe.js"></script>
+<script src="js/vendors/js.cookie.js"></script>
+
+<!-- Js libs -->
+
+<script src="js/token.js"></script>
+<!-- endbuild -->
+
+<!-- build:js scripts/script.js -->
+<script src="js/app.js"></script>
+<script src="js/routers.js"></script>
+<!-- Js Router -->
+
+<script src="js/services/const.js"></script>
+<script src="js/services/modal.js"></script>
+<script src="js/services/auth.js"></script>
+<script src="js/services/users.js"></script>
+<script src="js/services/preferences.js"></script>
+<script src="js/services/checks.js"></script>
+<script src="js/services/orders.js"></script>
+<script src="js/services/schedules.js"></script>
+<script src="js/services/reports.js"></script>
+<script src="js/services/employees.js"></script>
+<script src="js/services/punchImage.js"></script>
+<script src="js/services/employeeMessages.js"></script>
+<script src="js/services/clients.js"></script>
+<script src="js/services/softLayout.js"></script>
+<script src="js/services/orderItemMenu.js"></script>
+<script src="js/services/paymentTypes.js"></script>
+<script src="js/services/utils.js"></script>
+<script src="js/services/payments.js"></script>
+<script src="js/services/manualItems.js"></script>
+<script src="js/services/appState.js"></script>
+
+<script src="js/services/cashDrawers.js"></script>
+<script src="js/services/keyboardSimulator.js"></script>
+<script src="js/services/terminals.js"></script>
+<script src="js/services/terminalInterceptor.js"></script>
+
+<script src="js/services/minify.js"></script>
+<script src="js/services/indexeddb.js"></script>
+
+<script src="js/services/countries.js"></script>
+<script src="js/services/tables.js"></script>
+<script src="js/services/sections.js"></script>
+
+<script src="js/factories/baseObject.js"></script>
+<script src="js/factories/order.js"></script>
+<script src="js/factories/orderItem.js"></script>
+<script src="js/factories/modifierOrderItem.js"></script>
+<script src="js/factories/payment.js"></script>
+<script src="js/factories/schedule.js"></script>
+<script src="js/factories/loginSession.js"></script>
+<script src="js/factories/employeeMessage.js"></script>
+<script src="js/factories/check.js"></script>
+<script src="js/factories/table.js"></script>
+<script src="js/factories/client.js"></script>
+<script src="js/factories/tableLayout.js"></script>
+<script src="js/factories/tabView.js"></script>
+
+<!-- Payment factories -->
+<script src="js/factories/payment-types/BasePaymentType.js"></script>
+<script src="js/factories/payment-types/Adjustment.js"></script>
+<script src="js/factories/payment-types/Cash.js"></script>
+<script src="js/factories/payment-types/CreditCard.js"></script>
+<script src="js/factories/payment-types/DebitCard.js"></script>
+<script src="js/factories/payment-types/ExpenseTAB.js"></script>
+<script src="js/factories/payment-types/GiftCertificate.js"></script>
+<script src="js/factories/payment-types/Gratuity.js"></script>
+<script src="js/factories/payment-types/Interface.js"></script>
+<script src="js/factories/payment-types/Surcharge.js"></script>
+<script src="js/factories/payment-types/Receivable.js"></script>
+<!-- Payment factories -->
+
+<script src="js/directives/orderDetail.js"></script>
+<script src="js/directives/searchBar.js"></script>
+<script src="js/directives/datePicker.js"></script>
+<script src="js/directives/timePicker.js"></script>
+<script src="js/directives/customScrollbar.js"></script>
+<script src="js/directives/loginImage.js"></script>
+<script src="js/directives/viewport.js"></script>
+<script src="js/directives/enableDefaultImage.js"></script>
+<script src="js/directives/elapsedTime.js"></script>
+<script src="js/directives/softLayout.js"></script>
+<script src="js/directives/filterChecks.js"></script>
+<script src="js/directives/mergeableCheck.js"></script>
+<script src="js/directives/pinPad.js"></script>
+<script src="js/directives/reportPrinting.js"></script>
+<script src="js/directives/listClients.js"></script>
+
+<script src="js/directives/orderItemsView.js"></script>
+<script src="js/directives/orderItemDetail.js"></script>
+<script src="js/directives/tabPayment.js"></script>
+
+<script src="js/directives/addManualItem.js"></script>
+<script src="js/directives/fireOrder.js"></script>
+<script src="js/directives/sortable.js"></script>
+<script src="js/directives/seat.js"></script>
+<script src="js/directives/addedItemCheck.js"></script>
+
+<script src="js/directives/seatPayment.js"></script>
+<script src="js/directives/splitPayment.js"></script>
+<script src="js/directives/discount.js"></script>
+<script src="js/directives/bootstrapNumber.js"></script>
+
+<script src="js/directives/printCheck.js"></script>
+<script src="js/directives/alert.js"></script>
+
+<script src="js/directives/restrictOtherServer.js"></script>
+<script src="js/directives/restrictCancelledCheck.js"></script>
+<script src="js/directives/restrictClosedCheck.js"></script>
+<script src="js/directives/softInput.js"></script>
+<script src="js/directives/authorizedCreditCards.js"></script>
+
+<script src="js/directives/cashDrawer.js"></script>
+<script src="js/directives/saveReport.js"></script>
+<script src="js/directives/emailReport.js"></script>
+
+<script src="js/filters/numberFixedLen.js"></script>
+<script src="js/filters/formatPrice.js"></script>
+<script src="js/filters/wordbreak.js"></script>
+<script src="js/filters/cut.js"></script>
+<script src="js/filters/checkimg.js"></script>
+<script src="js/filters/modifierName.js"></script>
+
+<script src="js/controllers/login.js"></script>
+<script src="js/controllers/employee.login.js"></script>
+<script src="js/controllers/navbar.js"></script>
+<script src="js/controllers/home.js"></script>
+<script src="js/controllers/schedule.js"></script>
+<script src="js/controllers/reports.js"></script>
+<script src="js/controllers/checks.js"></script>
+<script src="js/controllers/employee.js"></script>
+<script src="js/controllers/bottomNav.js"></script>
+<script src="js/controllers/checkDetail.js"></script>
+<script src="js/controllers/createCheck.js"></script>
+<script src="js/controllers/softLayout.js"></script>
+<script src="js/controllers/orderItemMenu.js"></script>
+<script src="js/controllers/common.js"></script>
+
+<script src="js/controllers/custommodifier.js"></script>
+<script src="js/controllers/modifier.js"></script>
+
+<script src="js/controllers/test.js"></script>
+
+<script src="js/modules/popup.js"></script>
+<!-- endbuild -->
+
+<!-- cached templates -->
+<script src="scripts/templates.js"></script>
+
+</head>
+
+<body>
+    <div id="jzebra-container" style="height: 0px">
+        <applet name="jzebra" code="jzebra.PrintApplet.class" archive="jar/jzebra.jar" width="1" height="1">
+        
+        </applet>
+    </div>
+    <view ui-view></view>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<div class="right-bloc-body search-client-result-container full-height">
+    <div ng-if="receivables.payment.searchResult.length == 0 && !receivables.payment.searchResult.searchingReceivables" class='no-result-found'>No Results Found.</div>
+    <div class="right-bloc-body-top client-list" custom-scrollbar>
+
+        <div class="client-row" ng-repeat="company in receivables.payment.searchResult" ng-click='receivables.payment.selectCompany(company)'>
+            <div class="client-profile-image">
+                <a href="javascript:void(0)" class="thumbnail">
+                    <img ng-if="!company.images" src="images/Default-Location.png" alt="" />
+                    <img ng-if="company.images" ng-src="{{company.images | checkimg:'images/Default-Location.png'}}" err-src="images/Default-Location.png" alt=""/>
+                </a>
+            </div>
+            <div class="client-copy" style='padding-top: 5px'>
+                <div class="copy-row">
+                    <div class="text-left">
+                        <a class='client-name'>{{company.name}}</a>
+                    </div>
+                    <div class="text-right text-sm" ng-class="{'text-red': company.associated.toUpperCase() == 'NOT ASSOCIATED'}">
+                        <span class='text-red' ng-if="company.available_credit && company.available_credit < 0">Over Credit Limit</span>
+                        <span class='' ng-if="company.available_credit && company.available_credit < 0"> | </span>
+                        <span>{{company.associated == 'Not Associated' ? company.associated : company.terms}}</span>
+                    </div>
+                </div>
+                <div class="copy-row">
+                    <div class="text-left text-sm">
+                        <span>{{company.business_type}}</span>
+                    </div>
+                    <div class="text-right text-sm">
+                        <span>{{company.representative}}</span>
+                    </div>
+                </div>
+                <div class="copy-row">
+                    <div class="text-left text-sm">
+                        <div>
+                            <span class="">{{company.city +(company.city ? ", " : "")+company.state +" "+company.zip }}</span>
+                        </div>
+                    </div>
+                    <div class="text-right text-sm">
+                        <span>{{company.phone}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="ctrl.searchingClients" class='local-loading-sign'>
+        <div class="custom-spinner"></div>
+        <div class="cg-busy-default-text ng-binding">Loading ...</div>
+    </div>
+</div>

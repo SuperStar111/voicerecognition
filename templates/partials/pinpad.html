@@ -1,0 +1,49 @@
+<div>
+    <input type="password" ng-disabled="!$root.posReady" ng-model="pinpadCtrl.password" id="password_id" name="name" value="" autocomplete="off" autofocus>
+    <div class="section">
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <img class="keys" ng-click="pinpadCtrl.keys(1)" src="images/pinpin/dail-1.png" alt="" />
+            </div>
+            <div class="col-xs-4 text-center">
+                <img class="keys" ng-click="pinpadCtrl.keys(2)" src="images/pinpin/dail-2.png" alt="" />
+            </div>
+            <div class="col-xs-4 text-right">
+                <img class="keys" ng-click="pinpadCtrl.keys(3)" src="images/pinpin/dail-3.png" alt="" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <img class="keys" ng-click="pinpadCtrl.keys(4)" src="images/pinpin/dail-4.png" alt="" />
+            </div>
+            <div class="col-xs-4 text-center">
+                <img class="keys" ng-click="pinpadCtrl.keys(5)" src="images/pinpin/dail-5.png" alt="" />
+            </div>
+            <div class="col-xs-4 text-right">
+                <img class="keys" ng-click="pinpadCtrl.keys(6)" src="images/pinpin/dail-6.png" alt="" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <img class="keys" ng-click="pinpadCtrl.keys(7)" src="images/pinpin/dail-7.png" alt="" />
+            </div>
+            <div class="col-xs-4 text-center">
+                <img class="keys" ng-click="pinpadCtrl.keys(8)" src="images/pinpin/dail-8.png" alt="" />
+            </div>
+            <div class="col-xs-4 text-right">
+                <img class="keys" ng-click="pinpadCtrl.keys(9)" src="images/pinpin/dail-9.png" alt="" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <img class="remove" ng-click="pinpadCtrl.remove()" src="images/pinpin/dail-backspace.png" alt="" />
+            </div>
+            <div class="col-xs-4 text-center">
+                <img class="keys" ng-click="pinpadCtrl.keys(0)" src="images/pinpin/dail-0.png" alt="" />
+            </div>
+            <div class="col-xs-4 text-right">
+                <img id="dail-keyboard" ng-click="pinpadCtrl.keyboard()" src="images/pinpin/dail-keyboard.png" alt="" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+.print-check .btn-select-seat, .print-check .btn-select-split {
+    margin: auto;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.print-check button {
+    width: 146px;
+}
+
+.print-check .btn-toggle {
+    margin-bottom: 0px !important;
+}

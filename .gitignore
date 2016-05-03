@@ -1,0 +1,15 @@
+/.project
+/.settings
+/browser
+node_modules/
+*.log
+/bower_components/
+.sass-cache
+*.css.map
+
+/build/
+/dist/
+
+.tmp/
+/builds
+/build.sh

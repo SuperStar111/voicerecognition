@@ -1,0 +1,43 @@
+<div class="tabbox_report container-fluid" id="tabbox_report">
+    <div class="row row-no-margin table-header" id="general-info">
+        <table width="100%">
+            <tr>
+                <td class="col-md-4">
+                    <div class=" font-11">
+                        <strong>{{reportsCtrl.user.fullname}} - {{reportsCtrl.user.username}}</strong>
+                    </div>
+                    <div class=" font-11">
+                        <strong>{{reportsCtrl.location.name}} (ID#: <span>{{reportsCtrl.location.id}}</span>)
+                        </strong>
+                    </div>
+                </td>
+                <td class="col-md-4 text-center">
+                    <div>
+                        <strong>{{reportsCtrl.selectedReport.description}}</strong>
+                    </div>
+                </td>
+                <td class="col-md-4 text-right font-11">
+                    <div>{{reportsCtrl.serverTime}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="tab_box2" class="report-section row row-no-margin">
+        <div class="tblReportArea" id="item_scroll">
+            <table id="tblReport" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th ng-repeat="headers in reportsCtrl.reportHeaders['open_register_log']" ng-bind="headers.value"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="reportRow in reportsCtrl.reportData" ng-if="reportsCtrl.reportData.length > 0">
+                        <td ng-repeat="headers in reportsCtrl.reportHeaders['open_register_log']" ng-bind-html="reportsCtrl.getTrustedHtml(reportRow[headers.key])"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div ng-init="reportsCtrl.applyFilter()"></div>

@@ -1,0 +1,204 @@
+<iframe id="printf" name="printf" style="display: none"></iframe>
+<div cg-busy="{promise:myPromise,message:'Processing ...', backdrop:true, templateUrl:'templates/partials/loading.html'}"></div>
+<div id="home" class='reports-container'>
+    <!-- Modal -->
+
+    <!-- Fixed navbar -->
+    <div class="container fixed-top" ng-include="'templates/partials/top-navbar.html'" ng-controller="NavbarController as navbarCtrl"></div>
+
+    <!-- Fixed navbar -->
+    <div ng-include="'templates/partials/bottom-navbar.html'"></div>
+
+
+    <!-- Reports section -->
+    <div class="container soft-body">
+
+        <div class="salesbox">
+            <!--filter_box-->
+            <div class="filter_box" style="">
+                <section id="container">
+                    <div class="containerinfo_report" id="containerinfo_report">
+                        <div class="">
+                            <div class="row row-no-margin containerinfo_report_menu">
+                                <div class="col-xs-3 pull-right btn-header">
+                                    <select name="ddFilter" class="form-control" ng-model="reportsCtrl.selectedReport"
+                                        ng-options="report as report.name for report in reportsCtrl.reportTypes" ng-change="reportsCtrl.updateSelectedReport($event)">
+                                    </select>
+                                </div>
+                                <div class="col-xs-3 pull-right btn-header">
+                                    <a title="Save" href="javascript:void(0)" class="btn btn-gray" id="pdf" data-save-report data-selected-report="reportsCtrl.selectedReport"
+                                        data-location="reportsCtrl.location" data-user="reportsCtrl.user" data-server-time="reportsCtrl.serverTime"
+                                        data-filtered-data="reportsCtrl.reportData" data-headers="reportsCtrl.reportHeaders">Save</a>
+                                    <a title="Save" href="javascript:void(0)" class="btn btn-gray" id="pdf" data-email-report data-selected-report="reportsCtrl.selectedReport"
+                                        data-location="reportsCtrl.location" data-user="reportsCtrl.user" data-server-time="reportsCtrl.serverTime"
+                                        data-filtered-data="reportsCtrl.reportData" data-headers="reportsCtrl.reportHeaders">Email</a>
+                                    <a title="Print" href="javascript:void(0)" class="btn btn-gray" data-selected-report="reportsCtrl.selectedReport"
+                                        data-location="reportsCtrl.location" data-user="reportsCtrl.user" data-server-time="reportsCtrl.serverTime" data-report-printing
+                                        data-filtered-data="reportsCtrl.reportData" data-headers="reportsCtrl.reportHeaders">Print</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tabbox_report container-fluid" id="tabbox_report">
+                        <div class="row row-no-margin table-header">
+                            <div class="col-md-4">
+                                <div>
+                                    <strong>{{reportsCtrl.user.fullname}} - {{reportsCtrl.user.username}}</strong>
+                                </div>
+                                <div>
+                                    <strong>{{reportsCtrl.location.name}} (ID#: <span>{{reportsCtrl.location.id}}</span>)
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div style="font-size: 18px; margin-top: 10px;">
+                                    <strong>{{reportsCtrl.selectedReport.name}}</strong>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <div>{{reportsCtrl.serverTime}}</div>
+                            </div>
+                        </div>
+
+                        <div id="tab_box2" class="report-section row row-no-margin">
+                            <div id="customArea" class="report-section-header row">
+                                <div class="row row-no-margin">
+                                    <div class="col-xs-2 col-md-2 col-lg-1 col-sm-1 pull-right text-right btn-submit filter-report">
+                                        <a name="btnSearchClient" class="btn btn-gray" id="btnSearchClient" ng-click="reportsCtrl.applyFilter()">&nbsp;Submit &nbsp;</a>
+                                    </div>
+                                    <div class="col-xs-2 pull-right">
+                                        <input ng-model="reportsCtrl.filterCriteria.search" name="txtSearchClient" id="txtSearchClient" type="text" class="form-control"
+                                            placeholder="Search By">
+                                    </div>
+                                    <div class="pull-right">
+                                        <select ng-if="reportsCtrl.currentAPI.params.indexOf('filter_emp_id=') != -1" ng-model="reportsCtrl.filterCriteria.empid"
+                                            id="ddFilterEmployee" name="ddFilterEmployee" class="form-control col-xs-2"
+                                            ng-options="employee.id as (employee.first_name + ' ' + employee.last_name) for employee in $root.employees | orderBy :'first_name'">
+                                            <option value="">All Employee</option>
+                                        </select>
+                                    </div>
+                                    <div class="pull-right" style="margin-right: 15px">
+                                        <select ng-if="reportsCtrl.currentAPI.params.indexOf('filter_display=') != -1" ng-model="reportsCtrl.filterCriteria.type"
+                                            id="ddFilterEmployee" name="ddFilterEmployee" class="form-control col-xs-2"
+                                            ng-options="display as display for display in ['Summary', 'Detail']">
+                                            <option value="">Type</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="pull-right report-date">
+                                        <div ng-if="reportsCtrl.currentAPI.params.indexOf('filter_date=') != -1 && reportsCtrl.filterCriteria.date">
+                                            <div class="form-group" style="height: 25px;">
+                                                <div class='input-group date' id='Div1d' pocdatepicker="" date="reportsCtrl.filterCriteria.date">
+                                                    <input type="text" class="form-control">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="pull-right report-date">
+                                        <div ng-if="reportsCtrl.currentAPI.params.indexOf('filter_to_date=') != -1 && reportsCtrl.filterCriteria.todate">
+                                            <div class="form-group" style="height: 25px;">
+                                                <div class='input-group date' id='Div2' pocdatepicker="" date="reportsCtrl.filterCriteria.todate">
+                                                    <input type="text" class="form-control">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pull-right report-date">
+                                        <div ng-if="reportsCtrl.currentAPI.params.indexOf('filter_from_date=') != -1 && reportsCtrl.filterCriteria.fromdate">
+                                            <div class="form-group" style="height: 25px;">
+                                                <div class='input-group date' id='datetimepicker1' pocdatepicker="" date="reportsCtrl.filterCriteria.fromdate">
+                                                    <input type="text" class="form-control">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tblReportArea" id="item_scroll" ng-if="reportsCtrl.reportData">
+
+                                <div data-ng-repeat="(sectionKey, section) in reportsCtrl.reportData" class='report-table'>
+                                    <!-- <h3>{{sectionKey}}</h3> -->
+                                    <table id="tblReport" class="table table-striped">
+                                        <thead>
+                                            <tr ng-if="section.heading">
+                                                <th class="report-section-heading" colspan="{{section.headers.length}}">
+                                                    <div>{{section.heading}}</div>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th ng-repeat="field in section.headers"
+                                                    ng-class="{'col-lg-3 col-xs-3 col-md-3 col-sm-3': $index == 0, 'col-lg-1 col-xs-1 col-md-1 col-sm-1': reportsCtrl.isAmountField(field.key)}">
+                                                    <div
+                                                        ng-class="{'pull-right': reportsCtrl.isAmountField(field.key), 'text-center': (!reportsCtrl.isAmountField(field.key) && $index != 0)}">{{field.title}}</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-ng-repeat="item in section.items" ng-if="section.items.length > 0">
+                                            <tr>
+                                                <td data-ng-repeat="field in section.headers">
+                                                    <div
+                                                        ng-class="{'pull-right': reportsCtrl.isAmountField(field.key), 'text-center': (!reportsCtrl.isAmountField(field.key) && $index != 0)}"
+                                                        ng-bind-html="reportsCtrl.getTrustedHtml(item[field.key])"></div>
+
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="item.detail && item.detail.items.length > 0">
+                                                <td colspan='{{section.headers.length}}'>
+                                                    <table class="table sub-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th data-ng-repeat="field in item.detail.headers"
+                                                                    data-ng-class="{'col-lg-3 col-xs-3 col-md-3 col-sm-3': $index == 0, 'col-lg-1 col-xs-1 col-md-1 col-sm-1': reportsCtrl.isAmountField(field.key)}">
+                                                                    <div
+                                                                        data-ng-class="{'pull-right': reportsCtrl.isAmountField(field.key), 'text-center': (!reportsCtrl.isAmountField(field.key) && $index != 0)}">{{field.title}}</div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr data-ng-repeat="subitem in item.detail.items">
+                                                                <td data-ng-repeat="field in item.detail.headers">
+                                                                    <div
+                                                                        ng-class="{'pull-right': reportsCtrl.isAmountField(field.key), 'text-center': (!reportsCtrl.isAmountField(field.key) && $index != 0)}"
+                                                                        ng-bind-html="reportsCtrl.getTrustedHtml(subitem[field.key])"></div>
+
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr ng-hide="section.items.length > 0" class="text-center">
+                                                <td colspan="7">No Records Available</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div ng-if="!reportsCtrl.reportData" class='text-center'>{{reportsCtrl.message}}</div>
+
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+            <!--end report container-->
+        </div>
+    </div>
+    <!-- /container -->
+    <!-- Fixed footer -->
+</div>

@@ -1,0 +1,75 @@
+<div class="bloc">
+    <div class="row top-searchbar" ng-class="{'full-layout-mode': searchBarCtrl.isFullLayout && ['section' ].indexOf($root.layout) != -1}" data-alert-message="User must punch in before using POSPoint." data-alert-condition="{{$root.isEmployeeOut}}">
+        <div class="search_form"
+            ng-class="{'col-xs-3': searchBarCtrl.isFullLayout && ['section' ].indexOf($root.layout) != -1, 'col-xs-6': !searchBarCtrl.isFullLayout || ['section' ].indexOf($root.layout) == -1 }">
+            <img src="images/magni_search_.png" class="magni_search" alt="" />
+            <img src="images/cross_search.png" ng-click="clearText()" class="cross_search" alt="" />
+            <input ng-disabled="$root.isEmployeeOut" type="text" name="name" ng-model="searchText" value="" placeholder="Search for Client, Check, or Server">
+            <button ng-disabled="$root.isEmployeeOut" ng-class="{'disabled': $root.isEmployeeOut}"  type="button" class="btn btn-gray btn-search_form" filter-checks modal-class="filter-popup">
+                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div class="col-xs-4 draggable-item-container" ng-if="searchBarCtrl.isFullLayout && ['section' ].indexOf($root.layout) != -1">
+            <div class="row">
+                <div class="full-layout-header" id="full-layout-server-status">
+                    <ul class="tabinfo list-unstyled section-stats">
+                        <li>
+                            <span>Open Tabs:</span>
+                            <span> {{searchBarCtrl.sectionStats.open_tabs}} ({{searchBarCtrl.sectionStats.open_covers}} Covers)</span>
+                        </li>
+                        <li>
+                            <span>Tabs Processed:</span>
+                            <span> {{searchBarCtrl.sectionStats.processed_tabs}} ({{searchBarCtrl.sectionStats.processed_covers}} Covers)</span>
+                        </li>
+                    </ul>
+                </div>
+                <table id="check-icon-table">
+                    <tr>
+                        <td ng-init="icon_names = ['Man#1','Woman#1','Couple#1','Group#1','NewTable#1']">
+                            <div id="full-layout-check-icons-wrapper" class="full-layout-header">
+                                <div class="check-icon pull-left" ng-repeat="i in [1,2,3,4,5]" draggable-table>
+                                    <div class="check-icon-inner">
+                                        <img ng-src="images/icons/pimg_big{{i}}.png" alt="check-icon">
+                                        <p>{{icon_names[$index]}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="btn-header">
+            <button ng-disabled="$root.isEmployeeOut" ng-class="{'disabled': $root.isEmployeeOut}" type="button" class="btn btn-gray" ng-click="searchBarCtrl.noSale($event)" cash-drawer>No Sale</button>
+            <button ng-disabled="$root.isEmployeeOut" ng-class="{'disabled': $root.isEmployeeOut}" type="button" class="btn btn-gray" ng-click='searchBarCtrl.goHome($event)' ng-class="{'active': searchBarCtrl.isHome()}">
+                <div added-item-check="{{$root.appState.isState('checkDetail.cart')}}">Tabs</div>
+            </button>
+            <button ng-disabled="$root.isEmployeeOut" type="button" ng-if="searchBarCtrl.sections.length == 0" class="btn btn-gray" ng-click="searchBarCtrl.showLayout()"
+                ng-class="{'active': [ 'general', 'section'].indexOf($root.layout) != -1, 'disabled': $root.isEmployeeOut}">Layout</button>
+            <div class="btn-group" dropdown ng-if="searchBarCtrl.sections.length > 0">
+                <button ng-disabled="$root.isEmployeeOut" ng-class="{'disabled': $root.isEmployeeOut}" type="button" class="btn btn-gray dropdown-toggle" dropdown-toggle>
+                    Section View
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-sections pull-right" role="menu">
+                    <li ng-class="{'active': $root.layout == 'general'}" ng-click="searchBarCtrl.showLayout()">
+                        <a href='javascript:void(0)' added-item-check="{{$root.appState.isState('checkDetail.cart')}}">
+                            <i class='glyphicon glyphicon-ok' ng-show="$root.layout == 'general'"></i> General Layout
+                        </a>
+                    </li>
+                    <li ng-click="searchBarCtrl.showSection(section.section_info.section_id, $event);" ng-repeat="section in searchBarCtrl.sections"
+                        ng-class="{'active': $root.layout == 'section' && $root.sectionID == section.section_info.section_id}">
+
+                        <a href='javascript:void(0)' added-item-check="{{$root.appState.isState('checkDetail.cart')}}">
+                            <i class='glyphicon glyphicon-ok' ng-show="$root.layout == 'section' && $root.sectionID == section.section_info.section_id"></i>
+                            {{section.section_info.section_name}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>

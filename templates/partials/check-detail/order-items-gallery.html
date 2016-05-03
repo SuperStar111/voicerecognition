@@ -1,0 +1,76 @@
+<div class='viewtype-container'>
+    <div scrolling-tabs-wrapper>
+        <ul class="nav nav-tabs" role="tablist">
+            <li ng-class="{ 'active': ctrl.isMenuSelected(tab)}" ng-repeat="tab in ctrl.orderItemMenu" ng-click="ctrl.selectMenu(tab)">
+                <a ng-href="{{'#' + tab.paneId}}" role="tab" data-toggle="tab">{{tab.name}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="check_section no-padding" id="section_order_items" custom-scrollbar always-show-scrollbar="false">
+
+        <div class="row" id="listview">
+            <div class="col-xs-12 listviews">
+                <div class="row" id="listview-items" style="overflow: hidden;">
+                    <div class="col-xs-12">
+                        <div class="row padding-2">
+                            <div ng-show="!ctrl.currentSubmenu" ng-repeat="menu in ctrl.orderitem_active_types" class="col-xs-3 col-lg-2">
+                                <div class="row">
+                                    <div class="col-xs-12 col-lg-12">
+                                        <a class="thumbnail" ng-click="ctrl.selectSubMenu(menu)">
+                                            <img class="gallery-image" ng-if="menu.itemimage" ng-src="{{'//www.softpointdev.com/images/'+menu.itemimage}}">
+                                            <img class="gallery-image" ng-if="!menu.itemimage" src="./images/NoMenuImage.png">
+                                            <div class="caption bold-font no-padding text-center">
+                                                <div class="row gallery-menu-name">
+                                                    <div class="col-xs-12" title="{{menu.name}}">{{menu.name}}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="ctrl.currentSubmenu" class="col-xs-3 col-lg-2">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <a class="thumbnail" ng-click="ctrl.currentSubmenu = null">
+                                            <img class="gallery-image" src="./images/NoMenuImage.png" alt="...">
+                                            <div class="caption bold-font no-padding text-center">
+                                                <div class="row gallery-menu-name">
+                                                    <div class="col-xs-12 text-center">Back</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="ctrl.currentSubmenu" class="col-xs-3 col-lg-2" ng-repeat="item in ctrl.menuItems[ctrl.currentSubmenu.itemid]">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12">
+                                        <div class="pull-left menu-price" ng-hide="item.discount != undefined">{{item.price | number : 2}}</div>
+                                        <div class="pull-left menu-price menu-discount" ng-show="item.discount != undefined">{{item.discount | number : 2}}</div>
+                                        <a class="thumbnail" ng-click="ctrl.addNewOrderItem(item, $event)">
+                                            <img class="gallery-image" err-src="images/NoMenuImage.png" ng-src="{{item.imginfo}}">
+                                            <div id="mbtndiv-{{item.menugroupid_nextid}}" class="menu-button pull-right text-right">
+                                                <button type="button" id="orderitemdetailbutton-{{item.menugroupid_nextid}}" ng-show="item.modify == 'yes'"
+                                                    style="padding: 1px 3px;" ng-click="ctrl.showAppropriateModifierModal(item, $event);"
+                                                    class="btn btn-primary info-button">
+                                                    <i class="glyphicon glyphicon-m"></i>M
+                                                </button>
+                                            </div>
+                                            <div class="caption bold-font no-padding text-center">
+                                                <div class="row gallery-menu-name">
+                                                    <div class="col-xs-12 text-center" title="{{item.name}}">{{item.name}}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

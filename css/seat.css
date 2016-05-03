@@ -1,0 +1,513 @@
+/*Manager Password Popup Style Ends*/
+/*Seat Popup Style Starts*/
+.seat .form-horizontal {
+    margin-top: 70px
+}
+
+.seat .form-horizontal .seat-buttons a {
+    display: block;
+    width: 39px;
+    margin-right: 2px;
+}
+
+.seat .form-horizontal .seat-buttons-wrapper {
+    margin-top: 70px;
+}
+
+.seat .form-horizontal .seat-buttons a img {
+    width: 100%;
+}
+/**
+ * Position icons into circle (SO)
+ */
+.circle-container div.seat-item {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+}
+
+.circle-container img {
+    display: block;
+    width: 100%;
+}
+
+.circle-container a.deg0 {
+    transform: translate(80px);
+    top: 51%;
+    left: 46%;
+}
+
+.circle-container a.deg45 {
+    transform: rotate(45deg) translate(80px) rotate(-45deg);
+    top: 53%;
+    left: 40%;
+}
+
+.circle-container a.deg135 {
+    transform: rotate(135deg) translate(80px) rotate(-135deg);
+    top: 53%;
+    left: 61%;
+}
+
+.circle-container a.deg180 {
+    transform: translate(-80px);
+    top: 51%;
+    left: 54%;
+}
+
+.circle-container a.deg225 {
+    transform: rotate(225deg) translate(80px) rotate(-225deg);
+    top: 48%;
+    left: 61%;
+}
+
+.circle-container a.deg315 {
+    transform: rotate(315deg) translate(80px) rotate(-315deg);
+    top: 47%;
+    left: 39%;
+}
+
+.circle-container div.center {
+    height: 35px;
+    width: 35px;
+    top: 50%;
+    left: 50%;
+    margin: -17px;
+}
+
+.seat .form-horizontal .seat-buttons a:hover, .circle-container a:hover
+    {
+    opacity: .8;
+}
+
+.seat .form-horizontal .seat-buttons a:last-child img {
+    height: 41px;
+}
+/*Seat Popup Style Ends*/
+.seat .table-container {
+    position: relative;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.seat .table1 .circle-container {
+    width: 180px;
+    height: 180px;
+    background: url(../images/table/table1.png) no-repeat;
+}
+
+.seat .table2 .circle-container {
+    width: 180px;
+    height: 180px;
+    background: url(../images/table/table2.png) no-repeat;
+}
+
+.seat .table3 .circle-container {
+    width: 180px;
+    height: 180px;
+    background: url(../images/table/table3.png) no-repeat;
+}
+
+.seat .table4 .circle-container {
+    width: 140px;
+    height: 140px;
+    background: url(../images/table/table4.png) no-repeat;
+}
+
+.seat .table5 .circle-container {
+    width: 140px;
+    height: 140px;
+    background: url(../images/table/table5.png) no-repeat;
+}
+
+.seat .table6 .circle-container {
+    width: 260px;
+    height: 160px;
+    background: url(../images/table/table6.png) no-repeat;
+}
+
+.seat .table7 .circle-container {
+    width: 300px;
+    height: 180px;
+    background: url(../images/table/table7.png) no-repeat;
+}
+
+.seat .table8 .circle-container {
+    width: 200px;
+    height: 180px;
+    background: url(../images/table/table8.png) no-repeat;
+}
+
+.seat .table9 .circle-container {
+    width: 180px;
+    height: 160px;
+    background: url(../images/table/table9.png) no-repeat;
+}
+
+.seat .table10 .circle-container {
+    width: 200px;
+    height: 160px;
+    background: url(../images/table/table10.png) no-repeat;
+}
+
+.seat .table11 .circle-container {
+    width: 180px;
+    height: 180px;
+    background: url(../images/table/table11.png) no-repeat;
+}
+
+.seat .table12 .circle-container {
+    width: 180px;
+    height: 180px;
+    background: url(../images/table/table12.png) no-repeat;
+}
+
+.seat .table13 .circle-container {
+    width: 200px;
+    height: 180px;
+    background: url(../images/table/table13.png) no-repeat;
+}
+
+.seat .table14 .circle-container {
+    width: 60px;
+    height: 60px;
+    background: url(../images/table/table14.png) no-repeat;
+}
+
+.seat .circle-container .seat-item {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+}
+
+.seat .extra-seats .seat-item {
+    opacity: 0.5;
+}
+
+.seat .circle-container .seat-item.selected, .seat .extra-seats .seat-item.selected
+    {
+    opacity: 1;
+}
+/**
+Table 1
+**/
+.seat .table1 .circle-container .seat-item.seat-1 {
+    top: 74px;
+    left: 24px;
+}
+
+.seat .table1 .circle-container .seat-item.seat-2 {
+    top: 27px;
+    left: 50%;
+    margin-left: -19px;
+}
+
+.seat .table1 .circle-container .seat-item.seat-3 {
+    top: 50%;
+    right: 29px;
+    margin-top: -17px;
+}
+
+.seat .table1 .circle-container .seat-item.seat-4 {
+    bottom: 27px;
+    left: 50%;
+    margin-left: -19px;
+}
+
+/**
+Table 2
+**/
+.seat .table2 .circle-container .seat-item.seat-1 {
+    top: 40px;
+    left: 39px;
+}
+
+.seat .table2 .circle-container .seat-item.seat-2 {
+    top: 40px;
+    right: 44px;
+}
+
+.seat .table2 .circle-container .seat-item.seat-3 {
+    bottom: 41px;
+    right: 44px;
+}
+
+.seat .table2 .circle-container .seat-item.seat-4 {
+    bottom: 40px;
+    left: 39px;
+}
+
+/**
+Table 3
+**/
+.seat .table3 .circle-container .seat-item.seat-1 {
+    top: 36px;
+    left: 41px;
+}
+
+.seat .table3 .circle-container .seat-item.seat-2 {
+    top: 36px;
+    right: 42px;
+}
+
+.seat .table3 .circle-container .seat-item.seat-3 {
+    bottom: 36px;
+    right: 42px;
+}
+
+.seat .table3 .circle-container .seat-item.seat-4 {
+    bottom: 36px;
+    left: 41px;
+}
+
+/**
+Table 4
+**/
+.seat .table4 .circle-container .seat-item.seat-1 {
+    top: 54px;
+    left: 17px;
+}
+
+.seat .table4 .circle-container .seat-item.seat-2 {
+    top: 54px;
+    right: 17px;
+}
+
+/**
+Table 5
+**/
+.seat .table5 .circle-container .seat-item.seat-1 {
+    top: 17px;
+    left: 53px;
+}
+
+.seat .table5 .circle-container .seat-item.seat-2 {
+    bottom: 17px;
+    left: 53px;
+}
+
+/**
+Table 6
+**/
+.seat .table6 .circle-container .seat-item.seat-1 {
+    top: 67px;
+    left: 26px;
+}
+
+.seat .table6 .circle-container .seat-item.seat-2 {
+    top: 23px;
+    left: 77px;
+}
+
+.seat .table6 .circle-container .seat-item.seat-3 {
+    top: 23px;
+    right: 86px;
+}
+
+.seat .table6 .circle-container .seat-item.seat-4 {
+    top: 66px;
+    right: 33px;
+}
+
+.seat .table6 .circle-container .seat-item.seat-5 {
+    bottom: 19px;
+    right: 85px;
+}
+
+.seat .table6 .circle-container .seat-item.seat-6 {
+    bottom: 19px;
+    left: 78px;
+}
+
+/**
+Table 7
+**/
+.seat .table7 .circle-container .seat-item.seat-1 {
+    top: 76px;
+    left: 26px;
+}
+
+.seat .table7 .circle-container .seat-item.seat-2 {
+    top: 28px;
+    left: 68px;
+}
+
+.seat .table7 .circle-container .seat-item.seat-3 {
+    top: 28px;
+    left: 133px;
+}
+
+.seat .table7 .circle-container .seat-item.seat-4 {
+    top: 28px;
+    right: 70px;
+}
+
+.seat .table7 .circle-container .seat-item.seat-5 {
+    top: 75px;
+    right: 26px;
+}
+
+.seat .table7 .circle-container .seat-item.seat-6 {
+    bottom: 24px;
+    right: 70px;
+}
+
+.seat .table7 .circle-container .seat-item.seat-7 {
+    bottom: 24px;
+    left: 134px;
+}
+
+.seat .table7 .circle-container .seat-item.seat-8 {
+    bottom: 24px;
+    left: 69px;
+}
+
+/**
+Table 8
+**/
+.seat .table8 .circle-container .seat-item.seat-1 {
+    top: 19px;
+    left: 32px;
+}
+
+.seat .table8 .circle-container .seat-item.seat-2 {
+    top: 74px;
+    left: 32px;
+}
+
+.seat .table8 .circle-container .seat-item.seat-3 {
+    top: 127px;
+    left: 32px;
+}
+
+/**
+Table 9
+**/
+.seat .table9 .circle-container .seat-item.seat-1 {
+    top: 38px;
+    left: 28px;
+}
+
+.seat .table9 .circle-container .seat-item.seat-2 {
+    top: 93px;
+    left: 28px;
+}
+
+/**
+Table 10
+**/
+.seat .table10 .circle-container .seat-item.seat-1 {
+    top: 40px;
+    left: 26px;
+}
+
+.seat .table10 .circle-container .seat-item.seat-2 {
+    top: 89px;
+    left: 26px;
+}
+
+.seat .table10 .circle-container .seat-item.seat-3 {
+    top: 40px;
+    right: 30px;
+}
+
+.seat .table10 .circle-container .seat-item.seat-4 {
+    top: 89px;
+    right: 30px;
+}
+
+/**
+Table 11
+**/
+.seat .table11 .circle-container .seat-item.seat-1 {
+    top: 76px;
+    left: 31px;
+}
+
+.seat .table11 .circle-container .seat-item.seat-2 {
+    top: 34px;
+    left: 72px;
+}
+
+.seat .table11 .circle-container .seat-item.seat-3 {
+    top: 75px;
+    right: 34px;
+}
+
+.seat .table11 .circle-container .seat-item.seat-4 {
+    bottom: 31px;
+    left: 73px;
+}
+
+/**
+Table 12
+**/
+.seat .table12 .circle-container .seat-item.seat-1 {
+    top: 75px;
+    left: 20px;
+}
+
+.seat .table12 .circle-container .seat-item.seat-2 {
+    top: 21px;
+    left: 58px;
+}
+
+.seat .table12 .circle-container .seat-item.seat-3 {
+    top: 41px;
+    right: 28px;
+}
+
+.seat .table12 .circle-container .seat-item.seat-4 {
+    top: 107px;
+    right: 26px;
+}
+
+.seat .table12 .circle-container .seat-item.seat-5 {
+    bottom: 19px;
+    left: 58px;
+}
+
+/**
+Table 13
+**/
+.seat .table13 .circle-container .seat-item.seat-1 {
+    top: 75px;
+    left: 13px;
+}
+
+.seat .table13 .circle-container .seat-item.seat-2 {
+    top: 13px;
+    left: 48px;
+}
+
+.seat .table13 .circle-container .seat-item.seat-3 {
+    top: 13px;
+    right: 49px;
+}
+
+.seat .table13 .circle-container .seat-item.seat-4 {
+    top: 74px;
+    right: 14px;
+}
+
+.seat .table13 .circle-container .seat-item.seat-5 {
+    bottom: 13px;
+    right: 49px;
+}
+
+.seat .table13 .circle-container .seat-item.seat-6 {
+    bottom: 13px;
+    left: 48px;
+}
+
+/**
+Table 14
+**/
+.seat .table14 .circle-container .seat-item.seat-1 {
+    top: 76px;
+    left: 26px;
+}

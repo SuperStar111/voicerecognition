@@ -1,0 +1,377 @@
+/* Styles Specific to Menu Item Modifier Modal */
+#menuItemModifiersModal,
+#menuItemCustomModifiersModal {
+    background-color: #000;
+    background: rgba(0,0,0,0.5);
+    z-index: 1039;
+}
+.modal-dialog.modal-xl {
+    width: 95%;
+    width: calc( 100% - 20px );
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 30px 10px;
+}
+.modal-dialog.modal-xl > .modal-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.modal-dialog.modal-xl > .modal-content > .modal-header {
+    min-height: 40px;
+}
+#menuItemCustomModifiersModalLabel {
+    font-weight: normal;
+}
+.modal-dialog.modal-xl > .modal-content > .modal-body {
+    position: absolute;
+    top: 45px;
+    left: 5px;
+    right: 5px;
+    bottom: 64px;
+    max-height: none;
+}
+.modal-dialog.modal-xl > .modal-content > .modal-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+/* Modifiers Modal */
+.button-bar-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+}
+.button-bar-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 64px;
+    padding: 5px;
+}
+.modifier-details {
+    position: absolute;
+    top: 0px;
+    left: 240px;
+    right: 64px;
+    bottom: 0px;
+    padding: 5px;
+}
+.modifier-details h4 {
+    color: #fff;
+    text-shadow: 0 -1px 0 #000;
+}
+.list-group.modifier-class-list {
+    box-sizing: border-box;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    margin: 0;
+}
+#modifier-selections, #custom-modifier-selections {
+    box-sizing: border-box;
+    position: absolute;
+    top: 167px;
+    left: 5px;
+    right: 5px;
+    bottom: 104px;
+    margin: 0;
+}
+#modifier-selections .list-group,
+#custom-modifier-selections .list-group {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    overflow-y: scroll;
+}
+#modifier-selections .list-group-item,
+#custom-modifier-selections .list-group-item {
+    font-size: 12px;
+    line-height: 20px;
+    padding: 10px;
+    padding-right:0px;
+    cursor: pointer;
+}
+#modifierNotes, #customModifierNotes {
+    box-sizing: border-box;
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    height: 94px;
+}
+#modifierNotes > textarea,
+#customModifierNotes > textarea {
+    background: #fff;
+    color: #000;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+.row.row-compact {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.row-compact > .col-sm-6,
+.row-compact > .col-md-4,
+.row-compact > .col-lg-3 {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
+/* Selected Modifiers List */
+.well.selections {
+    padding: 5px;
+    text-align: left;
+}
+.well.selections h5 {
+    margin: 0;
+}
+.well.selections .list-group {
+    margin: 0;
+}
+.well.selections .list-group-item {
+    border: none;
+    cursor: pointer;
+}
+
+/* Search Bar */
+#menuItemModifiersModal .modifier_filter_form {
+    position: relative;
+    top: -2px;
+    padding-right: 263px;
+}
+#menuItemCustomModifiersModal .modifier_filter_form {
+    position: relative;
+    top: -2px;
+    padding-right: 198px;
+}
+#menuItemModifiersModal .modifier_filter_form .magni_search,
+#menuItemCustomModifiersModal .modifier_filter_form .magni_search {
+    left: 20px;
+    top: 8px;
+}
+#menuItemModifiersModal .modifier_filter_form .cross_search {
+    right: 266px;
+    top: 6px;
+}
+#menuItemCustomModifiersModal .modifier_filter_form .cross_search {
+    right: 202px;
+    top: 6px;
+}
+#menuItemModifiersModal .modifier_filter_form input,
+#menuItemCustomModifiersModal .modifier_filter_form input {
+    color: #000;
+    margin-top: 2px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#menuItemModifiersModal .modifier_filter_form .btn,
+#menuItemCustomModifiersModal .modifier_filter_form .btn {
+    width: 60px;
+}
+#menuItemModifiersModal .modifier_filter_form .inline-block,
+#menuItemCustomModifiersModal .modifier_filter_form .inline-block {
+    position: absolute;
+    top: 2px;
+    right: 7px;
+}
+.modifier-selection-button + .modifier-selection-button {
+    margin-top: 5px;
+}
+
+/* Buttons */
+.btn.btn-stateful {
+    font-size: x-large;
+    padding: 8px 1px 3px;
+    height: 47px;
+    color: white;
+    margin-bottom: 5px !important;
+}
+.paginators {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+}
+.btn-frame {
+    position: relative;
+    padding: 0 55px;
+    height: 47px;
+    line-height: 45px;
+    vertical-align: middle;
+}
+.btn-frame .btn-frame-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+}
+.btn-frame .btn-frame-label.two-lines {
+    line-height: 22px;
+}
+.btn-frame .addon-left, .btn-frame .addon-right {
+    font-size: x-large;
+}
+.btn-frame .addon-left {
+    position: absolute;
+    left: 0;
+    border-right: thin solid #727272;
+}
+.btn-frame .addon-right {
+    position: absolute;
+    right: 0;
+}
+.btn-frame .glyphicon {
+    margin: 8px 15px;
+}
+
+/* Tooltips */
+.btn-stateful .tooltip-position {
+    position: relative;
+    bottom: 28px;
+    right: 39px;
+}
+.btn-stateful .tooltip {
+    padding: 0;
+    position: relative;
+    bottom: 28px;
+    right: 50px;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+.btn-stateful .tooltip.left {
+    margin-left: -5px;
+}
+.btn-stateful .tooltip.left .tooltip-arrow {
+    right: -5px;
+}
+
+#menuItemCustomModifiersModal .toppings-display {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    height: 260px;
+}
+#menuItemCustomModifiersModal .toppings-display .left-half .fill-space {
+    text-align: right;
+    padding-right: 75px;
+}
+#menuItemCustomModifiersModal .toppings-display .right-half .fill-space {
+    text-align: left;
+    padding-left: 80px;
+}
+#menuItemCustomModifiersModal .toppings-display .top-half {
+    /*bottom: auto;*/
+}
+#menuItemCustomModifiersModal .toppings-display .bottom-half {
+    top: auto;
+}
+#menuItemCustomModifiersModal .toppings-display .list-group-item {
+    padding: 2px 5px;
+}
+#menuItemCustomModifiersModal .toppings-selection {
+    position: absolute;
+    top: 265px;
+    bottom: 5px;
+    left: 0px;
+    right: 0px;    
+}
+#menuItemCustomModifiersModal .pie {
+    position: relative;
+    top: 55px;
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#menuItemCustomModifiersModal .pie-slice {
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    -webkit-transition: opacity 0.25s;
+            transition: opacity 0.25s;
+}
+#menuItemCustomModifiersModal .pie-slice.q1 {
+    top: 0;
+    left: 0;
+}
+#menuItemCustomModifiersModal .pie-slice.q2 {
+    bottom: 0;
+    left: 0;
+}
+#menuItemCustomModifiersModal .pie-slice.q3 {
+    top: 0;
+    right: 0;
+}
+#menuItemCustomModifiersModal .pie-slice.q4 {
+    bottom: 0;
+    right: 0;
+}
+#menuItemCustomModifiersModal .pie-slice.inactive {
+    opacity: 0.5;
+}
+#menuItemCustomModifiersModal .topping-thumbnail {
+    display: inline-block;
+    box-sizing: border-box;
+    height: 50px;
+    width: 50px;
+    margin: 0 5px 5px 0;
+}
+#menuItemCustomModifiersModal .left-half .topping-thumbnail {
+    float: right;
+}
+#menuItemCustomModifiersModal .right-half .topping-thumbnail {
+    float: left;
+}
+#menuItemCustomModifiersModal .topping-image {
+    height: 40px;
+    width: 40px;
+}
+/*#menuItemCustomModifiersModal .left-half .topping-image {
+    float: right;
+}
+#menuItemCustomModifiersModal .right-half .topping-image {
+    float: left;
+}*/
+#menuItemCustomModifiersModal .bifurcate {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+#menuItemCustomModifiersModal .bifurcate.vertical {
+    right: 50%;
+    border-right: 2px dashed #ddd;
+    border-right: 2px dashed rgba(255,255,255,0.5);
+}
+#menuItemCustomModifiersModal .bifurcate.horizontal {
+    bottom: 50%;
+    border-bottom: 2px dashed #ddd;
+    border-bottom: 2px dashed rgba(255,255,255,0.5);
+}
+.removeModifier {
+    padding: 5px;
+}

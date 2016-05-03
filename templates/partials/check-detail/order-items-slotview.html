@@ -1,0 +1,109 @@
+<div class="col-xs-12 viewtype-container no-padding">
+    <!--hongchainan-->
+    <div class="container-fluid no-padding" id="slotview-container" custom-scrollbar>
+        <div id='slotviewtop'></div>
+        <div class="row no-margin-left">
+            <div class="col-xs-3 col-md-3 col-lg-2 no-padding" style="width: 18%">
+                <section id="Section1" class="bluebardiv second-column-height" ng-repeat="tab in ctrl.orderItemMenu">
+                    <section class="bluebartext">
+                        <section id="orderitem-id-{{tab.orderitem_id}}" ng-class="{'tab_selected':ctrl.isMenuSelected(tab), 'active': ctrl.isMenuSelected(tab)}"
+                            ng-click="ctrl.selectMenu(tab);ctrl.selectSubMenu(ctrl.orderitem_active_types[0])" class="orderitem_bluebartextcell">{{tab.name}}</section>
+                    </section>
+                </section>
+            </div>
+            <div class="col-xs-4 col-md-4 col-lg-4 no-padding right-border" style="width: 32%">
+                <div class="order_items_second" ng-init="ctrl.selectSubMenu(ctrl.orderitem_active_types[0])">
+                    <section id="orderitemtype-{{menu.itemid}}" class="bluebardiv second-column-height" ng-repeat="menu in ctrl.orderitem_active_types">
+                        <section class="bluebartext">
+                            <section id="orderitemtypecode-{{menu.itemid}}" ng-class="{'tab_selected': ctrl.isSubmenu(menu)}" ng-click="ctrl.selectSubMenu(menu, '#slotviewtop')"
+                                class="orderitem_bluebartextcell">{{menu.name}}</section>
+                        </section>
+                    </section>
+                </div>
+            </div>
+            <div class="col-xs-5 col-md-5 col-lg-6 no-padding bold-font">
+                <div class="menuitems" id="orderitemdetail-{{item.menugroupid_nextid}}" ng-if="ctrl.menuItems[ctrl.currentSubmenu.itemid].length == 0">
+                    <div class="container-fluid">
+                        <div class="row" style="padding-top: 1%; padding-bottom: 1%;">
+                            <div class="col-xs-2 col-lg-1 menu-detail">
+                                
+                            </div>
+                            <div class="col-xs-8 col-lg-10">
+                                <div class="container-fluid no-padding"></div>
+                                <div class="row menu-detail order-details-padding">
+                                    <div class="col-xs-9 col-lg-9 col-md-7 no-padding-right" title="{{item.name}}">
+                                        <div class="center-align-content hide-extra" style="height: 34px !important">
+                                            <span>No items available.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id='anchor-top' style='height:0px'></div>
+                <div class="menuitems" id="orderitemdetail-{{item.menugroupid_nextid}}" ng-repeat="item in ctrl.menuItems[ctrl.currentSubmenu.itemid]">
+                    <div class="container-fluid">
+                        <div class="row" style="padding-top: 1%; padding-bottom: 1%;">
+                            <div class="col-xs-2 col-lg-1 menu-detail">
+                                <button type="button" ng-click="ctrl.toggleItemInfo(item);" style="padding: 4px 6px;" class="btn btn-gray info-button">
+                                    <i class="glyphicon glyphicon-info-sign"></i>
+                                </button>
+                            </div>
+                            <div class="col-xs-8 col-lg-10" ng-click="ctrl.addNewOrderItem(item, $event)">
+                                <div class="container-fluid no-padding"></div>
+                                <div class="row menu-detail order-details-padding">
+                                    <div class="col-xs-9 col-lg-9 col-md-7 no-padding-right" title="{{item.name}}">
+                                        <div class="center-align-content hide-extra" style="height: 34px !important">
+                                            <span>{{item.name}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2 col-lg-2 col-md-5 " style="padding-right: 2.7%; padding-left: 0;">
+                                        <div class="center-align-content text-right hide-extra">
+                                            <span ng-hide="item.discount != undefined">{{item.price | number: 2}}</span>
+                                            <span ng-show="item.discount != undefined">{{item.discount | number: 2}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2 col-lg-1 menu-detail" style="padding-left: 0;">
+                                        <div id="mbtndiv-{{item.menugroupid_nextid}}">
+                                            <button type="button" id="orderitemdetailbutton-{{item.menugroupid_nextid}}" ng-show="item.modify == 'yes'"
+                                                style="padding: 1px 3px;" ng-click="ctrl.showAppropriateModifierModal(item, $event);" class="btn btn-gray info-button">
+                                                <i class="glyphicon glyphicon-m"></i>M
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="greybardiv-extnd-check" style="padding: 3%;" ng-if="item.isSelected" id="againdetail-{{item.menugroupid_nextid}}">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <a ng-href="{{item.imageUrl}}" class="thumbnail">
+                                            <img err-src="images/NoMenuImage.png" ng-src="{{item.imginfo}}">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="row">
+                                            <div class="col-xs-12">{{item.name}}</div>
+                                        </div>
+                                        <div class="row" style="font-weight: normal;">
+                                            <div class="col-xs-12">PLU#{{item.pluinfo}}</div>
+                                        </div>
+                                        <div class="row" style="font-weight: normal;">
+                                            <div class="col-xs-12">{{item.description}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

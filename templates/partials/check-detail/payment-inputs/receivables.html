@@ -1,0 +1,54 @@
+<div id="payment-receivables">
+    <seat-payment ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    
+    <authorized-credit-cards></authorized-credit-cards>
+    <div class="row">
+        <div class="col-xs-12">
+            <img src="images/magni_search_.png" class="magni_search" alt="" />
+            <input soft-input type="text" id="lasttab_company" class="form-control" background="white" placeholder="Search Company"
+                ng-model="ctrl.currentSubType.companyName" ng-change="ctrl.currentSubType.getPaymentReceivableDetails(parentScope.receivables)" style="padding-left: 11%">
+            <img src="images/cross_search.png" class="cross_search" alt="" style="right: 6%" ng-click="ctrl.currentSubType.companyName = ''" />
+        </div>
+    </div>
+    <div class="row text-left font-black bold-font">
+        <div class="col-xs-12 padding-top-bottom-2">
+            <span class="pull-left">Company</span>
+            <span class="pull-right">{{ctrl.currentSubType.selectedCompany.name}}</span>
+        </div>
+        <div class="col-xs-12 padding-top-bottom-2">
+            <span class="pull-left">Address</span>
+            <span class="pull-right">{{ctrl.currentSubType.selectedCompany.address +" "+ctrl.currentSubType.selectedCompany.address2}}</span>
+        </div>
+        <div class="col-xs-12 padding-top-bottom-2">
+            <span class="pull-left">City, State Zip</span>
+            <span class="pull-right">{{ctrl.currentSubType.selectedCompany.city +(ctrl.currentSubType.selectedCompany.city ? ", " :
+                "")+ctrl.currentSubType.selectedCompany.state +" "+ctrl.currentSubType.selectedCompany.zip }}</span>
+        </div>
+        <div class="col-xs-12 padding-top-bottom-2">
+            <span class="pull-left">Phone</span>
+            <span class="pull-right">{{ctrl.currentSubType.selectedCompany.phone}}</span>
+        </div>
+        <div class="col-xs-12 padding-top-bottom-2">
+            <span class="pull-left">Amount Due</span>
+            <span class="pull-right">{{ctrl.currentSubType.amt_due}}</span>
+        </div>
+    </div>
+    <div id="cont_seat" class="cont_seat"></div>
+    <div class="row" ng-show="ctrl.hasGratuity">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control money_field" background="white" placeholder="Gratuity" ng-model="ctrl.currentSubType.gratuity"
+                    ng-blur="ctrl.currentSubType.updateAmountDue()" ng-change="ctrl.currentSubType.gratuityChange=true">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control money_field" background="white" placeholder="Payment" ng-model="ctrl.amountDue"
+                    ng-model-options="{ getterSetter: true }">
+            </div>
+        </div>
+    </div>
+</div>

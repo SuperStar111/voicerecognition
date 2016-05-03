@@ -1,0 +1,78 @@
+<div id="cashtab">
+    <seat-payment ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    
+    <authorized-credit-cards></authorized-credit-cards>
+    <div class="row font-black">
+        <div class="col-xs-6">
+            <label class="v-desc">Amount Due</label>
+        </div>
+        <div class="col-xs-6 text-right">
+            <label id="amt_due" class="v-desc">{{ctrl.currentSubType.amt_due}}</label>
+        </div>
+    </div>
+    <div id="cont_seat" class="cont_seat"></div>
+    <div class="row" ng-show="ctrl.hasGratuity">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" id="cash_gratuity" class="form-control money_field" ng-model="ctrl.currentSubType.gratuity" ng-blur="ctrl.currentSubType.updateAmountDue()"
+                    ng-change="ctrl.currentSubType.gratuityChange=true" placeholder="Gratuity">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input id="amount_due" ng-model="ctrl.amountDue" ng-model-options="{ getterSetter: true }" type="text" class="form-control money_field" placeholder="Payment"
+                    ng-change="ctrl.currentSubType.updateButtonValues()">
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center margin-top-5" id="custombutton">
+        <div class="col-lg-6 col-sm-6 text-left">
+            <div class="form-group">
+                <button id="vl1" type="button" class="btn btn-gray" ng-bind="ctrl.currentSubType.v1"
+                    ng-class="{'size1': ctrl.currentSubType.buttonSize == 1, 'size2': ctrl.currentSubType.buttonSize == 2, 'size3': ctrl.currentSubType.buttonSize == 3, 'size4': ctrl.currentSubType.buttonSize == 4}"
+                    ng-click="ctrl.currentSubType.receive(0)">Dh 00.00</button>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-right">
+            <div class="form-group">
+                <button id="vl2" type="button" class="btn btn-gray" ng-bind="ctrl.currentSubType.v2"
+                    ng-class="{'size1': ctrl.currentSubType.buttonSize == 1, 'size2': ctrl.currentSubType.buttonSize == 2, 'size3': ctrl.currentSubType.buttonSize == 3, 'size4': ctrl.currentSubType.buttonSize == 4}"
+                    ng-click="ctrl.currentSubType.receive(1)">Dh 10.00</button>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-left">
+            <div class="form-group">
+                <button id="vl3" type="button" class="btn btn-gray" ng-bind="ctrl.currentSubType.v3"
+                    ng-class="{'size1': ctrl.currentSubType.buttonSize == 1, 'size2': ctrl.currentSubType.buttonSize == 2, 'size3': ctrl.currentSubType.buttonSize == 3, 'size4': ctrl.currentSubType.buttonSize == 4}"
+                    ng-click="ctrl.currentSubType.receive(2)">Dh 20.00</button>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-right">
+            <div class="form-group">
+                <button id="vl4" type="button" class="btn btn-gray" ng-bind="ctrl.currentSubType.v4"
+                    ng-class="{'size1': ctrl.currentSubType.buttonSize == 1, 'size2': ctrl.currentSubType.buttonSize == 2, 'size3': ctrl.currentSubType.buttonSize == 3, 'size4': ctrl.currentSubType.buttonSize == 4}"
+                    ng-click="ctrl.currentSubType.receive(3)">Dh 40.00</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" id="received" ng-model="ctrl.currentSubType.received" class="form-control money_field" background="white"
+                    ng-blur="ctrl.currentSubType.checkAmountDue()" placeholder="Received">
+            </div>
+        </div>
+    </div>
+    <div class="row bold-font font-black">
+        <div class="col-xs-6">
+            <label>Change</label>
+        </div>
+        <div class="col-xs-6 text-right">
+            <label>{{ctrl.currentSubType.changeDue()}}</label>
+        </div>
+    </div>
+</div>

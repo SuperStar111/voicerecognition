@@ -1,0 +1,182 @@
+<div data-cg-busy="{promise:myPromise,message:'Processing ...', backdrop:true, templateUrl:'templates/partials/loading.html'}"></div>
+<div id="employee">
+
+    <!-- Fixed navbar -->
+    <div class="container fixed-top" data-ng-include="'templates/partials/top-navbar.html'" data-ng-controller="NavbarController as navbarCtrl"></div>
+
+    <!-- Fixed navbar -->
+    <div data-ng-include="'templates/partials/bottom-navbar.html'"></div>
+
+    <div class="container soft-body">
+        <div class="top-header" data-search-bar></div>
+
+        <!-- Employee specific section -->
+        <section class="row employee-section-body">
+            <section id="content_int3" class="content_int employee-section-body">
+                <div class="withoutscroll">
+                    <section class="contwrap">
+                        <section class="containertop">
+                            <section id="topleft">
+                                <section id="nameemp" class="headingbar login-session-list">
+                                    {{employeeCtrl.employee.name}}
+                                    <a data-ui-sref='Schedule'>
+                                        <span class="softpointdevicon-schedule"></span>
+                                    </a>
+                                </section>
+                                <div class="spanEntry" data-custom-scrollbar>
+                                    <table class="" id='login-session-table'>
+                                        <tr class='titlebar row-header'>
+                                            <td class="titlecol1">Date</td>
+                                            <td class="titlecol2">In</td>
+                                            <td class="titlecol3">Out</td>
+                                            <td class="titlecol4">Time</td>
+                                        </tr>
+                                        <tr data-ng-repeat="session in employeeCtrl.loginSessions" class='colbar'>
+                                            <td class='colbar1 cell'>{{session.get('datein')}}</td>
+                                            <td class='colbar2 cell'>{{session.get('timein')}} <img data-login-image data-type="IN" data-info="session.getData()" class='login-image' />
+                                                <img data-login-image data-type="MANUAL_IN" data-info="session.getData()" class='login-image' />
+                                            </td>
+                                            <td class='colbar3 cell'>{{session.get('timeout')}} <img data-login-image data-type="OUT" data-info="session.getData()"
+                                                    class='login-image' /> <img data-login-image data-type="MANUAL_OUT" data-info="session.getData()" class='login-image' />
+                                            </td>
+                                            <td class='colbar4 cell'>{{session.get('duration')}}</td>
+                                        </tr>
+                                        <tr data-ng-if="!employeeCtrl.processingLoginSession && employeeCtrl.loginSessions.length == 0" class='empty-attendance'>
+                                            <td colspan='4'>You have no attendance currently.</td>
+                                        </tr>
+                                    </table>
+                                    <div style="font-size: 15px; position: relative; color: black;" id="timetable_info"></div>
+                                </div>
+                            </section>
+                            <section id="topright">
+                                <section class="headingbar">
+                                    Mailbox
+                                    <img style="float: right; margin-right: 10px;" src="images/edit_icon.png" data-ng-click="employeeCtrl.composeBox()" alt="" />
+                                </section>
+                                <div class="spanEntry" style="width: 100%;" data-custom-scrollbar>
+                                    <div id="caixame">
+                                        <section id="caixamess">
+                                            <section class="mbcol" style="background: none; padding: 1%; color: #FFFFFF;" data-ng-if="employeeCtrl.messages.length == 0">
+                                                <span style="margin-top: 5px;text-align:center;display:block" class="noRecord">You have no messages currently.</span>
+                                            </section>
+
+                                            <section data-ng-class="{'mbcol_selected' : !message.hasSeen()}" class="mbcol" data-ng-click="employeeCtrl.showMessage(message)"
+                                                data-ng-repeat="message in employeeCtrl.messages" data-ng-hide="message.get('isRead')">
+                                                <section class="mbcoltop">
+                                                    <span style="float: left; font-size: 14px">{{message.senderName()}}</span>
+                                                    <span style="float: right">{{message.get('date')}} {{message.get('time')}}</span>
+                                                </section>
+                                                <section class="mbcolbtm">{{message.get('message') | wordbreak:39:2}}</section>
+                                            </section>
+                                        </section>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                        <!--top container ends-->
+
+                    </section>
+                    <!--contwrap ends-->
+                </div>
+                <!--witout scroll ends-->
+            </section>
+            <!-- bottom container starts -->
+            <section id="containerbtm" class="containerbtm" style="display: block">
+                <section id="btmleft" class="btmleft">
+                    <section class="headingbar">Punch Image</section>
+                    <section class="btmbox">
+                        <section class="btmboxtop">
+                            <img data-ng-click="employeeCtrl.punchDialog()" class="btn-image" src="images/cam-imglrg.png" alt="" />
+                        </section>
+                        <section class="btmboxbtm">Click the picture icon on the timecard above to view punch image.</section>
+                    </section>
+                </section>
+                <section id="btmright" class="btmright">
+                    <section id="btmright2" data-ng-show="employeeCtrl.messageBox.isState('compose')">
+                        <section class="headingbar">New Message</section>
+                        <section class="btmboxa" style="height: 192px;">
+                            <div>
+                                <section class="btmboxtopa pl8 dropdown-select-employee">
+                                    <section>
+                                        <!-- <div style="float: left;width: 5%;text-align: center;margin-top: 6px;">To</div> -->
+                                        <select id="to_call" data-ng-model="employeeCtrl.compose.employee"
+                                            data-ng-options="employee as employee.name for employee in employeeCtrl.employees | orderBy :'name'" class="form-control" title="To"
+                                            style="direction: ltr !important; text-align: left">
+                                            <option value="">Select An Employee</option>
+                                        </select>
+                                    </section>
+                                </section>
+                                <!--<section class="midbreaker"></section>   -->
+                                <section class="btmboxbtma">
+                                    <section class="btwrap pl8">
+                                        <form data-ng-submit="employeeCtrl.sendMessage($event)">
+                                            <section class="txtfld_lft">
+                                                <input class="txtfld_style form-control" id="send_message" data-ng-model="employeeCtrl.compose.text" name="send_message"
+                                                    type="text" placeholder="Please Type Message Here.." />
+                                            </section>
+                                            <section class="btmritsect" style="float: right; position: relative; top: -30px; text-align: right;">
+                                                <section class="btnsend">
+                                                    <button type="submit" class="btn btn-primary">Send</button>
+                                                </section>
+                                            </section>
+                                        </form>
+                                    </section>
+                                </section>
+                            </div>
+                        </section>
+                    </section>
+                    <!--klo -->
+                    <div id="show_message" data-ng-show="employeeCtrl.messageBox.isState('reply')">
+                        <section class="headingbar">Message</section>
+                        <section class="btmboxa" id="btmboxa">
+                            <div>
+                                <section id="btmboxtopa" class="btmboxtopb pl8">
+                                    <span id="message_display" data-ng-show="employeeCtrl.showingMessage">
+                                        <section class="msgtitles">
+                                            <span class="nameofsender">{{!employeeCtrl.showingMessage || employeeCtrl.showingMessage.senderName()}}</span>
+                                            <span class="dateandtime">{{!employeeCtrl.showingMessage || employeeCtrl.showingMessage.get('date')}}
+                                                {{!employeeCtrl.showingMessage || employeeCtrl.showingMessage.get('time')}}</span>
+                                        </section>
+                                        <section class="msgdetail">{{!employeeCtrl.showingMessage || employeeCtrl.showingMessage.get('message') |
+                                            wordbreak:37:100}}</section>
+                                    </span>
+                                </section>
+                                <!--<section class="midbreaker"></section>   -->
+                                <section class="btmboxbtmb">
+                                    <section class="btwrap pl8">
+                                        <form data-ng-submit="employeeCtrl.sendReply($event)">
+                                            <section class="txtfld_lft">
+                                                <input class="txtfld_style form-control" id="send_message2" data-ng-model="employeeCtrl.reply.text" name="send_message2"
+                                                    type="text" placeholder="Please Type Message Here.." />
+                                            </section>
+                                            <section class="btmritsect" style="float: right; position: relative; top: -30px; text-align: right">
+                                                <section class="btnsend">
+                                                    <button type="submit" class="btn btn-primary">Send</button>
+                                                </section>
+                                            </section>
+                                        </form>
+                                    </section>
+                                </section>
+                            </div>
+                        </section>
+                    </div>
+                    <section id="btmright1" data-ng-show="employeeCtrl.messageBox.isState('initialize')">
+                        <section class="headingbar">Message</section>
+                        <section class="btmbox">
+                            <section class="btmboxtop">
+                                <a href="javascript:void(0)" data-ng-click="employeeCtrl.composeBox()">
+                                    <img src="images/envelop.png" alt="" />
+                                </a>
+                            </section>
+                            <section class="btmboxbtm">Click a message above to read and reply or press the compose button in top right corner to send a message.</section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <!--bottom container ends-->
+        </section>
+
+    </div>
+    <!-- /container -->
+</div>
+

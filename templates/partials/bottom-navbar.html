@@ -1,0 +1,39 @@
+<div class="fixed-bottom" ng-controller="BottomNavController as bottomNavCtrl">
+    <div class="row fivecolumn  bottom-navbar">
+        <a ui-sref="Employee" ng-class="{'disabled': $root.location.access_timeattendance.toLowerCase() == 'no'}" ng-click="bottomNavCtrl.checkAccessTimeAttendance($event)" ui-sref-active="active" ui-sref-opts="{reload: true}" added-item-check="{{$root.appState.isState('checkDetail.cart')}}">
+            <div class="col-xs-2 femployee-png" added-item-check="{{$root.appState.isState('checkDetail.cart')}}">
+                <span class="notification-number" ng-if="bottomNavCtrl.notification.messageCount != null && bottomNavCtrl.notification.messageCount > 0">{{bottomNavCtrl.notification.messageCount}}</span>
+                Employee
+            </div>
+        </a>
+
+        <a ng-if="$root.currentUser().allowAccessPosReports && !$root.isEmployeeOut" ui-sref="Reports" ui-sref-active="active" ui-sref-opts="{reload: true}"
+            added-item-check="{{$root.appState.isState('checkDetail.cart')}}" ng-click="bottomNavCtrl.checkReportAccessibility($event)">
+            <div class="col-xs-2 border-gray report-png footer-icon" style='border-right: 0px' added-item-check="{{$root.appState.isState('checkDetail.cart')}}">Reports</div>
+        </a>
+        <a ng-if="!$root.currentUser().allowAccessPosReports" ng-click="bottomNavCtrl.checkReportAccessibility($event)" href='javascript:void(0)' class='disabled' data-alert-message="You are not authorized to access Reports.">
+            <div class="col-xs-2 border-gray report-png footer-icon" style='border-right: 0px'>Reports</div>
+        </a>
+        <a ng-if="$root.isEmployeeOut" ng-click="bottomNavCtrl.checkReportAccessibility($event)" href='javascript:void(0)' class='disabled'>
+            <div class="col-xs-2 border-gray report-png footer-icon" style='border-right: 0px'>Reports</div>
+        </a>
+        <!-- 
+        <a ui-sref="Schedule" ui-sref-active="active" ui-sref-opts="{reload: true}">
+            <div class="col-xs-2 border-gray schedule_icon-png footer-icon">Schedule</div>
+        </a>
+         -->
+        <a ng-class="{'disabled': $root.isEmployeeOut}" ui-sref="Home" ui-sref-active="active" ui-sref-opts="{reload: true}" ng-click="bottomNavCtrl.checkHomeAccessibility($event)">
+            <div class="col-xs-2 border-gray home-png footer-icon" added-item-check="{{$root.appState.isState('checkDetail.cart')}}">Home</div>
+        </a>
+
+        <a>
+            <div class="col-xs-2 footer-icon"></div>
+        </a>
+
+        <a ng-class="{'disabled': $root.isEmployeeOut}" ng-click="bottomNavCtrl.createNewCheck($event)" added-item-check="{{$root.appState.isState('checkDetail.cart')}}">
+            <div class="col-xs-2 border-gray newtab_footericon-png" added-item-check="{{$root.appState.isState('checkDetail.cart')}}">New Tab</div>
+        </a>
+
+
+    </div>
+</div>

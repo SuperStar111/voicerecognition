@@ -1,0 +1,29 @@
+<div class='home-layout'>
+    <div id="layout-wrapper" ng-style="ctrl.layout_bg" layout-wrapper ng-class="{'full-layout': ctrl.isFullLayout}">
+        <div class="layout-canvas">
+            <span class="layout-table" ng-repeat="table in ctrl.tables()" table-layout table="table" width-scale="{{ctrl.widthScale}}" height-scale="{{ctrl.heightScale}}" ng-click="ctrl.showTableDetail(table)">
+                <span class='inner-span image'></span>
+                <span class="table-name">{{table.name()}}</span>
+            </span>
+        </div>
+    </div>
+    <div class="modal fade" id="fl-popup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <div ng-if="isFullLayout" id="full-layout" ng-style="layout_bg">
+        <div class="layout-canvas">
+            <span class="layout-table" ng-repeat="table  in tables"
+                ng-style="{'top':table.ty+'%','left':table.tx+'%','height':(table.size_y|| 80)*height_scale,'width':(table.size_x|| 80)*width_scale}"
+                ng-attr-data-table-id="{{(table.section_table_id) ? table.section_table_id : table.id }}" ng-attr-data-table-angle="{{table.angle}}">
+                <span class='inner-span' ng-style="table_img_url(table)"></span>
+                <span class="table-name">{{table.name()}}</span>
+            </span>
+        </div>
+    </div>
+     -->
+</div>

@@ -1,0 +1,35 @@
+<div id="gradutytab">
+    <seat-payment data-type="GRATUITY" ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment data-type="GRATUITY" ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    
+    <authorized-credit-cards></authorized-credit-cards>
+    <!-- <div class="row font-black">
+        <div class="col-xs-6">
+            <label class="v-desc">Amount Due</label>
+        </div>
+        <div class="col-xs-6 text-right">
+            <label class="v-desc">{{ctrl.currentSubType.amt_due}}</label>
+        </div>
+    </div>
+     -->
+    <div id="cont_seat" class="cont_seat"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <div class="form-group">
+                    <input soft-input type="text" id="graduty_percent" class="form-control" ng-model="ctrl.currentSubType.percentageAmount" ng-model-options="{ getterSetter: true }"
+                        ng-click="backgroundset();" placeholder="Percent of Gratuity">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control money_field" ng-model="ctrl.currentSubType.amountDue" ng-model-options="{ getterSetter: true }" ng-click="backgroundset();"
+                    placeholder="Gratuity">
+            </div>
+        </div>
+    </div>
+
+</div>

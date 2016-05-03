@@ -1,0 +1,61 @@
+<style media="screen">
+body, html, #home {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+</style>
+<div cg-busy="{promise:myPromise,message:'Processing ...', backdrop:true, templateUrl:'templates/partials/loading.html'}"></div>
+<div id="home" class='schedule_container'>
+    <!-- Fixed navbar -->
+    <div class="container fixed-top" ng-include="'templates/partials/top-navbar.html'" ng-controller="NavbarController as navbarCtrl"></div>
+
+    <!-- Fixed navbar -->
+    <div ng-include="'templates/partials/bottom-navbar.html'"></div>
+
+    <div class="container soft-body">
+        <div class="top-header" search-bar></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default" id="schedule_data">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Schedule For The Month of {{scheduleCtrl.currentMonth}}</h3>
+                        <a ui-sref='Employee'>
+                            <span class="softpointdevicon-employee"></span>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table schedule-list">
+                            <thead class='clearfix'>
+                                <tr class='titlebar'>
+                                    <th class='col1'>Date</th>
+                                    <th class='col2'>Schedule</th>
+                                </tr>
+                            </thead>
+                            <tbody ng-if="scheduleCtrl.schedules.length == 0" class='no-result'>
+                                <tr>
+                                    <td colspan='2'>Currently, you are not scheduled to work this time.</td>
+                                </tr>
+                            </tbody>
+
+                            <tbody ng-if="scheduleCtrl.schedules.length > 0">
+                                <tr class="content-row" ng-repeat="item in scheduleCtrl.schedules">
+                                    <td class='col1'>{{ item.date() }}</td>
+                                    <td class='col2'>{{ item.title() }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /container -->
+</div>

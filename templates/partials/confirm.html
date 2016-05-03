@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Confirm</h4>
+</div>
+<div class="modal-body">{{ message }}</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="selectNo()">{{options.text.no}}</button>
+    <button class="btn btn-primary" ng-click="selectYes()">{{options.text.yes}}</button>
+</div>

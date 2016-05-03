@@ -1,0 +1,48 @@
+<div id="gifttab">
+    <seat-payment ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    
+    <authorized-credit-cards></authorized-credit-cards>
+    <div class="row font-black">
+        <div class="col-xs-6">
+            <label class="v-desc">Amount Due</label>
+        </div>
+        <div class="col-xs-6 text-right">
+            <label class="v-desc">{{ctrl.currentSubType.amt_due}}</label>
+        </div>
+    </div>
+    <div id="cont_seat" class="cont_seat"></div>
+    <div class="row" ng-show="ctrl.hasGratuity">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" id="gift_gratuity" class="form-control money_field" placeholder="Gratuity" ng-model="ctrl.currentSubType.gratuity"
+                    ng-blur="ctrl.currentSubType.updateAmountDue()" ng-change="ctrl.currentSubType.gratuityChange=true">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control" placeholder="Gift Certificate Number" ng-model="ctrl.currentSubType.giftCardNumber"
+                    ng-blur="ctrl.currentSubType.getGiftCertificate()">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row font-black">
+        <div class="col-xs-6">
+            <label>Balance</label>
+        </div>
+        <div class="col-xs-6 text-right">
+            <label>{{ctrl.currentSubType.balance}}</label>
+        </div>
+    </div>
+    <div id="cont_seat" class="cont_seat"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <input soft-input type="text" class="form-control money_field" ng-focus="ctrl.currentSubType.focus()" ng-blur="ctrl.currentSubType.blur()" ng-model="ctrl.currentSubType.amount" ng-model-options="{ getterSetter: true }" placeholder="Payment">
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,32 @@
+<style media="screen">
+body, html, #home {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+</style>
+<div cg-busy="{promise:myPromise,message:'Processing ...', backdrop:true, templateUrl:'templates/partials/loading.html'}"></div>
+<div class="modal fade" id="fl-popup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+<div id="home">
+
+    <!-- Fixed navbar -->
+    <div class="container fixed-top" ng-include="'templates/partials/top-navbar.html'" ng-controller="NavbarController as navbarCtrl"></div>
+
+    <!-- Fixed navbar -->
+    <div ng-include="'templates/partials/bottom-navbar.html'"></div>
+
+    <div class="container soft-body">
+        <div class="top-header" search-bar></div>
+        <soft-layout template-url="templates/partials/soft-layout.html" section-id="{{softLayoutCtrl.sectionID}}" class="right-bloc full_height"></soft-layout>
+    </div>
+    <!-- /container -->
+</div>

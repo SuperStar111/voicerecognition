@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h5 class="modal-title">Discount</h5>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" name='frmDiscount' ng-submit="ctrl.apply($event, frmDiscount)">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Items</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Discount Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in ctrl.items" ng-init="ctrl.setup(item)">
+                    <td style='height: 43px; overflow: hidden'>{{item.getName()|cut:true:35:' ...'}}</td>
+                    <td><input type="number" data-item="item" value="{{item.get('quantity')}}" ng-required="true" data-bootstrap-number
+                            class="form-control order-quantity" data-min="0" data-max="{{item.get('quantity')}}"></td>
+                    <td>{{$root.location.currency_symbol}}{{item.beforeDiscount()}}</td>
+                    <td>{{$root.location.currency_symbol}}{{item.afterDiscount()}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-change='ctrl.changeCode()' ng-model="ctrl.code" ng-required="true" ng-options="code.data as code.code for code in ctrl.discountCodes" class="form-control" id="discount-code">
+                    <option value=''>--- Discount Code ---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-disabled="ctrl.isTaxExempt"  ng-model="ctrl.type" ng-required="true" ng-options="type for type in ['Fixed', 'Percentage']" class="form-control" id="discount-type">
+                    <option value=''>--- Discount Type ---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-disabled="ctrl.isTaxExempt" ng-model="ctrl.amount" ng-required="true" class="form-control" id="amount" placeholder="Discount Amount">
+            </div>
+        </div>
+        <div class="form-group form-group-sm button-wrapper">
+            <div class="action-buttons">
+                <button type='button' class="btn btn-gray" ng-click="ctrl.cancel()" style="margin-right: 10px">Close</button>
+                <button class="btn btn-gray" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

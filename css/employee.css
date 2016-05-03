@@ -1,0 +1,749 @@
+#employee .login-session-list {
+    position: relative;
+}
+
+#employee .softpointdevicon-schedule {
+    background-color: #89400B;
+    background-position: center center;
+    width: 33px;
+    height: 30px;
+    position: absolute;
+    right: 5px;
+    border-radius: 7px;
+    background-image: url(../images/schedule_icon.png);
+    background-repeat: no-repeat;
+}
+
+.dropdown-select-employee {
+    height: auto !important;
+}
+
+.pl8 {
+    padding-left: 8px;
+}
+
+tr.empty-attendance td {
+    text-align: center;
+    padding-top: 20px;
+    color: #eee;
+    font-size: 17px;
+}
+
+.titlebar {
+    background: url(../images/grey_titlebar.png) bottom left repeat-x
+        #515151;
+    text-align: center;
+    font-family: "HelveticaNeue Bold", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    width: 100%;
+}
+
+#login-session-table {
+    width: 100%;
+}
+
+#login-session-table .login-image {
+    position: absolute;
+    top: 10px;
+}
+
+#login-session-table .cell {
+    vertical-align: middle;
+    background: url(../images/linsep_cols.png) top right no-repeat;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+#login-session-table .colbar {
+    background: url(../images/grey_colbg.png) top left repeat-x #8c8c8c;
+    color: black;
+}
+
+.colbar .colbar1 {
+    width: 32%;
+}
+
+.colbar .colbar2 {
+    width: 23%;
+}
+
+.colbar .colbar3 {
+    width: 25%;
+}
+
+#employee .colbar .colbar4 {
+    width: 20%;
+    background: none !important;
+}
+
+#employee .tencolumn .col-xs-1 {
+    text-align: center;
+    width: 7.6923076923076925%;
+    *width: 7.628205128205129%;
+}
+
+#employee .fivecolumn .col-xs-2 {
+    height: 50px;
+    text-align: center;
+    width: 20%;
+    *width: 20%
+}
+
+#employee .fivecolumn .col-xs-2 img {
+    height: 18px;
+    margin-top: 8px;
+}
+
+/* ---- class with image background */
+#employee .fixed-bottom .active {
+    color: #fe5c01;
+}
+
+#employee .fixed-bottom .col-md-fix {
+    width: 20%;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+#employee .fixed-top .log-out {
+    text-align: left;
+    margin-top: 5px;
+}
+
+#employee .fixed-top .btinfo {
+    text-align: right;
+    margin-top: 5px;
+}
+
+#employee .fixed-top .btinfo .glyphicon {
+    line-height: 1.42857143;
+}
+
+#employee .fixed-top .btinfo img {
+    height: 35px;
+}
+
+#employee .fixed-top .logo-top {
+    text-align: center;
+    padding-top: 5px;
+}
+
+#employee .fixed-bottom .fivecolumn .col-xs-2:hover {
+    color: #fe5c01;
+    cursor: pointer;
+}
+
+#employee #copyright {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 10px;
+    color: #7d7d7d;
+}
+
+#employee .login-form {
+    width: 400px;
+    height: 400px;
+    padding-top: 70px;
+    position: absolute;
+    top: 62.5%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -200px;
+    color: #2e5c94;
+}
+
+#employee .login-form .input-login {
+    text-align: center;
+}
+
+#employee .login-form h1, #employee .login-form h3 {
+    text-align: center;
+}
+
+#employee .login-form h1 {
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+#employee .login-form h3 {
+    font-size: 16px;
+    margin-top: 0
+}
+
+#employee .login-form input {
+    width: 90%;
+    height: 32px;
+    font-size: 12px;
+    background-color: #95C0DB;
+    color: #fff;
+    margin-top: 6px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+}
+
+#employee .login-form .btn {
+    width: 90%;
+    margin-top: 6px;
+}
+
+@media ( max-width : 600px) {
+    #employee .login-form {
+        margin-left: -200px;
+        top: 50%;
+    }
+    #employee .login-form h1, #employee .login-form h3 {
+        color: #fff;
+    }
+    #employee .fixed-top .logo-top {
+        padding-top: 0px;
+    }
+    #employee .fixed-top .btinfo {
+        margin-top: 0;
+    }
+    #employee .fixed-top .btinfo img {
+        height: 26px;
+    }
+    #employee .soft-body {
+        background-image: url(../images/px_bg.png);
+        background-position: left top;
+        background-repeat: repeat;
+        background-size: auto;
+    }
+}
+
+#employee .soft-body {
+    background-image: url(../images/px_bg.png);
+    background-position: left top;
+    background-repeat: repeat;
+    /*background-size: 55%, auto;*/
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 50px;
+    position: relative
+}
+
+#employee .soft-body .section-body {
+    height: 100%;
+}
+
+#employee .soft-body .section-body .right-bloc {
+    height: 100%;
+    padding-top: 48px;
+    padding-bottom: 40px;
+    position: relative;
+}
+
+#employee .soft-body .section-body .left-bloc {
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-header {
+    position: absolute;
+    background-image: url(../images/orange_bar.png);
+    height: 48px;
+    width: 100%;
+    padding-left: 64px;
+    top: 0;
+}
+
+#employee .soft-body .section-body .right-bloc  .right-bloc-header .title h3
+    {
+    
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-header .new {
+    position: absolute;
+    width: 38px;
+    top: 4px;
+    left: 4px;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-header .tlt-img img
+    {
+    width: 38;
+    margin: 4px;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-header .title
+    {
+    padding: 0;
+    margin-top: 0;
+    text-align: left;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-header .title h3
+    {
+    font-size: 1.4em;
+    padding: 0;
+    margin-top: 12px;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-body {
+    height: 100%;
+    background: url(../images/bg_cutting.png) #fff bottom repeat-x;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-body .pad {
+    padding: 6px;
+    overflow: hidden;
+    height: 100%;
+    padding-bottom: 58px
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-body .title-order
+    {
+    margin-top: 0;
+    font-weight: normal;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-body .right-bloc-body-top
+    {
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-body-bottom {
+    position: absolute;
+    height: 46px;
+    width: 100%;
+    bottom: 70px;
+    padding: 6px;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-body hr {
+    margin: 0;
+}
+
+#employee .soft-body .section-body .body-contnair {
+    overflow-y: auto;
+    height: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-body .tlt-img
+    {
+    text-align: right;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-body .tlt-img img
+    {
+    width: 30px;
+    cursor: pointer;
+}
+
+#employee .soft-body .section-body .right-bloc .right-bloc-footer {
+    text-align: center;
+}
+
+#employee .right-bloc-body .right-bloc-body-bottom .col-xs-2 {
+    padding-top: 10px;
+    width: 20%;
+    text-align: center;
+}
+
+#employee .left-bloc-list.active {
+    background: url(../images/bg_grey_lftpnl_hover.png) repeat-x;
+}
+
+#employee .left-bloc-list {
+    background: url(../images/bg_grey_lftpnl.png) repeat-x;
+    height: 80px;
+    padding-right: 200px;
+    position: relative;
+    padding-top: 8px;
+    padding-left: 6px;
+    color: #fff;
+}
+
+#employee .left-bloc-list .icon {
+    position: absolute;
+    cursor: pointer;
+    top: 7px;
+    width: 65px;
+    height: 65px;
+    right: 132px;
+}
+
+#employee .left-bloc-list .bg-icon {
+    position: absolute;
+    cursor: pointer;
+    background-image: url(../images/btnbox_orange.png);
+    background-size: 100%;
+    width: 59px;
+    height: 56px;
+    font-size: 12px;
+    top: 11px;
+    text-align: center;
+    color: #000;
+}
+
+#employee .left-bloc-list .preview {
+    right: 6px;
+    padding-top: 12px;
+}
+
+#employee .left-bloc-list .payements {
+    right: 70px;
+    padding-top: 20px;
+}
+
+#employee .left-bloc-list .icon.active {
+    background: url(../images/btnbox_orange_hover.png);
+}
+
+#employee .text-right {
+    text-align: right;
+}
+
+.green {
+    color: #42dd00;
+}
+
+.orange {
+    color: #ffcc00;
+}
+
+.yellow {
+    color: yellow;
+}
+
+#employee .border-gray {
+    border-left: 1px solid #79b1b7;
+    border-right: 1px solid #79b1b7;
+}
+
+#employee .btn-header {
+    margin-top: 10px;
+    text-align: right;
+    padding-right: 0
+}
+
+#employee .btn-header .btn-gray.active {
+    background-color: #000;
+    border-color: #5b5b5b;
+}
+
+#employee .btn-gray {
+    color: #fff;
+    background-color: #5b5b5b;
+    border-color: #727272;
+}
+
+#employee .btn-gray:hover, #employee .btn-gray:focus, #employee .btn-gray.focus,
+    #employee .btn-gray:active, #employee .btn-gray.active, #employee .open>.dropdown-toggle.btn-gray
+    {
+    color: #fff;
+    background-color: #4c4c4c;
+    border-color: #727272;
+}
+
+@media ( max-width : 990px) {
+    #employee .soft-body .section-body .right-bloc .right-bloc-header .title h3
+        {
+        
+    }
+    #employee .soft-body .section-body .right-bloc {
+        padding-top: 48px;
+        padding-bottom: 40px;
+        position: relative;
+    }
+    #employee .soft-body .section-body .right-bloc-hide {
+        display: none;
+    }
+    #employee .soft-body .section-body .left-bloc {
+        position: relative;
+        overflow: hidden;
+    }
+    #employee .col_md_6_0 {
+        height: 80px;
+        position: relative;
+        z-index: 15;
+    }
+    body #employee .left-bloc-show {
+        height: 100%;
+        overflow: auto;
+    }
+    body #employee .soft-body .section-body .left-bloc-s {
+        position: relative;
+        overflow: auto;
+    }
+    #employee .col_md_6_1 {
+        z-index: 12;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        padding-top: 134px;
+        top: 0px;
+    }
+    #employee .top-header {
+        z-index: 17;
+    }
+}
+
+#employee .body-contnair .row {
+    margin-top: 4px;
+}
+
+#employee .not-found {
+    text-align: center;
+    color: #fff;
+}
+
+#loader-ajax {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+}
+
+.text-red {
+    color: red;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.btn-gray {
+    color: #fff;
+    background-color: #5b5b5b;
+    border-color: #727272;
+}
+
+.btn-gray:hover, .btn-gray:focus, .btn-gray.focus, .btn-gray:active,
+    .btn-gray.active, .open>.dropdown-toggle.btn-gray {
+    color: #fff;
+    background-color: #4c4c4c;
+    border-color: #727272;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full_height {
+    height: 100%;
+}
+
+#employee .started, #employee .ordered {
+    text-transform: capitalize;
+    color: yellow;
+}
+
+#employee .canceled, #employee .closed {
+    text-transform: capitalize;
+    color: red;
+}
+
+#employee .printed, #employee .completed {
+    text-transform: capitalize;
+    color: orange;
+}
+
+#employee .uppercase {
+    text-transform: uppercase;
+}
+
+.alpha {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    opacity: .6;
+}
+
+.font-16 {
+    font-size: 16px;
+}
+
+/* From employee.html*/
+/* Override of CSS from other CSS file */
+body, html, #employee {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.employee-section-body {
+    
+}
+
+/* CSS overrides */
+.containertop #topright {
+    width: 49.5%;
+    float: left;
+    height: auto;
+    overflow: hidden;
+}
+
+.containerbtm {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    height: 240px;
+}
+
+.containerbtm #btmleft {
+    width: 49.5%;
+    float: left;
+    margin-right: 1%;
+}
+
+.containerbtm #btmright {
+    width: 49.5%;
+    float: left;
+}
+
+.headingbar {
+    width: 100%;
+    height: 48px; /* org 38px*/
+    background: url(../images/orange_bar.png) top left repeat-x;
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 1px;
+    padding-top: 10px;
+}
+
+.btmbox .btmboxtop {
+    cursor: pointer;
+}
+
+.btn-image:hover {
+    opacity: .9;
+}
+
+.btmbox .btmboxbtm {
+    width: 100%;
+    height: 110px;
+    padding-top: 20px;
+    font-size: 13px;
+    color: #656565;
+}
+
+.btmbox {
+    width: 100%;
+    height: 250px;
+    background-color: #d4d4d4;
+    text-align: center;
+}
+
+.titlebar.row-header td {
+    background: url(../images/linesep_titlebar.png) top right no-repeat;
+    font-weight: bolder;
+    padding-top: 10px;
+    padding-bottom: 8px;
+}
+
+.titlebar .titlecol1 {
+    width: 32%;
+}
+
+.titlebar .titlecol2 {
+    width: 23%;
+}
+
+.titlebar .titlecol3 {
+    width: 25%;
+}
+
+#employee .titlebar .titlecol4 {
+    width: 20%;
+    background: none !important;
+}
+
+.btmboxa .btmboxbtma {
+    height: 45px;
+}
+
+.btmboxa .btmboxbtmb {
+    height: 45px;
+}
+
+.btmboxa {
+    height: 192px;
+}
+
+.mbcol, .mbcol_selected {
+    width: 100%;
+}
+
+.popupimgbox {
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+
+.timespan {
+    position: relative;
+    margin-bottom: 3px;
+    text-align: center;
+    top: -3px; /*0rg -3px*/
+    vertical-align: top;
+    margin-right: 3px;
+}
+
+span.select_val {
+    opacity: 0;
+}
+
+#to_call {
+    width: 100%;
+    height: 35px;
+    opacity: 1;
+    text-align: left;
+}
+
+.txtfld_lft {
+    width: 100%;
+    height: 30px;
+    float: left;
+    background: none;
+    padding-left: 10px;
+    padding-right: 57px;
+}
+
+#employee .btmritsect {
+    width: auto !important;
+}
+
+.txtfld_style {
+    width: 100%;
+    height: 35px;
+    border: none;
+    float: left;
+    margin-top: -1px;
+    margin-left: -10px;
+    color: black;
+}
+
+input.txtfld_style::-webkit-input-placeholder {
+    font-style: italic;
+    color: gray;
+}
+
+input.txtfld_style:-moz-placeholder {
+    font-style: italic;
+    color: gray;
+}
+
+.timespantotal {
+    position: relative;
+    top: -3px;
+}
+
+@media only screen and (max-width: 1020px) {
+    .timespantotal {
+        top: -15px;
+    }
+}

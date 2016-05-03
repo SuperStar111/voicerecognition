@@ -1,0 +1,108 @@
+<style media="screen">
+body, html, #home {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+</style>
+<div cg-busy="{promise:myPromise,message:'Processing ...', backdrop:true, templateUrl:'templates/partials/loading.html'}"></div>
+<div id="home">
+
+    <!-- Fixed navbar -->
+    <div class="container fixed-top" ng-include="'templates/partials/top-navbar.html'" ng-controller="NavbarController as navbarCtrl"></div>
+
+    <!-- Fixed navbar -->
+    <div ng-include="'templates/partials/bottom-navbar.html'"></div>
+
+    <div class="container soft-body">
+        <div class="top-header" data-search-bar></div>
+
+        <div class="row section-body" id='blocks-container' ng-class="{'pos-relative': homeCtrl.isLayoutView}">
+            <div class="col-md-6 full_height col_md_6_0 left-block" ng-class="{'left-bloc-show' : right_bloc_hide, 'full-width-priority': homeCtrl.isLayoutView }">
+                <div class="bloc left-bloc full_height" id='check-container' ng-class="{'left-bloc-s' : right_bloc_hide }">
+
+                    <div class="left-bloc-list check-item" data-check='item' data-mergeable-check ng-class="{'active': homeCtrl.currentCheckedIndex == $index}"
+                        data-ui-sref="CheckDetailWithTab({id: item.id, tab: 'cart'})" data-restrict-cancelled-check data-check-status="{{item.order_Status.toUpperCase()}}" data-restrict-other-server="{{item.server_id}}" data-ng-repeat="item in homeCtrl.checklist | filter:searchText"
+                        data-ng-show="!homeCtrl.showingDetail || item.selected">
+                        <img ng-src="images/{{item.order_Status.toLowerCase()}}.png" class="icon" alt=""/>
+                        <span class="bg-icon payements active" ng-click="homeCtrl.viewPayment(item, $event)">Payments</span>
+                        <span class="bg-icon preview active" ng-click="homeCtrl.loadCheckDetails(item, $index, $event)">Check Preview</span>
+                        <div class="row">
+                            <div class="col-xs-4 col-md-5">
+                                <div class="uppercase table-name">{{ item.table_name ? item.table_name : item.typeorder }}</div>
+                            </div>
+                            <div class="col-xs-8 col-md-7 text-right">
+                                <div>Server: {{item.server}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div>{{item.client}}</div>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <div>Total: {{ $root.symbol }}{{item.total}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div>
+                                    <span class="{{item.order_Status}} order-status">{{item.order_Status}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div>#{{item.check_number}} - {{item.daily_account_number | numberFixedLen:4 }} | Covers: {{item.covers}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="not-found" ng-show="homeCtrl.checklist == null">No Checks Found</div>
+                    <div class="not-found" ng-show="homeCtrl.checklist.length == 0">
+                        <button type="button" class="btn btn-success btn-create-new-tab" ui-sref="CreateCheck">Create A New Tab</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 full_height col_md_6_1 right-block"
+                ng-class="{'right-bloc-hide' : right_bloc_hide, 'width-auto': homeCtrl.isLayoutView, 'notLayoutView': !homeCtrl.isLayoutView }"
+                ng-show="!homeCtrl.smallDevice || homeCtrl.showingDetail || homeCtrl.isLayoutView">
+                <div class="right-bloc full_height" ng-show="!homeCtrl.isLayoutView && (homeCtrl.checklist.length > 0)">
+                    <div class="right-bloc-header check-preview">
+                        <img src="images/{{homeCtrl.currentPreviewCheck.order_Status.toLowerCase()}}.png" class="new" alt=""/>
+                        <div class="row">
+                            <div class="col-xs-7 title">
+                                <h3 class="uppercase table-name">
+                                    <span class="bold">{{ homeCtrl.order.getHeaders()['table_name'] ? homeCtrl.order.getHeaders()['table_name'] :
+                                        homeCtrl.order.getHeaders()['type_of_order'] }}</span>
+                                    - {{homeCtrl.order.getHeaders()['covers']}} #{{homeCtrl.order.getHeaders()['check_number']}} -
+                                    {{homeCtrl.order.getHeaders()['daily_account_number'] | numberFixedLen:4 }}
+                                </h3>
+                            </div>
+                            <div class="col-xs-2 title">
+                                <h3 class="text-right">Total:</h3>
+                            </div>
+                            <div class="col-xs-3 title">
+                                <h3 class="text-right" style="padding-right: 20px;">{{ symbol }}{{homeCtrl.order.total()}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-bloc-body">
+                        <order-detail order='homeCtrl.order' template-url="templates/partials/order-detail.html"></order-detail>
+                    </div>
+                    <div class="right-bloc-footer">
+                        <!--<button type="button" class="btn btn-primary" ng-click="toggleDetail()">Details</button>-->
+                        <button ng-if="homeCtrl.currentPreviewCheck.order_Status.toLowerCase() == 'closed'" type="button" class="btn btn-danger" ng-click="homeCtrl.reopen(homeCtrl.currentPreviewCheck, $event)">Reopen</button>
+                        <button type="button" class="btn btn-primary" data-print-check data-order="homeCtrl.order">Print Check</button>
+                        <button type="button" class="btn btn-primary" ng-click="homeCtrl.viewPayment(homeCtrl.currentPreviewCheck, $event)">Payments</button>
+                    </div>
+                </div>
+                <soft-layout template-url="templates/partials/soft-layout.html" section-id="{{$root.sectionID}}" ng-if="homeCtrl.isLayoutView"
+                    class="right-bloc full_height"></soft-layout>
+            </div>
+        </div>
+
+    </div>
+    <!-- /container -->
+</div>

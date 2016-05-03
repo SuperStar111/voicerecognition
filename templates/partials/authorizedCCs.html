@@ -1,0 +1,7 @@
+<div class="row text-center margin-top-5" id="custombutton2" ng-if="authorizedCCs.length > 0">
+    <div class="col-lg-12 col-sm-6 text-left" ng-click="authorizedCCsCtrl.selectCard(card)" ng-repeat="card in authorizedCCs">
+        <div class="form-group">
+            <button id="vl1jki" type="button" class="btn btn-gray btn-cc" ng-class="{'active': card == ctrl.currentSubType.currentCard}">{{card.getText()}}</button>
+        </div>
+    </div>
+</div>

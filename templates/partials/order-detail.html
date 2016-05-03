@@ -1,0 +1,170 @@
+<div class="right-bloc-body-top">
+    <div class="pad">
+
+        <div class="row">
+            <div class="col-xs-6">
+                <h3 class="title-order">{{ctrl.totalItems}} Ordered Items</h3>
+            </div>
+            <div class="col-xs-6 tlt-img">
+                <img src="images/table.png" ng-class="{'alpha' : !order.isTable()}" />
+                <img src="images/chaise.png" ng-class="{'alpha' : !order.isChair()}" />
+                <img src="images/percent.png" ng-class="{'alpha' : !order.isEqually()}" />
+            </div>
+        </div>
+        <hr>
+        <div class="body-contnair font-16">
+            <div id="lists-details" class='check-detail-container'>
+                <div ng-repeat="item in ctrl.order.getItems()" ng-if="ctrl.order.isViewByTable()">
+                    <div class="row">
+                        <div class="col-xs-1">{{item.get('quantity')}}</div>
+                        <div class="col-xs-7">{{item.getName()}}</div>
+                        <div class="col-xs-2 text-right">{{ item.getSeats() }}</div>
+                        <div class="col-xs-2 text-right">{{item.get('price')}}</div>
+                    </div>
+                    <div class="row" ng-repeat="payment in item.getPayments()">
+                        <div class="col-xs-1">-</div>
+                        <div class="col-xs-7" style="padding-left: 48px;">{{payment.getText()}}</div>
+                        <div class="col-xs-2 text-right"></div>
+                        <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2}}</div>
+                    </div>
+                    <div class="row" ng-repeat="modifier in item.getModifiers()">
+                        <div class="col-xs-1">-</div>
+                        <div class="col-xs-7" style="padding-left: 48px;">{{modifier.getText()}}</div>
+                        <div class="col-xs-2 text-right"></div>
+                        <div class="col-xs-2 text-right">{{modifier.total()}}</div>
+                    </div>
+                </div>
+                <div class="row" ng-repeat="payment in ctrl.order.payments" ng-if="ctrl.order.isViewByTable()">
+                    <div class="col-xs-1">-</div>
+                    <div class="col-xs-7">{{payment.getText()}}</div>
+                    <div class="col-xs-2 text-right"></div>
+                    <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                </div>
+
+                <div ng-repeat="splitter in ctrl.order.getSplits()" ng-if="ctrl.order.isViewByPercentage()">
+                    <div class='splitter-heading'>Split: {{$index + 1}}</div>
+                    <div ng-repeat="item in splitter">
+                        <div class="row">
+                            <div class="col-xs-1">{{item.fraction}}</div>
+                            <div class="col-xs-7">{{item.getName()}}</div>
+                            <div class="col-xs-2 text-right">{{ item.getSeats() }}</div>
+                            <div class="col-xs-2 text-right">{{item.get('price')}}</div>
+                        </div>
+
+                        <div class="row" ng-repeat="payment in item.getPayments()">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-7" style="padding-left: 48px;">{{payment.getText()}}</div>
+                            <div class="col-xs-2 text-right"></div>
+                            <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                        </div>
+                        <div class="row" ng-repeat="modifier in item.getModifiers()">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-7" style="padding-left: 48px;">{{modifier.getText()}}</div>
+                            <div class="col-xs-2 text-right"></div>
+                            <div class="col-xs-2 text-right">{{modifier.total()}}</div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-repeat="payment in splitter.payments">
+                        <div class="col-xs-1">-</div>
+                        <div class="col-xs-7">{{payment.getText()}}</div>
+                        <div class="col-xs-2 text-right"></div>
+                        <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                    </div>
+
+                </div>
+
+                <div ng-repeat="splitter in ctrl.order.getChairs()" ng-if="ctrl.order.isViewByChair()">
+                    <div class='splitter-heading'>Seat: {{$index + 1}}</div>
+                    <div ng-repeat="item in splitter">
+                        <div class="row">
+                            <div class="col-xs-1">{{item.fraction}}</div>
+                            <div class="col-xs-7">{{item.getName()}}</div>
+                            <div class="col-xs-2 text-right">{{ item.getSeats() }}</div>
+                            <div class="col-xs-2 text-right">{{item.get('price')}}</div>
+                        </div>
+
+                        <div class="row" ng-repeat="payment in item.getPayments()">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-7" style="padding-left: 48px;">{{payment.getText()}}</div>
+                            <div class="col-xs-2 text-right"></div>
+                            <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                        </div>
+                        <div class="row" ng-repeat="modifier in item.getModifiers()">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-7" style="padding-left: 48px;">{{modifier.getText()}}</div>
+                            <div class="col-xs-2 text-right"></div>
+                            <div class="col-xs-2 text-right">{{modifier.total()}}</div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-repeat="payment in splitter.payments">
+                        <div class="col-xs-1">-</div>
+                        <div class="col-xs-7">{{payment.getText()}}</div>
+                        <div class="col-xs-2 text-right"></div>
+                        <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                    </div>
+                </div>
+                <!-- checkDetails -->
+
+                <!-- Amit -->
+                <!-- 
+                <div class="body-contnair font-16">
+                    <div id="lists-details">
+                        <div class="row" ng-repeat="item in payments">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-7" ng-if="item.payment_type_name == 'Credit Card' || item.payment_type_name == 'Debit Card'">
+                                {{ (item.payment_local_code || item.payment_code) + ' - ' + item.cc_number.substring(item.cc_number.length-4) }}
+                                {{item.payment_type_name == "Credit Card" || item.payment_type_name == "Debit Card" ? (item.payment_local_code || item.payment_code) + ' - ' + item.cc_number.substring(item.cc_number.length-4) : item.payment_type_name == "Receivbles" ? item.payment_local_code + ' - '+ item.company_name : item.payment_local_code || item.payment_code}}
+                            </div>
+                            <div class="col-xs-7" ng-if="item.payment_type_name == 'Receivables' ">{{ (item.payment_local_code || item.payment_code) + ' - ' +
+                                item.company_name }}</div>
+                            <div class="col-xs-7" ng-if="item.payment_type_name == 'Interface' ">{{ (item.payment_local_code || item.payment_code) + ' - ' +
+                                item.room_number + ' - ' + item.guest_name }}</div>
+                            <div class="col-xs-7"
+                                ng-if="item.payment_type_name != 'Credit Card' && item.payment_type_name != 'Debit Card' && item.payment_type_name != 'Receivables' && item.payment_type_name != 'Interface' ">
+                                {{ item.payment_local_code || item.payment_code }}</div>
+                            <div class="col-xs-2 text-right"></div>
+                            <div class="col-xs-2 text-right">{{ item.amount==99 ? 'All' : item.amount }}</div>
+                        </div>
+                    </div>
+                </div>
+                 -->
+                <!-- Amit End -->
+
+                <!-- checkSeats -->
+
+                <!-- checkSeats -->
+            </div>
+        </div>
+        <div id="loader-ajax">
+            <img src="images/loader.gif" alt="" />
+        </div>
+    </div>
+
+    <div class="right-bloc-body-bottom">
+        <hr>
+        <div class="row">
+            <div class="col-xs-2">
+                <div class="">Subtotal</div>
+                <div class="">{{ order.subTotal() }}</div>
+            </div>
+            <div class="col-xs-2">
+                <div class="">Service</div>
+                <div class="">{{order.serviceTotal()}}</div>
+            </div>
+            <div class="col-xs-2">
+                <div class="">Tax</div>
+                <div class="">{{order.tax()}}</div>
+            </div>
+            <div class="col-xs-2">
+                <div class="">Payments</div>
+                <div class="">{{order.totalPayments()}}</div>
+            </div>
+            <div class="col-xs-2">
+                <div class="">Total</div>
+                <div class="">{{order.total()}}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,324 @@
+<div cg-busy="{promise:myPromise,message:'Processing ...', backdrop:true, templateUrl:'templates/partials/loading.html'}"></div>
+<div id="check">
+
+    <!-- Fixed navbar -->
+    <div class="container fixed-top" ng-include="'templates/partials/top-navbar.html'" ng-controller="NavbarController as navbarCtrl"></div>
+
+    <!-- Fixed navbar -->
+    <div ng-include="'templates/partials/bottom-navbar.html'"></div>
+
+    <div class="container soft-body">
+        <div class="top-header" search-bar></div>
+        <div class="row section-body check-detail-container">
+            <div class="col-md-6 full_height col_md_6_0" ng-class="{'left-bloc-show' : right_bloc_hide, 'gray-background': checkDetailCtrl.isTab('details') }">
+                <div class="bloc left-bloc full_height" ng-class="{'left-bloc-s' : right_bloc_hide, 'gray-background': checkDetailCtrl.isTab('details') }">
+                    <div class="row-fluid">
+                        <div id="check_main_tabs">
+                            <a class='' ng-class="{'active': checkDetailCtrl.isTab('details')}" section="tab_details" ng-click="checkDetailCtrl.showTab('details')"
+                                href="javascript:void(0)">
+                                <span class="inline tab-detail" added-item-check="{{$root.appState.isState('checkDetail.cart')}}">TAB DETAILS</span>
+
+                            </a>
+                            <a class="" ng-class="{'active': checkDetailCtrl.isTab('cart')}" section="order_items" ng-click="checkDetailCtrl.showTab('cart')"
+                                href="javascript:void(0)">
+                                <span class="inline tab-cart">ORDER ITEMS</span>
+                            </a>
+                            <a class=" last" ng-class="{'active': checkDetailCtrl.isTab('payment')}" section="payments" ng-click="checkDetailCtrl.showTab('payment')"
+                                href="javascript:void(0)">
+                                <span class="inline tab-payment" added-item-check="{{$root.appState.isState('checkDetail.cart')}}">PAYMENTS</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row-fluid row-check-detail-subtabs" ng-show="checkDetailCtrl.isTab('details')">
+                        <div id="check-detail-subtabs" class='opacity-04'>
+                            <a id="tab-check-table" href="javascript:void(0)" ng-click="checkDetailCtrl.selectSubTab('table')"
+                                ng-if="checkDetailCtrl.location.table_dinning == 'yes'" ng-class="{'active': checkDetailCtrl.isSubTab('table')}">
+                                <img src="images/check/tab_table_lrg.png" />
+                            </a>
+                            <a id="tab-check-clock" href="javascript:void(0)" ng-click="checkDetailCtrl.selectSubTab('clock')"
+                                ng-class="{'active': checkDetailCtrl.isSubTab('clock')}">
+                                <img src="images/check/tab_clock_lrg.png" />
+                            </a>
+                            <a id="tab-check-car" href="javascript:void(0)" ng-click="checkDetailCtrl.selectSubTab('car')"
+                                ng-class="{'active': checkDetailCtrl.isSubTab('car')}"
+                                ng-show="checkDetailCtrl.location.delivery == 'yes' && checkDetailCtrl.isDeliveryTimeAvailable()">
+                                <img src="images/check/tab_car_lrg.png" />
+                            </a>
+                            <a id="tab-check-pack" href="javascript:void(0)" ng-click="checkDetailCtrl.selectSubTab('pack')"
+                                ng-class="{'active': checkDetailCtrl.isSubTab('pack')}"
+                                ng-show="checkDetailCtrl.location.togo == 'yes' && checkDetailCtrl.isTogoTimeAvailable()">
+                                <img src="images/check/tab_pack_lrg.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <section class="check_section" id="section_tab_details" ng-show="checkDetailCtrl.isTab('details')" data-restrict-closed-check data-check-status="{{checkDetailCtrl.check.get('order_details')['order_status'].toUpperCase()}}" >
+                        <div class="txtfld_div">
+                            <select class="form-control" ng-model='checkDetailCtrl.covers[checkDetailCtrl.currentSubTab]' ng-model-options="{ getterSetter: true }"
+                                name="covers" ng-options="cover as cover for cover in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]">
+                                <option value="">Covers</option>
+                            </select>
+                        </div>
+
+                        <div class="txtfld_div txtfld_div_client_name" ng-show="checkDetailCtrl.showIfSubTab(['car'])">
+                            <div class='input-group date txtfld_div_input2 txtfld_div_input2Date' id='readytime' name="readyTime">
+                                <input type="text" class="form-control" placeholder="Ready Time" time-picker time="checkDetailCtrl.deliveryTime">
+                            </div>
+                        </div>
+                        <div class="txtfld_div txtfld_div_client_name" ng-show="checkDetailCtrl.showIfSubTab(['pack'])">
+                            <div class='input-group date txtfld_div_input2 txtfld_div_input2Date' id='readytime' name="readyTime">
+                                <input type="text" class="form-control" placeholder="Ready Time" time-picker time="checkDetailCtrl.togoTime">
+                            </div>
+                        </div>
+
+                        <div class="txtfld_div" ng-show="checkDetailCtrl.showIfSubTab(['table'])">
+                            <!--<label for="chk_sel_tabl">Table</label>-->
+                            <!--<input type="text" class="txtfld_div_input" value="" placeholder="Select Table">-->
+                            <select class="chk_dropdown form-control" name="select_table" ng-model="checkDetailCtrl.check.table" ng-model-options="{ getterSetter: true }"
+                                ng-options="table.getId() as table.displayName() for table in checkDetailCtrl.tables">
+                                <option value="">Table</option>
+                            </select>
+                        </div>
+                        <div class="txtfld_div" ng-show="checkDetailCtrl.showIfSubTab(['table'])">
+                            <!--<label for="chk_sel_server">Server</label>-->
+                            <!--<input type="text" class="txtfld_div_input" placeholder="Select a Server">-->
+                            <select class="chk_dropdown form-control" name="select_a_server" ng-model="checkDetailCtrl.check.assignedServer"
+                                ng-model-options="{ getterSetter: true }" ng-options="server.emp_id as server.display_name for server in checkDetailCtrl.assignedServers">
+                                <option value="">Server</option>
+                            </select>
+                        </div>
+                        <div class="txtfld_div">
+                            <!--<label for="chk_sel_sob">Source of Business</label>-->
+                            <!--<input type="text" class="txtfld_div_input" placeholder="Select Source of Business" value="Dine In">-->
+                            <select class="chk_dropdown form-control" ng-model="checkDetailCtrl.sourceOfBusiness[checkDetailCtrl.currentSubTab]"
+                                ng-model-options="{ getterSetter: true }" ng-options="source as source for source in checkDetailCtrl.sourceOfBusinesses track by source">
+                                <option value="">Source of Business</option>
+                            </select>
+                        </div>
+
+                        <section class="headtitle ht-main">
+                            <span>Client Information</span>
+                            <!--<img class="delbtncl" src="images/check/plusgreen.png" onclick="">-->
+                            <span class="glyphicon glyphicon-plus-sign pull-right add-client" aria-hidden="true" ng-click='checkDetailCtrl.addClientInfo()'></span>
+                        </section>
+                        <div class="txtfld_div txtfld_div_client_name search-client-section" ng-show="checkDetailCtrl.showIfSubTab(['clock', 'car', 'pack', 'table'])">
+                            <div ng-repeat='client in checkDetailCtrl.check.selectedClients()' class='selected-client'>
+                                <input type='button' value='{{client.longName()}}' class='col-md-11 btn btn-gray added-client' />
+                                <span class="glyphicon glyphicon-minus-sign remove-client" aria-hidden="true" ng-click='checkDetailCtrl.removeClient(client)'></span>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class='search-control'>
+                                <input type="text" class="txtfld_div_input2 form-control clearfix" ng-model="checkDetailCtrl.searchClients" caption="Client Name"
+                                    placeholder="Client Name">
+
+                                <img src="images/cross_search.png" ng-click="checkDetailCtrl.searchClients = ''" class="cross_search" alt="" />
+                            </div>
+                        </div>
+                        <section id="deliveryinfo" ng-show="checkDetailCtrl.showIfSubTab(['car', 'pack'])">
+                            <section class="headtitle ht-main" ng-show="checkDetailCtrl.showIfSubTab(['car'])">
+                                <span>Delivery Information</span>
+                            </section>
+                            <div class="txtfld_div txtfld_div_client_name" ng-class="{'input-delivery-multiple-value': checkDetailCtrl.clientPhones.length > 0}">
+                                <input type="text" class="txtfld_div_input2 form-control" ng-model="checkDetailCtrl.check.delivery().phone"
+                                    ng-model-options="{ getterSetter: true }" caption="Phone*" placeholder="Phone*" ng-if="checkDetailCtrl.clientPhones.length == 0"
+                                    ng-blur="checkDetailCtrl.addPhone(checkDetailCtrl.check.delivery().phone())">
+                                <input ng-if="checkDetailCtrl.clientPhones.length == 1" type="text" class="txtfld_div_input2 form-control"
+                                    ng-model="checkDetailCtrl.check.delivery().phone" ng-model-options="{ getterSetter: true }" caption="Phone*" placeholder="Phone*"
+                                    ng-disabled="checkDetailCtrl.check.isStatus(['CLOSED', 'CANCELLED']) || (checkDetailCtrl.check.delivery().phone() && checkDetailCtrl.check.selectedClients().length > 0 && !checkDetailCtrl.newDeliveryInfo)">
+
+                                <select ng-if="checkDetailCtrl.clientPhones.length > 1" class="txtfld_div_input2 form-control"
+                                    ng-model="checkDetailCtrl.check.delivery().phone" ng-model-options="{ getterSetter: true }"
+                                    ng-options="phone.number as phone.number for phone in checkDetailCtrl.clientPhones"
+                                    ng-disabled="checkDetailCtrl.check.isStatus(['CLOSED', 'CANCELLED'])">
+                                    <option value=''>Select A Phone Number</option>
+                                </select>
+                                <span ng-if="checkDetailCtrl.clientPhones.length > 0" ng-click="checkDetailCtrl.promptAddPhone()"
+                                    class="glyphicon glyphicon-plus-sign pull-right add-client btn-add-phone" aria-hidden="true"></span>
+
+                            </div>
+
+                            <div ng-show="checkDetailCtrl.showIfSubTab(['car'])" class="txtfld_div txtfld_div_client_name"
+                                ng-class="{'input-delivery-multiple-value': checkDetailCtrl.clientAddresses.length > 0}">
+                                <input ng-if="checkDetailCtrl.clientAddresses.length == 0" type="text" class="txtfld_div_input2 form-control"
+                                    ng-model="checkDetailCtrl.check.delivery().address" ng-model-options="{ getterSetter: true }" caption="Address 1*"
+                                    placeholder="Address 1*" ng-blur="checkDetailCtrl.addAddress(checkDetailCtrl.check.delivery().address())">
+                                <input ng-if="checkDetailCtrl.clientAddresses.length == 1" type="text" class="txtfld_div_input2 form-control"
+                                    ng-model="checkDetailCtrl.check.delivery().address" ng-model-options="{ getterSetter: true }" caption="Address 1*"
+                                    placeholder="Address 1*" ng-blur="checkDetailCtrl.checkDistance()"
+                                    ng-disabled="checkDetailCtrl.check.isStatus(['CLOSED', 'CANCELLED']) || (checkDetailCtrl.check.delivery().address() && checkDetailCtrl.check.selectedClients().length > 0 && !checkDetailCtrl.newDeliveryInfo)">
+
+                                <select ng-if="checkDetailCtrl.clientAddresses.length > 1" class="txtfld_div_input2 form-control"
+                                    ng-model="checkDetailCtrl.check.delivery().address" ng-model-options="{ getterSetter: true }"
+                                    ng-options="item.address as item.address for item in checkDetailCtrl.clientAddresses"
+                                    ng-change="checkDetailCtrl.selectAddress(checkDetailCtrl.check.delivery().address()) && checkDetailCtrl.checkDistance()"
+                                    ng-disabled="checkDetailCtrl.check.isStatus(['CLOSED', 'CANCELLED'])">
+                                    <option value=''>Select An Address</option>
+                                </select>
+                                <span ng-if="checkDetailCtrl.clientAddresses.length > 0" ng-click="checkDetailCtrl.promptAddAddress()"
+                                    class="glyphicon glyphicon-plus-sign pull-right add-client btn-add-address" aria-hidden="true"></span>
+
+                            </div>
+
+                            <div ng-show="checkDetailCtrl.showIfSubTab(['car'])" class="txtfld_div txtfld_div_client_name">
+                                <input type="text" class="txtfld_div_input2 form-control" ng-model="checkDetailCtrl.check.delivery().address2"
+                                    ng-model-options="{ getterSetter: true }" caption="Address 2" placeholder="Address 2" ng-blur="checkDetailCtrl.checkDistance()"
+                                    ng-disabled="checkDetailCtrl.check.isStatus(['CLOSED', 'CANCELLED']) || (!checkDetailCtrl.isNewAddress(checkDetailCtrl.check.delivery().address()) && checkDetailCtrl.check.delivery().address2() && checkDetailCtrl.check.selectedClients().length > 0 && !checkDetailCtrl.newDeliveryInfo)">
+                            </div>
+
+                            <div ng-show="checkDetailCtrl.showIfSubTab(['car'])" class="txtfld_div txtfld_div_client_name">
+                                <input type="text" class="txtfld_div_input2 form-control" caption="City*" ng-model="checkDetailCtrl.check.delivery().city"
+                                    ng-model-options="{ getterSetter: true }" placeholder="City*"
+                                    ng-blur="checkDetailCtrl.editing.city = true && checkDetailCtrl.checkDistance()"
+                                    ng-disabled="checkDetailCtrl.check.isStatus(['CLOSED', 'CANCELLED']) || (!checkDetailCtrl.isNewAddress(checkDetailCtrl.check.delivery().address()) && checkDetailCtrl.check.delivery().city() && checkDetailCtrl.check.selectedClients().length > 0 && !checkDetailCtrl.newDeliveryInfo)">
+                            </div>
+
+                            <div ng-show="checkDetailCtrl.showIfSubTab(['car'])" class="txtfld_div txtfld_div_client_name">
+                                <select class="txtfld_div_input2 form-control" ng-change="checkDetailCtrl.checkDistance()" caption="state"
+                                    ng-model="checkDetailCtrl.check.delivery().state" ng-model-options="{ getterSetter: true }" placeholder="State*"
+                                    ng-options="state.id as state.name for state in checkDetailCtrl.states"
+                                    ng-disabled="checkDetailCtrl.check.isStatus(['CLOSED', 'CANCELLED']) || (!checkDetailCtrl.isNewAddress(checkDetailCtrl.check.delivery().address()) && checkDetailCtrl.check.delivery().state() && checkDetailCtrl.check.selectedClients().length > 0 && !checkDetailCtrl.newDeliveryInfo)">
+                                    <option value=''>Select A State</option>
+                                </select>
+                            </div>
+
+                            <div ng-show="checkDetailCtrl.showIfSubTab(['car'])" class="txtfld_div txtfld_div_client_name" ng-blur="checkDetailCtrl.checkDistance()">
+                                <input type="text" class="txtfld_div_input2 form-control" caption="Zip Code*" ng-model="checkDetailCtrl.check.delivery().zipcode"
+                                    ng-model-options="{ getterSetter: true }" placeholder="Zip Code*" ng-focus="checkDetailCtrl.editing.zipcode = false"
+                                    ng-blur="checkDetailCtrl.editing.zipcode = true && checkDetailCtrl.checkDistance()"
+                                    ng-disabled="checkDetailCtrl.check.isStatus(['CLOSED', 'CANCELLED']) || (!checkDetailCtrl.isNewAddress(checkDetailCtrl.check.delivery().address()) && checkDetailCtrl.check.delivery().zipcode() && checkDetailCtrl.check.selectedClients().length > 0 && !checkDetailCtrl.newDeliveryInfo)">
+                            </div>
+                        </section>
+                        <br />
+                        <section class="headtitle headtitle-sub" name="sectionCar" ng-show="checkDetailCtrl.showIfSubTab(['car'])">
+                            <span class='infomation-label'>Distance From Location</span>
+                            <span class='pull-right'>{{checkDetailCtrl.delivery_distance}}</span>
+                        </section>
+                        <section class="headtitle headtitle-sub" name="sectionCar" ng-show="checkDetailCtrl.showIfSubTab(['car'])">
+                            <span class='infomation-label'>Estimated Travel</span>
+                            <span class='pull-right'>{{checkDetailCtrl.estimated_time}}</span>
+                        </section>
+                        <section class="headtitle ht-main">
+                            <span>Check Details</span>
+                        </section>
+                        <section class="headtitle headtitle-sub">
+                            <span class='infomation-label'>Check Start Time</span>
+                            <span class='pull-right'>{{checkDetailCtrl.check.startTime()}}</span>
+                        </section>
+                        <section class="headtitle headtitle-sub">
+                            <span class='infomation-label'>Check End Time</span>
+                            <span class='pull-right'>{{checkDetailCtrl.check.endTime()}}</span>
+                        </section>
+                        <section class="headtitle headtitle-sub">
+                            <span class='infomation-label'>Check Elapsed Time</span>
+                            <span class='pull-right' ng-if="!checkDetailCtrl.check.endTime() && checkDetailCtrl.checkElapsedTime()" elapsed-time
+                                start="{{checkDetailCtrl.checkElapsedTime()}}"></span>
+                            <span class='pull-right' ng-if="checkDetailCtrl.check.endTime()">{{checkDetailCtrl.checkElapsedTime()}}</span>
+                        </section>
+                        <section class="headtitle headtitle-sub" ng-show="checkDetailCtrl.showIfSubTab(['table', 'clock', 'car', 'pack'])">
+                            <span class='infomation-label'>Order Status</span>
+                            <span class='pull-right'>{{checkDetailCtrl.check.orderStatus()}}</span>
+                        </section>
+                        <div class="txtfld_div last-input" ng-show="checkDetailCtrl.showIfSubTab(['table'])">
+                            <select class="chk_dropdown form-control" ng-model="checkDetailCtrl.hostess_status" ng-model-options="{ getterSetter: true }"
+                                ng-options="item[0] as item[1] for item in checkDetailCtrl.orderStatuses">
+                                <option value="" selected>Hostess Status</option>
+
+                            </select>
+                        </div>
+                    </section>
+
+                    <!-- Order Item Menu -->
+                    <div ng-controller="OrderItemMenuController as orderItemMenuCtrl" id='order-item-section' ng-if="checkDetailCtrl.isTab('cart')">
+                        <div class="order_items_vw_options">
+                            <div class="col-xs-7 col-lg-9 col-sm-9 search_form" id="search_order_item">
+                                <img src="images/magni_search_.png" id="orderItemsSearchMagni" class="magni_search" alt="" />
+                                <img src="images/cross_search.png" id="orderItemsSearchCross" ng-click="orderItemMenuCtrl.searchTextItem = ''" class="cross_search" alt="" />
+                                <input type="text" name="name" id="orderItemsSearch" ng-model="orderItemMenuCtrl.searchTextItem" value="" placeholder="Search for Items" />
+                            </div>
+
+                            <div id="orderVwType">
+                                <div class="full-width">
+                                    <button type="button" id="orderiteminit" style="width: 40px; height: 38px;" ng-click="orderItemMenuCtrl.setViewType('list')"
+                                        class="btn btn-gray" ng-class="{'btn-active':orderItemMenuCtrl.isViewType('list')}">
+                                        <i class="glyphicon glyphicon-list"></i>
+                                    </button>
+                                    <button type="button" style="width: 40px; height: 38px;" id="gal-item" ng-click="orderItemMenuCtrl.setViewType('gallery')"
+                                        class="btn btn-gray" ng-class="{'btn-active':orderItemMenuCtrl.isViewType('gallery')}">
+                                        <i class="glyphicon glyphicon-picture"></i>
+                                    </button>
+                                    <button type="button" id="btn-orderItems" style="width: 40px; height: 38px;" ng-click="orderItemMenuCtrl.setViewType('slot')"
+                                        ng-class="{'btn-active':orderItemMenuCtrl.isViewType('slot')}" class="btn btn-gray">
+                                        <i class="glyphicon glyphicon-align-left"></i>
+                                    </button>
+                                    <button type="button" style="width: 40px; height: 38px;" add-manual-item id="btn-newitem" class="btn btn-gray softpopup"
+                                        template-url="templates/partials/add-manual-item.html" modal-class="addManualItem">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="!orderItemMenuCtrl.searchTextItem" ng-if="orderItemMenuCtrl.isViewType('list')"
+                            class="container-fluid no-padding order_itemmenu_list viewtype-container" order-items-view parent-scope="scope"
+                            template-url="templates/partials/check-detail/order-items-listview.html"></div>
+
+                        <div ng-show="!orderItemMenuCtrl.searchTextItem" id='order_itemmenu_gallery' ng-if="orderItemMenuCtrl.isViewType('gallery')"
+                            class="container-fluid no-padding order_itemmenu_view viewtype-container" order-items-view parent-scope="scope"
+                            current-menu="orderItemMenuCtrl.currentMenu" template-url="templates/partials/check-detail/order-items-gallery.html"></div>
+
+                        <div ng-show="!orderItemMenuCtrl.searchTextItem" ng-if="orderItemMenuCtrl.isViewType('slot')" class="order_itemmenu_view viewtype-container"
+                            order-items-view parent-scope="scope" current-menu="orderItemMenuCtrl.currentMenu"
+                            template-url="templates/partials/check-detail/order-items-slotview.html"></div>
+
+                        <div ng-if="orderItemMenuCtrl.searchTextItem || orderItemMenuCtrl.searchTextItem.length > 0" class="order_itemmenu_view viewtype-container"
+                            order-items-view parent-scope="scope" current-menu="orderItemMenuCtrl.currentMenu" search-text="{{orderItemMenuCtrl.searchTextItem}}"
+                            template-url="templates/partials/check-detail/order-items-search-result.html"></div>
+                    </div>
+
+                    <section class="viewtype-container" id="section_payments" ng-if="checkDetailCtrl.check && checkDetailCtrl.isTab('payment')">
+                        <div tab-payment template-url="templates/partials/check-detail/tab-payment.html" check='checkDetailCtrl.check' parent-scope='scope'
+                            class='viewtype-container'></div>
+                    </section>
+                    <div class="not-found" ng-show="counted == 'create'">
+                        <button type="button" class="btn btn-success">Create A New Tab</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 full_height col_md_6_1 right-block">
+                <div class="right-bloc full_height check-detail-tab" ng-show="checkDetailCtrl.searchClientStarted && checkDetailCtrl.isTab('details')">
+                    <div class="search-client-header">Possible Clients</div>
+                    <list-clients select-callback="checkDetailCtrl.selectClient(client)" exclude-clients="checkDetailCtrl.check.selectedClients()"
+                        search="checkDetailCtrl.searchClients"></list-clients>
+                </div>
+
+                <div class="right-bloc full_height check-detail-tab"
+                    ng-show="expensetab.payment.searchResult && expensetab.payment.searchResult.length > 0 && checkDetailCtrl.isTab('payment')">
+                    <div class="search-client-header">Possible Clients</div>
+                    <div ng-include="'templates/partials/list-clients-expenseTAB.html'" class='full_height'></div>
+                </div>
+
+                <div class="right-bloc full_height check-detail-tab"
+                    ng-show="receivables.payment.searchResult && receivables.payment.searchResult.length > 0 && checkDetailCtrl.isTab('payment')">
+                    <div class="search-client-header">Possible Clients</div>
+                    <div ng-include="'templates/partials/list-payment-receivables.html'" class='full_height'></div>
+                </div>
+
+                <div class="right-bloc full_height check-detail-tab"
+                    ng-show="interface.payment.searchResult && interface.payment.searchResult.length > 0 && checkDetailCtrl.isTab('payment')">
+                    <div class="search-client-header">Possible Clients</div>
+                    <div ng-include="'templates/partials/list-payment-interface.html'" class='full_height'></div>
+                </div>
+
+                <div class="right-bloc full_height order-item-tab" check="checkDetailCtrl.check"
+                    ng-show="!(expensetab.payment.searchResult && expensetab.payment.searchResult.length > 0) && !(receivables.payment.searchResult && receivables.payment.searchResult.length > 0) && !(interface.payment.searchResult && interface.payment.searchResult.length > 0)"
+                    ng-if="checkDetailCtrl.check && (!checkDetailCtrl.isNewCheck() || checkDetailCtrl.isTab('cart') || checkDetailCtrl.isTab('payment'))" parent-scope='scope' order-item-detail
+                    template-url="templates/partials/check-detail/order-item-detail.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+
+<div ng-include="'templates/partials/modifier.html'"></div>
+<div ng-include="'templates/partials/custom-modifier.html'"></div>

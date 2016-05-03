@@ -1,0 +1,111 @@
+
+.panel.panel-default {
+    border: 0;
+    margin: 0;
+}
+
+.schedule_container table {
+    margin-bottom: 1px !important;
+    font-size: 1.1em;
+    color: #000;
+}
+
+.schedule_container thead {
+    background:
+        url("../images/grey_titlebar.png")
+        top left repeat-x;
+    min-height: 30px;
+}
+
+.schedule_container thead th {
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.1em;
+}
+
+.schedule_container td {
+    background:
+        url("../images/grey_colbg.png")
+        top left repeat-x #8c8c8c;
+    border: 0 !important;
+    padding: 1em !important;
+}
+.schedule_container .panel-heading {
+    background: url("../images/orange_bar.png")
+        top left repeat-x;
+    min-height: 38px;
+    border: 0;
+}
+
+.schedule_container .panel-title {
+    color: #000;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.schedule_container .panel-body {
+    padding: 0;
+}
+
+
+.schedule_container .panel-heading {
+    position: relative;
+}
+
+.schedule_container .softpointdevicon-employee {
+    background-color: #89400B;
+    background-position: center center;
+    width: 33px;
+    height: 30px;
+    position: absolute;
+    right: 5px;
+    top: 7px;
+    border-radius: 7px;
+    background-image: url(../images/femployee.png);
+    background-size: 20px 16px;
+    background-repeat: no-repeat;
+}
+
+.schedule_container .titlebar .col1 {
+    width: 230px;
+    float: left;
+}
+
+.schedule_container .titlebar .col2 {
+    width: 100%;
+    margin-left: 231px;
+    float: right;
+    display: block;
+    position: absolute;
+    margin-left: 115px;
+}
+
+.schedule_container .titlebar {
+    position: relative;
+    height: 41px;
+}
+
+.schedule_container .content-row {
+    position: relative;
+    height: 51px;
+}
+
+.schedule_container .content-row .col1 {
+    width: 230px;
+    position: absolute;
+    left: 0px;
+}
+
+.schedule_container .content-row .col2 {
+    width: 100%;
+    margin-left: 231px;
+    top: 0px;
+    display: block;
+    position: absolute;
+    margin-left: 231px;
+    height: 51px;
+}
+
+.schedule-list tbody {
+    overflow-x: hidden;
+}

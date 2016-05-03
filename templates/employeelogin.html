@@ -1,0 +1,36 @@
+<style media="screen">
+body, html, #employeelogin {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    background-image: url(images/pinpin/clouds_mainpage3_.png),
+        url(images/px_bg.png);
+    background-position: center center, left top;
+    background-repeat: no-repeat, repeat;
+    padding-bottom: 0px !important;
+}
+</style>
+<div style="position: absolute; bottom: 0; width: 100%" id="pointBtm"></div>
+<div cg-busy="{promise:myPromise,message:'Processing ...', backdrop:true, templateUrl:'templates/partials/loading.html'}"></div>
+<div id="employeelogin">
+
+    <!-- Fixed navbar -->
+    <div class="container fixed-top" ng-include="'templates/partials/top-navbar.html'" ng-controller="NavbarController as navbarCtrl"></div>
+
+    <div class="container soft-body">
+        <div class="section-body">
+        <form ng-keyup="$event.keyCode == 13 && EmployeeLoginCtrl.emplogin($event)">
+                <pin-pad ng-model="EmployeeLoginCtrl.password"></pin-pad>
+                
+                <button class="btn btn_access_pos_orange" type='button' ng-disabled="!$root.posReady" ng-if="!EmployeeLoginCtrl.isProcessingLogin" ng-click="EmployeeLoginCtrl.emplogin($event)">Access POS</button>
+                <button class="btn btn_access_pos_orange" type='button' ng-disabled='true' ng-if="EmployeeLoginCtrl.isProcessingLogin">Logging in ...</button>
+                
+                <img src="images/pinpin/btn_quick_togo_blue.png" ng-show="EmployeeLoginCtrl.togo && EmployeeLoginCtrl.isTogoTimeAvailable()" class="btn_quick_togo_blue" alt="" ng-click="EmployeeLoginCtrl.quickTogo($event)"/>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /container -->
+</div>

@@ -1,0 +1,105 @@
+<div class='viewtype-container'>
+    <div scrolling-tabs-wrapper>
+        <ul class="nav nav-tabs" role="tablist">
+            <li ng-class="{ 'active': ctrl.isMenuSelected(tab)}" ng-repeat="tab in ctrl.orderItemMenu" ng-click="ctrl.selectMenu(tab)">
+                <a ng-href="{{'#' + tab.paneId}}" role="tab" data-toggle="tab">{{tab.name}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="check_section no-padding" id="section_order_items" custom-scrollbar always-show-scrollbar="false">
+        <div class="row" id="listview">
+            <div class="col-xs-12 listviews">
+                <div class="row" id="listview-items">
+                    <div class="col-xs-12">
+                        <div class='no-groupmenu' ng-if="!ctrl.hasGroupMenu">
+                            There are no items available for {{ctrl.checkType()}} in this menu.
+                        </div>
+                        <div ng-repeat="menu in ctrl.orderitem_active_types" ng-if="ctrl.menuItems[menu.itemid].length > 0">
+                            <div class="row menu-list-header" ng-click="ctrl.selectSubMenu(menu)" id="listvieworderitem{{menu.itemid}}"
+                                ng-class="{'tab-selected':ctrl.isSubmenu(menu)}">{{menu.name}}</div>
+                            <div class="row" id="{{'scrollToListView'+ctrl.isSubmenu(menu)}}" ng-show="menu.isShowing">
+                                <div class="col-xs-12 no-padding" ng-show="ctrl.isSubmenu(menu)" style="overflow: hidden">
+                                    
+                                    <div class="row" ng-repeat="item in ctrl.menuItems[menu.itemid]" style="padding: 0 0% 0 2%; width: 103%; overflow: hidden;">
+                                        <div class="col-xs-12 menuitems">
+                                            <div class="container-fluid">
+                                                <div class="row padding-3">
+                                                    <div class="col-xs-2 col-lg-1 col-md-1 menu-detail" style="padding-left: 2%;">
+                                                        <button type="button" ng-click="ctrl.toggleItemInfo(item);" style="padding: 4px 6px;"
+                                                            class="btn btn-gray info-button">
+                                                            <i class="glyphicon glyphicon-info-sign"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-xs-8 col-lg-10 col-md-10" ng-click="ctrl.addNewOrderItem(item, $event)">
+                                                        <div class="container-fluid no-padding"></div>
+                                                        <div class="row menu-detail order-details-padding bold-font">
+                                                            <div class="col-xs-8 col-lg-8 col-md-7" title="{{item.name}}" style="padding-left: 2.7%;">
+                                                                <div class="center-align-content hide-extra" style="height: 30px !important">
+                                                                    <span class="text-ellipsis">{{item.name}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 col-lg-4 col-md-5 " style="padding-right: 2.7%;">
+                                                                <div class="text-right hide-extra">
+                                                                    <div class="row center-align-content">
+                                                                        <span class="col-xs-6 text-right" ng-if="item.discount != undefined"> {{item.discount |
+                                                                            number : 2}} </span>
+                                                                        <span class="col-xs-12 text-right"
+                                                                            ng-class="{'strikethrough': item.discount != undefined,'col-xs-6':item.discount != undefined}">
+                                                                            {{item.price | number : 2}} </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-2 col-lg-1 col-md-1 menu-detail" style="padding-left: 0;">
+                                                        <div id="mbtndiv-{{item.menugroupid_nextid}}">
+                                                            <button type="button" id="orderitemdetailbutton-{{item.menugroupid_nextid}}" ng-show="item.modify == 'yes'"
+                                                                style="padding: 1px 3px;" ng-click="ctrl.showAppropriateModifierModal(item, $event);"
+                                                                class="btn btn-gray info-button">
+                                                                <i class="glyphicon glyphicon-m"></i>M
+
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row row-padding">
+                                            <div class="col-xs-12 menu-info">
+                                                <div class="greybardiv-extnd-check" style="padding: 2% 4% 0% 4%;" ng-if="item.isSelected"
+                                                    id="againdetail-{{item.menugroupid_nextid}}">
+                                                    <div class="row">
+                                                        <div class="col-xs-4 col-md-3 col-lg-2">
+
+                                                            <a ng-href="{{item.imageUrl}}" class="thumbnail">
+                                                                <img style="width:90px;height:90px" err-src="images/NoMenuImage.png" ng-src="{{item.imginfo}}" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-8 col-md-9 col-lg-10">
+                                                            <div class="row">
+                                                                <div class="col-xs-12">{{item.name}}</div>
+                                                            </div>
+                                                            <div class="row" style="font-weight: normal;">
+                                                                <div class="col-xs-12">PLU#{{item.pluinfo}}</div>
+                                                            </div>
+                                                            <div class="row" style="font-weight: normal;">
+                                                                <div class="col-xs-12">{{item.description}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>

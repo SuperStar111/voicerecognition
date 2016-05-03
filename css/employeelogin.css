@@ -1,0 +1,167 @@
+
+/* ---- class with image background */
+
+#employeelogin .top-header{position:absolute; top: 0;  width: 100%}
+#employeelogin .top-header .bloc{ margin-right: 30px;}
+
+
+#employeelogin .fixed-top{
+  height: 50px;
+  background-image: url(../images/top.png);
+  border: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color:#fff;
+  font-weight: bold;
+}
+
+#employeelogin .fixed-top .log-out { text-align: left; margin-top: 5px; }
+#employeelogin .fixed-top .btinfo{ text-align: right; margin-top: 5px;}
+#employeelogin .fixed-top .btinfo img{ height: 35px;}
+#employeelogin .fixed-top .logo-top { text-align: center; padding-top: 5px; }
+
+#employeelogin #copyright{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 10px;
+  color: #7d7d7d;
+}
+
+#employeelogin .soft-body{
+  /*background-size: 55%, auto;*/
+  width: 100%;
+  padding-top: 20px;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+#employeelogin .soft-body .section-body{
+  width: 264px;
+  margin: auto;
+  height: 100%;
+  overflow: hidden;
+  padding-bottom: 200px;
+  padding-top: 78px;
+}
+#employeelogin .soft-body .section-body .section{
+  height: 100%;
+  overflow: hidden;
+}
+#employeelogin .soft-body .section-body .section .row{
+  height: 25%;
+  max-height: 90px;
+}
+#employeelogin .soft-body .section-body .section .row .col-xs-4{
+  height: 100%;
+}
+#employeelogin .soft-body .section-body .section .row .col-xs-4 img{
+  height: 99%;
+  max-height: 75px;
+}
+
+#employeelogin .soft-body .section-body .section .row{
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+#employeelogin .soft-body .section-body .section .row .col-xs-4{
+  padding-left: 0;
+  padding-right: 0;
+}
+#employeelogin .soft-body .section-body  input {
+  width: 234px;
+  height: 60px;
+  border: none;
+  outline: none;
+  background: #000;
+  color: #fff;
+  position: absolute;
+  top: 30px;
+  text-align: center;
+}
+#employeelogin .soft-body .section-body .btn_access_pos_orange{
+  position: absolute;
+  margin-top: 0px;
+  padding: 0;
+}
+#employeelogin .soft-body .section-body .btn_quick_togo_blue{
+  position: absolute;
+  margin-top: 100px;
+}
+#employeelogin .text-right{ text-align: right;}
+#employeelogin .text-left{ text-align: left;}
+#employeelogin .text-center{ text-align: center;}
+#employeelogin .modal-header{ border: none;}
+#employeelogin .modal-footer{ border: none;}
+#employeelogin .modal-content{ background-color: #fff;/*#286090;*/ }
+
+@media (min-height: 690px) {
+  #employeelogin .soft-body .section-body .btn_access_pos_orange,
+  #employeelogin .soft-body .section-body .btn_quick_togo_blue{
+    top: 420px;
+  }
+}
+
+#employeelogin .modal {
+  text-align: center;
+}
+
+#employeelogin .modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 100%;
+}
+
+#employeelogin .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+#employeelogin .modal-title-custom{
+  color: #fff;
+}
+#employeelogin .modal-body {
+    max-height: 300px;
+}
+#employeelogin .btn-gray {
+  color: #fff;
+  background-color: #5b5b5b;
+  border-color: #727272;
+}
+#employeelogin .btn-gray:hover,
+#employeelogin .btn-gray:focus,
+#employeelogin .btn-gray.focus,
+#employeelogin .btn-gray:active,
+#employeelogin .btn-gray.active,
+#employeelogin .open > .dropdown-toggle.btn-gray {
+  color: #fff;
+  background-color: #4c4c4c;
+  border-color: #727272;
+}
+
+#employeelogin .soft-body .section-body  img{ cursor: pointer; }
+#employeelogin .soft-body .section-body  img:hover,
+#employeelogin .soft-body .section-body  img:focus,
+#employeelogin .soft-body .section-body  img:active {
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  opacity: .7;
+}
+
+#employeelogin .btn_access_pos_orange:hover{
+  color: #d8d7d7;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  opacity: .7;
+}
+#employeelogin .btn_access_pos_orange{
+  font-size: 22px;
+  font-weight: bold;
+  height: 74px;
+  line-height: 72px;
+  vertical-align: middle;
+  color: #d8d7d7;
+  width: 234px;
+  background: url(../images/pinpin/btn_access_pos_orange_new.png) no-repeat;
+  display: inline-block;}

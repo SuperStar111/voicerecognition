@@ -1,0 +1,8 @@
+<div class="row select-splits splits-container">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <button type="button" ng-repeat="split in order.getSplits()" ng-class="{'active': selectedSplits[$index + 1]}" class="btn btn-gray btn-select-split col-sm-4 col-lg-5"
+                ng-disabled="['SURCHARGE', 'GRATUITY'].indexOf(type) == -1 && split.amountDue == 0 && !enableAll" ng-click="toggleSplit($index + 1, split.amountDue, split)">Split {{($index + 1)}} - {{$root.location.currency_symbol}}{{split.amountDue}}</button>
+        </div>
+    </div>
+</div>

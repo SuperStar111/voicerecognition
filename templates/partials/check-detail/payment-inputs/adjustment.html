@@ -1,0 +1,31 @@
+<div id="adjustmenttab">
+    <seat-payment ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    <authorized-credit-cards></authorized-credit-cards>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" id="adjustment_percent" class="form-control" ng-model="ctrl.currentSubType.percent" ng-model-options="{ getterSetter: true }"
+                    placeholder="Percent of Adjustment Amount" ng-disabled="ctrl.currentSubType.disableFields">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <!-- ng-model="activePaymentType.fixedAmount" ng-blur="activePaymentType.percentageAmount=checkTotal['order_total']/amount_due"  -->
+                <input soft-input value="" id="dscamnt" ng-model="ctrl.currentSubType.amount" ng-model-options="{ getterSetter: true }" type="text" class="form-control money_field"
+                    placeholder="Amount" ng-disabled="ctrl.currentSubType.disableFields">
+                <!--{{amount}}-->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <textarea soft-input id="pay_description" class="form-control" ng-model="ctrl.currentSubType.pay_description" rows="3" ng-click="backgroundset();"
+                    placeholder="Description" style='resize: none'></textarea>
+            </div>
+        </div>
+    </div>
+</div>

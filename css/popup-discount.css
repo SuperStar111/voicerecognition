@@ -1,0 +1,99 @@
+/*Discount Popup Style Starts*/
+.sp-modal.discount .modal-content table tbody {
+    height: 220px;
+    overflow-y: auto;
+}
+
+.sp-modal.discount .modal-content table thead th {
+    height: 17px;
+}
+
+.sp-modal.discount .modal-content table thead tr th:first-child,
+    .sp-modal.discount .modal-content table tbody tr td:first-child {
+    width: 123px;
+    float: left;
+}
+
+.sp-modal.discount .modal-content table thead tr th:nth-child(2),
+    .sp-modal.discount .modal-content table tbody tr td:nth-child(2) {
+    width: 136px;
+    float: left;
+}
+
+.sp-modal.discount .modal-content table tbody tr td:nth-child(4),
+    .sp-modal.discount .modal-content table thead tr th:nth-child(3),
+    .sp-modal.discount .modal-content table tbody tr td:nth-child(3) {
+    width: 67px;
+    float: left;
+}
+
+.sp-modal.discount .modal-content table tbody tr td:nth-child(4) {
+    text-align: right;
+    width: 80px;
+}
+
+.sp-modal.discount .modal-content table thead tr th:nth-child(4) {
+    width: 84px;
+    float: left;
+}
+
+.sp-modal.discount .modal-content thead, .sp-modal.discount .modal-content tbody,
+    .sp-modal.discount .modal-content tr, .sp-modal.discount .modal-content td,
+    .sp-modal.discount .modal-content th {
+    display: block;
+}
+
+.sp-modal.discount .modal-content tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.sp-modal.discount .modal-content table tr th, .sp-modal.discount .modal-content table tr td
+    {
+    border: none;
+    font-weight: normal;
+}
+
+.sp-modal.discount .modal-content table tr th:nth-child(2), .sp-modal.discount .modal-content table tr td:nth-child(2)
+    {
+    text-align: center;
+}
+
+.sp-modal.discount .modal-content table tr th:nth-child(3), .sp-modal.discount .modal-content table tr th:nth-child(4),
+    .sp-modal.discount .modal-content table tr td:nth-child(3),
+    .sp-modal.discount .modal-content table tr td:nth-child(4) {
+    text-align: right;
+}
+
+.sp-modal.discount .modal-content table thead tr th {
+    padding: 0;
+}
+
+.sp-modal.discount .modal-content table thead tr th:nth-child(3) {
+    padding-right: 5px;
+}
+
+.sp-modal.discount .modal-content table tbody tr td {
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.sp-modal.discount .modal-content table tbody tr td:first-child,
+    .sp-modal.discount .modal-content table tbody tr td:nth-child(3),
+    .sp-modal.discount .modal-content table tbody tr td:nth-child(4) {
+    /*padding-top: 13px;
+    padding-bottom: 13px;*/
+    vertical-align: middle;
+}
+
+.sp-modal.discount .modal-content table tbody tr {
+    background: url(../images/gray_gradient.png);
+    color: #555;
+}
+
+.sp-modal.discount .modal-content table tbody tr td .input-group {
+    width: 120px;
+}
+/*Discount Popup Style Ends*/

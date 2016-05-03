@@ -1,0 +1,7 @@
+.terminal .dropTerminals {
+    width: 100%;
+}
+
+.terminal .dropTerminals option {
+    padding: 10px;
+}

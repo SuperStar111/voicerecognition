@@ -1,0 +1,23 @@
+<div id="surchargetab">
+    <seat-payment data-type="SURCHARGE" ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment data-type="SURCHARGE" ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    
+    <authorized-credit-cards></authorized-credit-cards>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" ng-model="ctrl.currentSubType.amountDue" ng-model-options="{ getterSetter: true }" id="surchargetab_amount" class="form-control money_field" background="white"
+                    placeholder="Amount">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <textarea soft-input class="form-control" rows="3" ng-model="ctrl.currentSubType.pay_description" placeholder="Description"></textarea>
+            </div>
+        </div>
+        -
+    </div>
+</div>

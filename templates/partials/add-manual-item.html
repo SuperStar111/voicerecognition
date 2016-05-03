@@ -1,0 +1,80 @@
+<div class="modal-header">
+    <h5 class="modal-title">Add Manual Item</h5>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" name="addManualItemForm" ng-submit="ctrl.addItem(addManualItemForm, $event)">
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.input.name" ng-required="true" class="form-control" id="name" placeholder="Name">
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.input.price" ng-required="true" class="form-control" id="price" placeholder="Price">
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="ctrl.input.printer" ng-required="true" ng-options="printer as printer.printer for printer in ctrl.form.printers" class="form-control"
+                    id="printer">
+                    <option value=''>-- Select Printer --</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="ctrl.input.menu" ng-required="true" ng-options="menu as menu.menu for menu in ctrl.form.menus" class="form-control" id="menu">
+                    <option value=''>-- Menu --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="ctrl.input.menuGroup" ng-required="true" ng-options="menuGroup as menuGroup.group for menuGroup in ctrl.input.menu.menu_groups"
+                    class="form-control" id="menu-group">
+                    <option value=''>-- Menu Group --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="ctrl.input.type" ng-required="true" ng-options="type for type in ctrl.form.types" class="form-control"
+                    id="type">
+                    <option value=''>-- Article Type --</option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.input.plu" ng-required="true" class="form-control" id="plu" placeholder="PLU">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <textarea class="form-control" ng-model="ctrl.input.description" id="description" rows="3" placeholder="Description..."></textarea>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="ctrl.input.isTaxable" ng-required="true" ng-options="is_taxable for is_taxable in ['Yes', 'No']" class="form-control" id="is-taxable">
+                    <option value=''>-- Taxable --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm" ng-if="ctrl.input.isTaxable == 'Yes' && ctrl.form.taxes && ctrl.form.taxes.length > 0">
+            <div class="col-sm-12">
+                <select ng-model="ctrl.input.taxCode" ng-options="tax as tax.description for tax in ctrl.form.taxes" class="form-control" id="tax-code">
+                    <option value=''>-- Tax Code --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group form-group-sm button-wrapper">
+            <div class="action-buttons">
+                <button class="btn btn-gray" type="button" ng-click="ctrl.cancel()" style="margin-right: 10px">Cancel</button>
+                <button class="btn btn-gray" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<input type="text" id="ccinput" style="position: fixed; top: -9999999999px; opacity: 0" />

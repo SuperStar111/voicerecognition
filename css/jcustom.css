@@ -1,0 +1,56 @@
+/*
+*  @created Juni - juniorionut @ elance
+*  @version $Id: jcustom.css,v 1.0 9:27 AM 9/27/2014 juni $
+*/
+
+/** -> juni [req REQ_021] - 2014-09-24 -  Create a new tab -> tab details -> delivery information **/
+.txtfld_div_clientname_96{
+	width:96%;
+	height:32px;
+	font-size:13px;
+	background-color:#fff;
+	/*background:url(../images/txtfld_logout_colorbox.png) top left no-repeat;*/
+	/*border-style:none;*/
+	border:1px solid #636363;
+	/* css 3 */
+    border-radius:10px;
+    /* mozilla */
+    -moz-border-radius:10px;
+    /* webkit */
+    -webkit-border-radius:10px;
+	clear:both;
+	margin-bottom:5px;
+	float:left;
+}
+.txtfld_div_clientname_96 label{float:left; color:#676767; margin-left:5px; margin-top:7px; font-weight:bold;}
+
+.txtfld_div_clientname_96 #phonenumber{
+	width: 24% !important;
+	right: 73% !important;
+}
+
+.txtfld_div_clintname_dropd_96{
+	width:96%;
+	height:32px;
+	font-size:13px;
+	background:url(../images/dropdown_arrow.png) center right no-repeat #fff;
+	/*border-style:none;*/
+	border:1px solid #636363;
+	/* css 3 */
+    border-radius:10px;
+    /* mozilla */
+    -moz-border-radius:10px;
+    /* webkit */
+    -webkit-border-radius:10px;
+	clear:both;
+	margin-bottom:5px;
+	overflow:hidden;
+	z-index:100000;
+	float:left;
+}
+.txtfld_div_clintname_dropd_96 label{float:left; color:#676767; margin-left:5px; margin-top:8px; font-weight:bold}	
+/** <- juni [req REQ_021] - 2014-09-24 -  Create a new tab -> tab details -> delivery information **/
+/** -> juni [req REQ_021] - 2014-09-28 -  Payments -> sales -> credit card details **/
+.form-text-rht{color:#676767; font-size:14px; text-align:right; font-weight:bold; line-height:32px; vertical-align:middle; width:640px;}
+/* .form-text-rht{color:#676767; font-size:14px; text-align:right; font-weight:bold; line-height:28px; vertical-align:middle;} */
+/** <- juni [req REQ_021] - 2014-09-28 -  Payments -> sales -> credit card details **/

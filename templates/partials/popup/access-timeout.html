@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h5 class="modal-title">Timeout</h5>
+    <button class='btn btn-sm btn-warning' style="position:absolute; right:10px; top: 10px;" ng-click="logout()">Log Out</button>
+</div>
+<div class="modal-body">
+    <form ng-submit="verify($event)">
+        <pin-pad ng-model="password" pin-value="{{pinValue}}"></pin-pad>
+        <button type='submit' class="btn btn_manager_password_orange">Access POS</button>
+    </form>
+</div>
+</div>
+</div>

@@ -1,0 +1,21 @@
+.button-panel .btn {
+    width: 124px;
+}
+
+#search_order_item.col-lg-9 {
+    width: 72%;
+}
+
+#search_order_item.col-sm-9 {
+    width: 72%;
+}
+
+#listview-items .menu-info .thumbnail {
+    width: 100px;
+    max-height: 100px !important;
+}
+
+#listview-items .menu-info .thumbnail img {
+    width: 100px;
+    max-height: 100px !important;
+}

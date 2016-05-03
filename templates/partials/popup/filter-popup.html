@@ -1,0 +1,79 @@
+<div class="modal-header">
+    <h5 class="modal-title">Filter</h5>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" ng-submit="filterChecksCtrl.applyFilter()">
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="filterChecksCtrl.filter.closed_cb" ng-required="true" ng-options="criteria.field as criteria.name for criteria in filterChecksCtrl.yesNo" class="form-control" id="closed">
+                    <option value="">--- Closed ---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select class="chk_dropdown form-control" name="select_table" ng-model="filterChecksCtrl.filter.table_cb"
+                    ng-options="table.id as table.table_name for table in filterChecksCtrl.tables">
+                    <option value="">--- Table ---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-model="filterChecksCtrl.filter.identifier_cb" class="form-control" id="identifier" placeholder="--- Check Number ---">
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="filterChecksCtrl.filter.togo_cb" ng-required="true" ng-options="criteria.field as criteria.name for criteria in filterChecksCtrl.yesNo" class="form-control" id="to-go">
+                    <option value="">--- To Go ---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="filterChecksCtrl.filter.delivery_cb" ng-required="true" ng-options="criteria.field as criteria.name for criteria in filterChecksCtrl.yesNo" class="form-control" id="delivery">
+                    <option value="">--- Delivery ---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <input type="text" ng-model="filterChecksCtrl.filter.phone_cb" class="form-control" id="phone" placeholder="--- Phone ---">
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="filterChecksCtrl.filter.orderfield" ng-required="true" ng-options="criteria.field as criteria.name for criteria in filterChecksCtrl.sortBy"
+                    class="form-control" id="sort-by">
+                    <option value="">--- Sort By ---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <select ng-model="filterChecksCtrl.filter.order" ng-required="true" ng-options="criteria.field as criteria.name for criteria in filterChecksCtrl.orderCriterias"
+                    class="form-control" id="order">
+                    <option value="">--- Order ---</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group required form-group-sm">
+            <div class="col-sm-12">
+                <div class="input-group date" id="filter-date-wrapper">
+                    <input type="text" data-format="MM/dd/yyyy" ng-model="filterChecksCtrl.filter.filter_date" ng-required="true" class="form-control popup-date-picker" id="filter-date"
+                        placeholder="--- Date ---">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-group-sm button-wrapper">
+            <div class="action-buttons">
+                <button class="btn btn-gray" ng-click="filterChecksCtrl.cancel()" style="margin-right: 10px">Cancel</button>
+                <button class="btn btn-gray" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,298 @@
+<div class="right-bloc-body-top order-detail-editing">
+    <div class="pad" ng-show="ctrl.isTab('ordered')">
+
+        <div class="row">
+            <div class="col-xs-7 col-lg-8">
+                <div class="row">
+                    <div class="no-padding-right" ng-class="{'col-xs-5':ctrl.flashSuccessMessage, 'col-xs-12': !ctrl.flashSuccessMessage}">
+                        <h3 class="title-order">{{ctrl.order.getTotalItems()}} Ordered Items</h3>
+                    </div>
+                    <div class="col-xs-7 no-padding" ng-show="ctrl.flashSuccessMessage">
+                        <h3 class="title-order text-success">{{ctrl.orderSuccessMessage}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-lg-3 tlt-img no-padding-left">
+                <img src="images/table.png" ng-click="ctrl.updateTypePrint('Table')" ng-class="{'alpha' : !ctrl.order.isTable()}" />
+                <img src="images/chaise.png" ng-click="ctrl.updateTypePrint('Chair')" ng-class="{'alpha' : !ctrl.order.isChair()}" />
+                <img src="images/percent.png" ng-click="ctrl.updateTypePrint('Equally')" ng-class="{'alpha' : !ctrl.order.isEqually()}" />
+            </div>
+
+            <div class="col-xs-2 col-lg-1 text-center" ng-init="ctrl.checkAllOrdered=false;">
+                <img ng-show="!ctrl.checkAllOrdered" src="images/radio_check.png" ng-click="ctrl.toggleAllOrdered(true)" />
+                <img ng-show="ctrl.checkAllOrdered" src="images/radio_check_active.png" ng-click="ctrl.toggleAllOrdered(false)" />
+            </div>
+        </div>
+        <hr>
+        <div class="body-contnair font-16">
+            <div id="lists-details" class='check-detail-container' custom-scrollbar>
+                <div ng-repeat="item in ctrl.order.getItems()" ng-if="ctrl.order.isViewByTable()">
+                    <div class="row" ng-click="ctrl.selectOrderedItem(item)">
+                        <div class="col-xs-1">{{item.get('quantity')}}</div>
+                        <div class="col-xs-5">{{item.getName()}}</div>
+                        <div class="col-xs-3 text-right">{{ item.getSeats() }}</div>
+                        <div class="col-xs-2 text-right">{{item.get('price')}}</div>
+                        <div class="col-xs-1 text-right no-padding-left">
+                            <img ng-show="!item.isChecked" src="images/radio_check.png" />
+                            <img ng-show="item.isChecked" src="images/radio_check_active.png" />
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="payment in item.getPayments()" ng-click="payment.isChecked=!payment.isChecked">
+                        <div class="col-xs-1">-</div>
+                        <div class="col-xs-5" style="padding-left: 48px;">{{payment.getText()}}</div>
+                        <div class="col-xs-3 text-right"></div>
+                        <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2}}</div>
+                        <div class="col-xs-1 text-right no-padding-left">
+                            <img ng-show="!payment.isChecked" src="images/radio_check.png" />
+                            <img ng-show="payment.isChecked" src="images/radio_check_active.png" />
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="modifier in item.getModifiers()" ng-click="modifier.isChecked=!modifier.isChecked">
+                        <div class="col-xs-1">-</div>
+                        <div class="col-xs-5" style="padding-left: 48px;">{{modifier.getText()}}</div>
+                        <div class="col-xs-3 text-right"></div>
+                        <div class="col-xs-2 text-right">{{modifier.total()}}</div>
+                        <div class="col-xs-1 text-right no-padding-left">
+                            <img ng-show="!modifier.isChecked" src="images/radio_check.png" />
+                            <img ng-show="modifier.isChecked" src="images/radio_check_active.png" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" ng-repeat="payment in ctrl.order.payments" ng-if="ctrl.order.isViewByTable()" ng-click="payment.isChecked=!payment.isChecked">
+                    <div class="col-xs-1">-</div>
+                    <div class="col-xs-5">{{payment.getText()}}</div>
+                    <div class="col-xs-3 text-right"></div>
+                    <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                    <div class="col-xs-1 text-right no-padding-left">
+                        <img ng-show="!payment.isChecked" src="images/radio_check.png" />
+                        <img ng-show="payment.isChecked" src="images/radio_check_active.png" />
+                    </div>
+                </div>
+
+                <div ng-repeat="splitter in ctrl.order.getSplits()" ng-if="ctrl.order.isViewByPercentage()">
+                    <div class='splitter-heading'>Split: {{$index + 1}}</div>
+                    <div ng-repeat="item in splitter">
+                        <div class="row" ng-click="ctrl.selectOrderedItem(item)">
+                            <div class="col-xs-1">{{item.fraction}}</div>
+                            <div class="col-xs-5">{{item.getName()}}</div>
+                            <div class="col-xs-3 text-right">{{ item.getSeats() }}</div>
+                            <div class="col-xs-2 text-right">{{item.get('price')}}</div>
+                            <div class="col-xs-1 text-right no-padding-left">
+                                <img ng-show="!item.isChecked" src="images/radio_check.png" />
+                                <img ng-show="item.isChecked" src="images/radio_check_active.png" />
+                            </div>
+                        </div>
+
+                        <div class="row" ng-repeat="payment in item.getPayments()" ng-click="payment.isChecked=!payment.isChecked">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-5" style="padding-left: 48px;">{{payment.getText()}}</div>
+                            <div class="col-xs-3 text-right"></div>
+                            <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                            <div class="col-xs-1 text-right no-padding-left">
+                                <img ng-show="!payment.isChecked" src="images/radio_check.png" />
+                                <img ng-show="payment.isChecked" src="images/radio_check_active.png" />
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="modifier in item.getModifiers()" ng-click="modifier.isChecked=!modifier.isChecked">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-5" style="padding-left: 48px;">{{modifier.getText()}}</div>
+                            <div class="col-xs-3 text-right"></div>
+                            <div class="col-xs-2 text-right">{{modifier.total()}}</div>
+                            <div class="col-xs-1 text-right no-padding-left">
+                                <img ng-show="!modifier.isChecked" src="images/radio_check.png" />
+                                <img ng-show="modifier.isChecked" src="images/radio_check_active.png" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-repeat="payment in splitter.payments" ng-click="payment.isChecked=!payment.isChecked">
+                        <div class="col-xs-1">-</div>
+                        <div class="col-xs-5">{{payment.getText()}}</div>
+                        <div class="col-xs-3 text-right"></div>
+                        <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                        <div class="col-xs-1 text-right no-padding-left">
+                            <img ng-show="!payment.isChecked" src="images/radio_check.png" />
+                            <img ng-show="payment.isChecked" src="images/radio_check_active.png" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div ng-repeat="splitter in ctrl.order.getChairs()" ng-if="ctrl.order.isViewByChair()">
+                    <div class='splitter-heading'>Seat: {{$index + 1}}</div>
+                    <div ng-repeat="item in splitter">
+                        <div class="row" ng-click="ctrl.selectOrderedItem(item)">
+                            <div class="col-xs-1">{{item.fraction}}</div>
+                            <div class="col-xs-5">{{item.getName()}}</div>
+                            <div class="col-xs-3 text-right">{{ item.getSeats() }}</div>
+                            <div class="col-xs-2 text-right">{{item.get('price')}}</div>
+                            <div class="col-xs-1 text-right no-padding-left">
+                                <img ng-show="!item.isChecked" src="images/radio_check.png" />
+                                <img ng-show="item.isChecked" src="images/radio_check_active.png" />
+                            </div>
+                        </div>
+
+                        <div class="row" ng-repeat="payment in item.getPayments()" ng-click="payment.isChecked=!payment.isChecked">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-5" style="padding-left: 48px;">{{payment.getText()}}</div>
+                            <div class="col-xs-3 text-right"></div>
+                            <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                            <div class="col-xs-1 text-right no-padding-left">
+                                <img ng-show="!payment.isChecked" src="images/radio_check.png" />
+                                <img ng-show="payment.isChecked" src="images/radio_check_active.png" />
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="modifier in item.getModifiers()" ng-click="modifier.isChecked=!modifier.isChecked">
+                            <div class="col-xs-1">-</div>
+                            <div class="col-xs-5" style="padding-left: 48px;">{{modifier.getText()}}</div>
+                            <div class="col-xs-3 text-right"></div>
+                            <div class="col-xs-2 text-right">{{modifier.total()}}</div>
+                            <div class="col-xs-1 text-right no-padding-left">
+                                <img ng-show="!modifier.isChecked" src="images/radio_check.png" />
+                                <img ng-show="modifier.isChecked" src="images/radio_check_active.png" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-repeat="payment in splitter.payments" ng-click="payment.isChecked=!payment.isChecked">
+                        <div class="col-xs-1">-</div>
+                        <div class="col-xs-5">{{payment.getText()}}</div>
+                        <div class="col-xs-3 text-right"></div>
+                        <div class="col-xs-2 text-right">{{ payment.amount() | formatPrice:2 }}</div>
+                        <div class="col-xs-1 text-right no-padding-left">
+                            <img ng-show="!payment.isChecked" src="images/radio_check.png" />
+                            <img ng-show="payment.isChecked" src="images/radio_check_active.png" />
+                        </div>
+                    </div>
+                </div>
+                <!-- checkDetails -->
+
+                <!-- checkSeats -->
+
+                <!-- checkSeats -->
+            </div>
+        </div>
+    </div>
+
+    <div class="pad" ng-show="ctrl.isTab('added')">
+        <div class="row">
+            <div class="col-xs-10">
+                <div class="row">
+                    <div class="col-xs-12 no-padding-right" ng-class="{'col-xs-5':orderSent}">
+                        <h3 class="title-order">{{ctrl.addedItems.length}} Added Items</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-2 text-right" ng-init="ctrl.checkAllAdded=false;">
+                <img ng-show="!ctrl.checkAllAdded" src="images/radio_check.png" ng-click="ctrl.toggleAllAdded(true)" />
+                <img ng-show="ctrl.checkAllAdded" src="images/radio_check_active.png" ng-click="ctrl.toggleAllAdded(false)" />
+            </div>
+        </div>
+        <hr>
+        <div class="ordered-items">
+            <div class="">
+                <div ng-repeat="section in ctrl.sortedItems" class='added-item-section'
+                    ng-class="{'section-first': $index == 0, 'section-second': $index == 1, 'section-third': $index == 2}"
+                    ng-hide="(($index == 2 && section.length == 0) || ($index == 1 && section.length == 0 && ctrl.sortedItems[2].length == 0))">
+                    <div class="item" ng-repeat="item in section">
+                        <div class="row" ng-click="ctrl.selectAddedItem(item)">
+                            <div class="col-xs-1">{{item.quantity || '1'}}</div>
+                            <div class="col-xs-5 item-name">
+                                <span> {{item.item || item.name}} </span>
+                            </div>
+                            <div class="col-xs-2 text-right">{{ item.seats==99 ? 'All' : item.seats }}</div>
+                            <div class="col-xs-2 text-right">{{(ctrl.actualPrice(item))| number : 2}}</div>
+                            <div class="col-xs-2 text-right">
+                                <img ng-hide="item.isChecked" src="images/radio_check.png" />
+                                <img ng-show="item.isChecked" src="images/radio_check_active.png" />
+                            </div>
+                        </div>
+                        <div class="row" ng-if="item.message_to_chef" ng-class="{'color-red':item.message_to_chef == 'HOLD'}">
+                            <div class="col-xs-12 col-xs-push-2" ng-bind="item.message_to_chef"></div>
+                        </div>
+                        <div class="row" ng-repeat="itm in item.modifiers" ng-init="itm.isChecked=false">
+                            <div class="col-xs-12" ng-click="itm.isChecked=!itm.isChecked">
+                                <div class="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-1">{{itm.qty==0 ? "1" : itm.qty}}</div>
+                                    <div class="col-xs-8">
+                                        <span class="pull-left">
+                                            {{itm.mod.modifier}}
+                                            <span ng-class="{'color-red':(itm.prep | uppercase)=='ALLERGIC'}" ng-if="itm.prep.toUpperCase() != 'ADD'">{{itm.prep ? ("
+                                                "+itm.prep|uppercase) : ""}}</span>
+                                        </span>
+                                        <span class="pull-right"> {{itm.qty == 0 ? (itm.mod.price + itm.extra_charge) : (itm.qty * (itm.mod.price + itm.extra_charge)) | number : 2}} </span>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <img ng-show="!itm.isChecked" src="images/radio_check.png" />
+                                        <img ng-show="itm.isChecked" src="images/radio_check_active.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="itm in item.customModifiers" ng-init="itm.isChecked=false">
+                            <div class="col-xs-12" ng-click="itm.isChecked=!itm.isChecked">
+                                <div class="row">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-1">{{itm.qty==0 ? "1" : itm.qty}}</div>
+                                    <div class="col-xs-8">
+                                        <span class="pull-left">
+                                            {{ctrl.customModifierName(itm)}}
+                                            <span ng-class="{'color-red':(itm.prep | uppercase)=='ALLERGIC'}" ng-if="itm.prep.toUpperCase() != 'ADD'">{{itm.prep ? ("
+                                                "+itm.prep|uppercase) : ""}}</span>
+                                        </span>
+                                        <span class="pull-right"> {{itm.qty == 0 ? itm.mod.price : (itm.qty * itm.mod.price) | number : 2}} </span>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <img ng-show="!itm.isChecked" src="images/radio_check.png" />
+                                        <img ng-show="itm.isChecked" src="images/radio_check_active.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-repeat="item in item.payment">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-7" style="padding-left: 24px; font-weight: bold;">{{item.payment_local_code || item.payment_code}}</div>
+                            <div class="col-xs-2 text-right"></div>
+                            <div class="col-xs-2 text-right">{{ item.amount==99 ? 'All' : item.amount }}</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--<div id="Div3">
+                    <img src="images/loader.gif" alt="" />
+                </div>-->
+    </div>
+
+    <div class="right-bloc-body-bottom order-detail-editing-bottom">
+        <hr>
+        <div class="row">
+            <div class="col-xs-2">
+                <div class="">Subtotal</div>
+                <div class="">{{ ctrl.order.subTotal() }}</div>
+            </div>
+            <div class="col-xs-2">
+                <div class="">Service</div>
+                <div class="">{{ctrl.order.serviceTotal()}}</div>
+            </div>
+            <div class="col-xs-2">
+                <div class="">Tax</div>
+                <div class="">{{ctrl.order.tax()}}</div>
+            </div>
+            <div class="col-xs-2">
+                <div class="">Payments</div>
+                <div class="">{{ctrl.order.totalPayments()}}</div>
+            </div>
+            <div class="col-xs-2">
+                <div class="">Total</div>
+                <div class="">{{ctrl.order.total()}}</div>
+            </div>
+        </div>
+    </div>
+</div>

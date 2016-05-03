@@ -1,0 +1,83 @@
+<div id="debitcardtab">
+    <seat-payment ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    
+    <authorized-credit-cards></authorized-credit-cards>
+    <section id="ccnum">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <input type="hidden" id="cc_pay_id" ng-model="cc_process_autho" />
+                    <input soft-input type="text" class="form-control" placeholder="First Name" ng-model="ctrl.currentSubType.cc_first_name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <input soft-input type="text" class="form-control" placeholder="Last Name" ng-model="ctrl.currentSubType.cc_last_name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <input soft-input type="text" class="form-control" placeholder="CC Number" ng-model="ctrl.currentSubType.cc_number">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <select class="form-control" ng-options="month as month for month in ctrl.currentSubType.months" ng-init="foregroundinitset();"
+                            ng-model="ctrl.currentSubType.exp_month" id="cc_m">
+                            <option value="">Exp. Month</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <select ng-options="year as year for year in ctrl.currentSubType.getYears()" class="form-control" id="cc_y" ng-init="foregroundinitset();" ng-model="ctrl.currentSubType.exp_year" ng-click="backgroudset();">
+                            <option selected value="">Exp. Year</option>
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <input soft-input type="text" class="form-control" placeholder="CVV" ng-model="ctrl.currentSubType.cc_cvv">
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row font-black" style="padding: 3px;">
+        <div class="col-xs-6">
+            <label class="v-desc" style="width: 100%; font: inherit; font-weight: bold; position: absolute; margin-top: 3px;"> Amount Due </label>
+        </div>
+        <div class="col-xs-6" style="text-align: right;">
+            <label class="v-desc" style="font: inherit; font-weight: bold; margin-top: 3px;margin-right:10px;"> {{ctrl.currentSubType.amt_due}}</label>
+        </div>
+    </div>
+    <div id="cont_seat" class="cont_seat"></div>
+    <div class="row" ng-show="ctrl.hasGratuity">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" id="debit_firstname" class="form-control money_field" ng-model="ctrl.currentSubType.gratuity" placeholder="Gratuity"
+                    ng-blur="ctrl.currentSubType.updateAmountDue();ctrl.currentSubType.formatGratuity()" ng-change="ctrl.currentSubType.gratuityChange=true">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control money_field" ng-model="ctrl.amountDue" ng-model-options="{ getterSetter: true }" placeholder="Amount">
+            </div>
+        </div>
+    </div>
+
+</div>

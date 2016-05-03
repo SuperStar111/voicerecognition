@@ -1,0 +1,31 @@
+<div id="expantab">
+    <seat-payment ng-if="ctrl.currentSubType.order.isChair()" ng-model="ctrl.currentSubType.seatData" ng-change="ctrl.currentSubType.onSeatChange()"></seat-payment>
+    <split-payment ng-if="ctrl.currentSubType.order.isEqually()" ng-model="ctrl.currentSubType.splitData" ng-change="ctrl.currentSubType.onSplitChange()"></split-payment>
+    
+    <authorized-credit-cards></authorized-credit-cards>
+    <div class="row font-black">
+        <div class="col-xs-6">
+            <label class="v-desc">Amount Due</label>
+        </div>
+        <div class="col-xs-6 text-right">
+            <label class="v-desc">{{ctrl.amountDue()}}</label>
+        </div>
+    </div>
+    <div id="cont_seat" class="cont_seat"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" id="expan_client" class="form-control" placeholder="Client"
+                    ng-model="ctrl.currentSubType.searchClientName" ng-change="ctrl.currentSubType.findClientsByName()">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <input soft-input type="text" class="form-control" id="expan_client_id" placeholder="ExpenseTAB Client ID"
+                    ng-model="ctrl.currentSubType.searchClientID" ng-change="ctrl.currentSubType.findClientsByID()">
+            </div>
+        </div>
+    </div>
+</div>

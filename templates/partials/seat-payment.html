@@ -1,0 +1,8 @@
+<div class="row select-seats seats-container">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <button type="button" ng-repeat="seat in order.getChairs()" ng-class="{'active': selectedSeats[$index + 1]}" class="btn btn-gray btn-select-seat col-sm-4 col-lg-5"
+                ng-disabled="['SURCHARGE', 'GRATUITY'].indexOf(type) == -1 && seat.amountDue == 0 && !enableAll" ng-click="toggleSeat($index + 1, seat.amountDue, seat)">Seat {{($index + 1)}} - {{$root.location.currency_symbol}}{{seat.amountDue}}</button>
+        </div>
+    </div>
+</div>
